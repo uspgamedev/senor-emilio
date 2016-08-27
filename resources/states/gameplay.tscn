@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scripts/states/gameplay.gd" type="Script" id=1]
 [ext_resource path="res://resources/tilesets/basic-tilemap.tres" type="TileSet" id=2]
 [ext_resource path="res://resources/objects/instances/hero.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=4]
 
 [node name="gameplay" type="Node2D"]
 
@@ -11,6 +12,7 @@ current = 0
 
 [node name="future" type="TileMap" parent="."]
 
+transform/pos = Vector2( -219.765, -197.666 )
 mode = 0
 tile_set = ExtResource( 2 )
 cell/size = Vector2( 64, 64 )
@@ -35,6 +37,11 @@ sort/enabled = true
 
 transform/pos = Vector2( 64, 64 )
 collision/mask = 1
+
+[node name="portal_future" parent="future/bodies" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 219.765, 89.6249 )
+portal_link = NodePath("../../../past/bodies/portal_past")
 
 [node name="past" type="TileMap" parent="."]
 
@@ -64,5 +71,10 @@ sort/enabled = true
 transform/pos = Vector2( 128, 64 )
 collision/layers = 2
 collision/mask = 2
+
+[node name="portal_past" parent="past/bodies" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 31.9212, 225.904 )
+portal_link = NodePath("../../../future/bodies/portal_future")
 
 
