@@ -24,6 +24,7 @@ current = null
 
 [node name="map" parent="." instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform/pos = Vector2( -24.5885, 0 )
 
 [node name="bodies" type="YSort" parent="map"]
