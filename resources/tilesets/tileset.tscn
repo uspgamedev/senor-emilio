@@ -343,6 +343,7 @@ trigger = false
 
 [node name="wall up-left inverted" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 240, 81 )
 texture = ExtResource( 1 )
 region = true
