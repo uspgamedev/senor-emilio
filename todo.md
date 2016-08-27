@@ -1,7 +1,7 @@
 
-#To-Do List
+# To-Do List
 
-##List of things that this template needs:
+## List of things that this template needs:
 
 1. Map
   1.1. Tileset generation
@@ -27,9 +27,7 @@
 
 6. Splash Screen
 
-##"Plugin" Ideas
+## "Plugin" Ideas
 
 1. Spritesheet Importer
 2. Map/Tileset Importer (Tiled)
-
-
