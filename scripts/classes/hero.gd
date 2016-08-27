@@ -7,6 +7,8 @@ const MONSTER = preload("res://scripts/classes/monster.gd")
 onready var sprite = get_node("sprite")
 onready var hitbox = get_node("hitbox")
 
+signal time_travel
+
 func _move_to(dir):
   ._move_to(dir)
   if direction == DIR.UP:
@@ -27,3 +29,5 @@ func _act(act):
   if act == 0:
     var range_bodies = hitbox.get_overlapping_bodies()
     printt("bodies=", range_bodies)
+  elif act == 2:
+    emit_signal("time_travel")

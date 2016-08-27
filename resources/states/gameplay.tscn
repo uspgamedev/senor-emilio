@@ -1,125 +1,68 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://scripts/states/gameplay.gd" type="Script" id=1]
-[ext_resource path="res://resources/maps/map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/tilesets/basic-tilemap.tres" type="TileSet" id=2]
 [ext_resource path="res://resources/objects/instances/hero.tscn" type="PackedScene" id=3]
-[ext_resource path="res://resources/objects/types/npc.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/events/event_talk.gd" type="Script" id=5]
-[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=6]
-[ext_resource path="res://scripts/classes/answer.gd" type="Script" id=7]
-[ext_resource path="res://resources/objects/types/nothero.tscn" type="PackedScene" id=8]
-[ext_resource path="res://resources/objects/types/area_event.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scripts/events/events_instances/hello_world.gd" type="Script" id=10]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 66.4767, 10 )
 
 [node name="gameplay" type="Node2D"]
 
 script/script = ExtResource( 1 )
-__meta__ = { "_edit_lock_":true }
+current = 0
 
-[node name="map" parent="." instance=ExtResource( 2 )]
+[node name="future" type="TileMap" parent="."]
 
-transform/pos = Vector2( -24.5885, 0 )
+mode = 0
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 64, 64 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( -1, 11, -65536, 4, -65535, 4, -65534, 4, -65533, 4, -65532, 8, 65535, 7, 0, 0, 1, 0, 2, 0, 3, 0, 4, 5, 131071, 7, 65536, 0, 65537, 0, 65538, 0, 65539, 0, 65540, 5, 196607, 10, 131072, 6, 131073, 6, 131074, 6, 131075, 6, 131076, 9 )
 
-[node name="bodies" type="YSort" parent="map"]
+[node name="bodies" type="YSort" parent="future"]
 
 sort/enabled = true
-__meta__ = { "_edit_group_":true, "_edit_lock_":true }
 
-[node name="hero" parent="map/bodies" instance=ExtResource( 3 )]
+[node name="human" parent="future/bodies" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 259, 270 )
+transform/pos = Vector2( 64, 64 )
+collision/mask = 1
 
-[node name="npc" parent="map/bodies" instance=ExtResource( 4 )]
+[node name="past" type="TileMap" parent="."]
 
-transform/pos = Vector2( 728.993, 501.996 )
-eventScript = ExtResource( 5 )
+visibility/visible = false
+mode = 0
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 64, 64 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 2
+collision/mask = 2
+occluder/light_mask = 1
+tile_data = IntArray( -1, 11, -65536, 4, -65535, 4, -65534, 4, -65533, 8, 65535, 7, 0, 0, 1, 0, 2, 0, 3, 5, 131071, 7, 65536, 0, 65537, 0, 65538, 0, 65539, 5, 196607, 7, 131072, 0, 131073, 0, 131074, 0, 131075, 5, 262143, 7, 196608, 0, 196609, 0, 196610, 0, 196611, 5, 327679, 10, 262144, 6, 262145, 6, 262146, 6, 262147, 9 )
 
-[node name="Conversation" type="Node" parent="map/bodies/npc"]
+[node name="bodies" type="YSort" parent="past"]
 
-[node name="Speech1" type="Node" parent="map/bodies/npc/Conversation"]
+sort/enabled = true
 
-script/script = ExtResource( 6 )
-speech = "Hi... "
+[node name="cat" parent="past/bodies" instance=ExtResource( 3 )]
 
-[node name="Answer1" type="Node" parent="map/bodies/npc/Conversation/Speech1"]
-
-script/script = ExtResource( 7 )
-text = "Hello"
-next_speech = NodePath("../../Speech2")
-action = "printt(\"hi\")"
-
-[node name="Speech2" type="Node" parent="map/bodies/npc/Conversation"]
-
-script/script = ExtResource( 6 )
-speech = "How are you doing\?"
-
-[node name="Ans-Fine" type="Node" parent="map/bodies/npc/Conversation/Speech2"]
-
-script/script = ExtResource( 7 )
-text = "Fine"
-next_speech = null
-action = "player.apply_damage(10)"
-
-[node name="Ans-NotFeelingWell" type="Node" parent="map/bodies/npc/Conversation/Speech2"]
-
-script/script = ExtResource( 7 )
-text = "Not feeling well"
-next_speech = NodePath("../../Speech3")
-action = "printt(\"hi\")"
-
-[node name="Speech3" type="Node" parent="map/bodies/npc/Conversation"]
-
-script/script = ExtResource( 6 )
-speech = "So sad... Well be safe"
-
-[node name="Ans-Finish" type="Node" parent="map/bodies/npc/Conversation/Speech3"]
-
-script/script = ExtResource( 7 )
-text = "See ya"
-next_speech = null
-action = "pass"
-
-[node name="nothero" parent="map/bodies" instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 602.905, 309.362 )
-
-[node name="nothero1" parent="map/bodies" instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 500.361, 433.18 )
-
-[node name="nothero2" parent="map/bodies" instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 604.903, 967.263 )
-
-[node name="nothero3" parent="map/bodies" instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 878.274, 1327.11 )
-
-[node name="nothero4" parent="map/bodies" instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1405.49, 1034.21 )
-
-[node name="nothero5" parent="map/bodies" instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1469.65, 615.785 )
-
-[node name="nothero6" parent="map/bodies" instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1394.33, 1511.22 )
-
-[node name="area_event" parent="map/bodies" instance=ExtResource( 9 )]
-
-transform/pos = Vector2( 511.888, 652.193 )
-eventScript = ExtResource( 10 )
-
-[node name="area" parent="map/bodies/area_event"]
-
-shape = SubResource( 1 )
+transform/pos = Vector2( 128, 64 )
+collision/layers = 2
+collision/mask = 2
 
 
-[editable path="map/bodies/area_event"]
