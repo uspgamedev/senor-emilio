@@ -44,6 +44,8 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision/layers = 4
+collision/mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 
@@ -65,5 +67,9 @@ texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
 frame = 3
+
+[connection signal="body_enter" from="Range" to="." method="_on_range_enter"]
+
+[connection signal="body_exit" from="Range" to="." method="_on_range_exit"]
 
 

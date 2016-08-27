@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://scripts/states/gameplay.gd" type="Script" id=1]
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=2]
 [ext_resource path="res://resources/objects/instances/hero.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/bgm/keepitcool.ogg" type="AudioStream" id=4]
-[ext_resource path="res://resources/objects/types/switch.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resources/objects/types/switch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/bgm/keepitcool.ogg" type="AudioStream" id=6]
 
 [node name="gameplay" type="Node2D"]
 
@@ -14,7 +15,6 @@ current = 0
 
 [node name="future" type="TileMap" parent="."]
 
-visibility/visible = false
 mode = 0
 tile_set = ExtResource( 2 )
 cell/size = Vector2( 32, 32 )
@@ -43,6 +43,7 @@ collision/mask = 1
 
 [node name="past" type="TileMap" parent="."]
 
+visibility/visible = false
 mode = 0
 tile_set = ExtResource( 2 )
 cell/size = Vector2( 32, 32 )
@@ -69,9 +70,18 @@ transform/pos = Vector2( 128, 64 )
 collision/layers = 2
 collision/mask = 2
 
+[node name="Switch" parent="past/bodies" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 139.962, 174.339 )
+device = NodePath("../Door")
+
+[node name="Door" parent="past/bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -14.7329, 108.041 )
+
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 4 )
+stream/stream = ExtResource( 6 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0

@@ -7,6 +7,7 @@ onready var sprite = get_node("sprite")
 onready var hitbox = get_node("hitbox")
 
 signal time_travel
+signal interact
 
 var grabbing = false
 var tmp_object
@@ -50,5 +51,6 @@ func _act(act):
           tmp_object = body
           body.get_parent().remove_child(body)
           call_deferred("attach_object", body)
+    emit_signal("interact")
   elif act == 2:
     emit_signal("time_travel")
