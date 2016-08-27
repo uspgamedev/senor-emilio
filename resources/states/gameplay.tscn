@@ -34,6 +34,7 @@ sort/enabled = true
 [node name="human" parent="future/bodies" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 64, 64 )
+collision/mask = 1
 
 [node name="past" type="TileMap" parent="."]
 
@@ -49,8 +50,8 @@ cell/y_sort = false
 collision/use_kinematic = false
 collision/friction = 1.0
 collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
+collision/layers = 2
+collision/mask = 2
 occluder/light_mask = 1
 tile_data = IntArray( -1, 11, -65536, 4, -65535, 4, -65534, 4, -65533, 8, 65535, 7, 0, 0, 1, 0, 2, 0, 3, 5, 131071, 7, 65536, 0, 65537, 0, 65538, 0, 65539, 5, 196607, 7, 131072, 0, 131073, 0, 131074, 0, 131075, 5, 262143, 7, 196608, 0, 196609, 0, 196610, 0, 196611, 5, 327679, 10, 262144, 6, 262145, 6, 262146, 6, 262147, 9 )
 
@@ -61,5 +62,7 @@ sort/enabled = true
 [node name="cat" parent="past/bodies" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 128, 64 )
+collision/layers = 2
+collision/mask = 2
 
 

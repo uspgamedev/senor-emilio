@@ -26,14 +26,16 @@ func _ready():
 func _connect_state():
   input.connect("hold_direction", get_current_char(), "_move_to")
   input.connect("press_action", get_current_char(), "_act")
-  get_current_map().show()
+  get_current_char().connect("time_travel", self, "switch_time_state")
   get_current_char().add_child(_cam)
+  get_current_map().show()
 
 func _disconnect_state():
   input.disconnect("hold_direction", get_current_char(), "_move_to")
   input.disconnect("press_action", get_current_char(), "_act")
-  get_current_map().hide()
+  get_current_char().disconnect("time_travel", self, "switch_time_state")
   get_current_char().remove_child(_cam)
+  get_current_map().hide()
 
 func _start_camera():
   _cam.make_current()
@@ -54,6 +56,6 @@ func get_other_char():
   return _chars[1 - current]
 
 func switch_time_state():
-  disconnect_state()
+  _disconnect_state()
   current = 1 - current
-  connect_state()
+  _connect_state()

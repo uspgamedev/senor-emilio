@@ -36,6 +36,8 @@ func _get_action(e):
         act = 0
     elif e.is_action_pressed("ui_cancel"):
         act = 1
+    elif e.is_action_pressed("ui_focus_next"):
+        act = 2
     return act
 
 func _get_direction(e):
