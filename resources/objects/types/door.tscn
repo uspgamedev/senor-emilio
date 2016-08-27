@@ -186,5 +186,3 @@ _update_shape_index = 0
 transform/pos = Vector2( 0, 16 )
 
 [connection signal="body_enter" from="teleport" to="." method="_teleport"]
-
-[connection signal="body_enter_shape" from="teleport" to="." method="_teleport"]

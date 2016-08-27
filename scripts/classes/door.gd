@@ -24,6 +24,8 @@ func _ready():
     locked = true
   else:
     locked = false
+  get_node("teleport").set_layer_mask(_mask)
+  get_node("teleport").set_collision_mask(_mask)
 
 func open():
   if anim.get_current_animation() != "opened":
@@ -60,9 +62,9 @@ func off():
   close()
 
 func _teleport(body):
-  if body.get_script() == Hero and anim.get_current_animation() == "opened":
+  if is_inside_tree() and body.get_script() == Hero and anim.get_current_animation() == "opened":
+    printt(get_path(), "door used!", target_stage, target_door)
     get_node("/root/main/gameplay")._change_stage(target_stage, target_door)
-    printt(get_name(), "door used!", body.get_name())
 
 func interact(body):
   #emit_signal("change_stage", target_stage,  target_door)
