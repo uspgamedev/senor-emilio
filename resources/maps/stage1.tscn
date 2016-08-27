@@ -16,14 +16,16 @@ tile_data = IntArray( -1, 9, -65536, 5, -65535, 5, -65534, 5, -65533, 10, 65535,
 
 transform/pos = Vector2( 51.7468, 61.6981 )
 
-[node name="Door" parent="future/bodies" instance=ExtResource( 3 )]
+[node name="door_1" parent="future/bodies" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( -16, 64 )
+target_stage = 1
+target_door = "door_1"
 
 [node name="Switch" parent="future/bodies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 80, 16 )
-device = NodePath("../Door")
+device = NodePath("../door_1")
 
 [node name="Portal" parent="future/bodies" instance=ExtResource( 5 )]
 
