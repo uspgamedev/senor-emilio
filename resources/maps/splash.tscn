@@ -1,0 +1,166 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://assets/imgs/logo_vertical_negative.png" type="Texture" id=1]
+[ext_resource path="res://assets/imgs/Ludum_Dare_Logo.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/imgs/cat.png" type="Texture" id=4]
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "onready var initial = get_node(\"initial\")\nonready var tween = get_node(\"Tween\")\nonready var title = get_node(\"title\")\n\nfunc _ready():\n\ttitle.hide()\n\tinitial.show()\n\tinitial.set_opacity(0)\n\ttween.interpolate_method(initial, \"set_opacity\", 0, 1, 3.0, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1)\n\ttween.connect(\"tween_complete\", self, \"show_complete\")\n\ttween.start()\n\nfunc show_complete(obj, key):\n\ttween.interpolate_method(initial, \"set_opacity\", 1, 0, 3.0, Tween.TRANS_LINEAR, Tween.EASE_OUT, 4)\n\ttween.disconnect(\"tween_complete\", self, \"show_complete\")\n\ttween.connect(\"tween_complete\", self, \"splash_finish\")\n\ttween.start()\n\nfunc splash_finish(obj, key):\n\tprint(\"splash_finish\")\n\tinitial.hide()\n\ttitle.show()\n\ttitle.set_opacity(0)\n\ttween.interpolate_method(title, \"set_opacity\", 0, 1, 3.0, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1)\n\ttween.disconnect(\"tween_complete\", self, \"splash_finish\")\n\ttween.start()\n\t"
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 52
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+
+font/size = 32
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 3 )
+
+[node name="Splash" type="CanvasLayer"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = SubResource( 3 )
+
+[node name="bg" type="Panel" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="initial" type="Panel" parent="."]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="TextureFrame" type="TextureFrame" parent="initial"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 830.0
+margin/top = 80.0
+margin/right = 1149.0
+margin/bottom = 444.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 0
+
+[node name="TextureFrame 2" type="TextureFrame" parent="initial"]
+
+anchor/left = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 570.0
+margin/top = 90.0
+margin/right = 680.0
+margin/bottom = 438.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="initial"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 290.0
+margin/top = 550.0
+margin/right = 960.0
+margin/bottom = 660.0
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode/enabled = true
+bbcode/bbcode = "[center][b]USPGameDev[/b]\n[color=lime]contato@uspgamedev.org[/color]\n© 2016 USPGameDev. All Rights Reserved.[/center]"
+visible_characters = -1
+
+[node name="title" type="Panel" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="TextureFrame" type="TextureFrame" parent="title"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 60.0
+margin/right = 0.0
+margin/bottom = 240.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+
+[node name="ToolButton" type="ToolButton" parent="title"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 280.0
+margin/top = 500.0
+margin/right = 970.0
+margin/bottom = 650.0
+custom_fonts/font = SubResource( 4 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Start Game"
+flat = true
+
+
