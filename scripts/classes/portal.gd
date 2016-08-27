@@ -37,6 +37,7 @@ func interact(body):
     printt(get_name(), "requesting drop")
   elif is_full():
     var item = get_item()
+    item.set_layer_mask(body.get_layer_mask())
     body.grab(item)
     remove()
     printt(get_name(), "requesting grab")

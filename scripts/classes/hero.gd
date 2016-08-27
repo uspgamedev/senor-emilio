@@ -9,8 +9,9 @@ onready var pocket = get_node("pocket")
 
 signal time_travel
 signal interact
-signal grab(item)
+signal grab()
 signal drop(item)
+signal just_drop
 
 var grabbing = false
 var tmp_object
@@ -38,12 +39,11 @@ func attach_object(body):
   body.set_collision_mask(0)
   body.set_layer_mask(0)
   pocket.add_child(body)
-  emit_signal("grab", body)
 
 func detach_object(body):
   body.set_pos(get_pos() + get_front()*32)
-  body.set_collision_mask(15)
-  body.set_layer_mask(3)
+  body.set_collision_mask(get_collision_mask())
+  body.set_layer_mask(get_layer_mask())
   get_parent().add_child(body)
 
 func get_pocket_item():
@@ -55,17 +55,15 @@ func grab(body):
     tmp_object = body
     if body.get_parent() != null:
       body.get_parent().remove_child(body)
+    emit_signal("grab")
     call_deferred("attach_object", body)
 
 func drop():
   if grabbing:
     pocket.remove_child(tmp_object)
     grabbing = false
+    emit_signal("just_drop")
     call_deferred("emit_signal", "drop", tmp_object)
-
-func use_item():
-  if grabbing:
-    tmp_object.queue_free()
 
 func _act(act):
   printt("act=", act)

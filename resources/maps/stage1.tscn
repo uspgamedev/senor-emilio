@@ -12,13 +12,22 @@
 
 tile_data = IntArray( -1, 9, -65536, 5, -65535, 5, -65534, 5, -65533, 10, 65535, 8, 0, 0, 1, 0, 2, 0, 3, 6, 131071, 8, 65536, 0, 65537, 0, 65538, 0, 65539, 6, 196607, 8, 131072, 0, 131073, 0, 131074, 0, 131075, 6, 262143, 8, 196608, 0, 196609, 0, 196610, 0, 196611, 6, 327679, 8, 262144, 0, 262145, 0, 262146, 0, 262147, 6, 393215, 8, 327680, 0, 327681, 0, 327682, 0, 327683, 6, 458751, 8, 393216, 0, 393217, 0, 393218, 0, 393219, 6, 524287, 11, 458752, 7, 458753, 7, 458754, 7, 458755, 12 )
 
+[node name="bodies" parent="future"]
+
+editor/display_folded = true
+
 [node name="box" parent="future/bodies" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 51.7468, 61.6981 )
+collision/layers = 1
+collision/mask = 1
 
 [node name="door_1" parent="future/bodies" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( -16, 64 )
+collision/layers = 1
+collision/mask = 1
 target_stage = 1
 target_door = "door_1"
 key_required = "box"
@@ -27,16 +36,22 @@ start_opened = false
 [node name="Switch" parent="future/bodies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 80, 16 )
+collision/layers = 1
+collision/mask = 1
 device = NodePath("../door_1")
 
 [node name="Portal" parent="future/bodies" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 16, 192 )
+collision/layers = 1
+collision/mask = 1
 portal_link = NodePath("../Portal 2")
 
 [node name="Portal 2" parent="future/bodies" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 80, 192 )
+collision/layers = 1
+collision/mask = 1
 portal_link = NodePath("../Portal")
 
 [node name="past" parent="."]

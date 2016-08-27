@@ -6,7 +6,7 @@ onready var opened = get_node("opened")
 export(int) var target_stage = 0
 export(String) var target_door = "door"
 export(String) var key_required = null
-export(bool) var start_opened = true 
+export(bool) var start_opened = true
 
 signal change_stage(which, door)
 
@@ -53,7 +53,7 @@ func interact(body):
   if locked:
     if body.get_pocket_item() != null:
       if unlock(body.get_pocket_item()):
-        body.use_item()
+        body.drop()
     return
   get_node("/root/main/gameplay")._change_stage(target_stage, target_door)
   printt(get_name(), "door used!", body.get_name())

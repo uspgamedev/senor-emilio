@@ -8,6 +8,8 @@
 [node name="door_1" parent="future/bodies" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 112, 48 )
+collision/layers = 1
+collision/mask = 1
 target_door = "door_1"
 
 [node name="spawn" parent="future/bodies/door_1"]
