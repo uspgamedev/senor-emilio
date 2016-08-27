@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://resources/tilesets/basic-tilemap.tres" type="TileSet" id=1]
-[ext_resource path="res://resources/objects/instances/box.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=2]
 
 [node name="map" type="TileMap"]
 
