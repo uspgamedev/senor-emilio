@@ -79,6 +79,7 @@ region_rect = Rect2( 32, 0, 32, 32 )
 
 [node name="above-wall" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 144, 16 )
 texture = ExtResource( 1 )
 region = true
@@ -106,6 +107,7 @@ trigger = false
 
 [node name="wall-up" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 176, 16 )
 texture = ExtResource( 1 )
 region = true
@@ -133,6 +135,7 @@ trigger = false
 
 [node name="wall-right" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 208, 16 )
 texture = ExtResource( 1 )
 region = true
@@ -160,6 +163,7 @@ trigger = false
 
 [node name="wall-down" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 176, 48 )
 texture = ExtResource( 1 )
 region = true
@@ -187,6 +191,7 @@ trigger = false
 
 [node name="wall-left" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 208, 48 )
 texture = ExtResource( 1 )
 region = true
@@ -214,6 +219,7 @@ trigger = false
 
 [node name="wall up-left" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 240, 16 )
 texture = ExtResource( 1 )
 region = true
@@ -241,6 +247,7 @@ trigger = false
 
 [node name="wall up-right" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 272, 16 )
 texture = ExtResource( 1 )
 region = true
@@ -268,6 +275,7 @@ trigger = false
 
 [node name="wall down-left" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 240, 48 )
 texture = ExtResource( 1 )
 region = true
@@ -295,6 +303,7 @@ trigger = false
 
 [node name="wall down-right" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 272, 48 )
 texture = ExtResource( 1 )
 region = true
