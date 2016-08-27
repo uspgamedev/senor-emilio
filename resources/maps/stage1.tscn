@@ -10,6 +10,7 @@
 
 [node name="future" parent="."]
 
+editor/display_folded = true
 tile_data = IntArray( -1, 9, -65536, 5, -65535, 5, -65534, 5, -65533, 10, 65535, 8, 0, 0, 1, 0, 2, 0, 3, 6, 131071, 8, 65536, 0, 65537, 0, 65538, 0, 65539, 6, 196607, 8, 131072, 0, 131073, 0, 131074, 0, 131075, 6, 262143, 8, 196608, 0, 196609, 0, 196610, 0, 196611, 6, 327679, 8, 262144, 0, 262145, 0, 262146, 0, 262147, 6, 393215, 8, 327680, 0, 327681, 0, 327682, 0, 327683, 6, 458751, 8, 393216, 0, 393217, 0, 393218, 0, 393219, 6, 524287, 11, 458752, 7, 458753, 7, 458754, 7, 458755, 12 )
 
 [node name="box" parent="future/bodies" instance=ExtResource( 2 )]
@@ -20,6 +21,7 @@ collision/mask = 1
 
 [node name="door_1" parent="future/bodies" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( -16, 64 )
 collision/layers = 1
 collision/mask = 1
@@ -51,6 +53,7 @@ portal_link = NodePath("../Portal")
 
 [node name="past" parent="."]
 
+editor/display_folded = true
 tile_data = IntArray( -1, 9, -65536, 5, -65535, 5, -65534, 5, -65533, 10, 65535, 8, 0, 1, 1, 1, 2, 1, 3, 6, 131071, 8, 65536, 1, 65537, 1, 65538, 1, 65539, 6, 196607, 8, 131072, 1, 131073, 1, 131074, 1, 131075, 6, 262143, 11, 196608, 7, 196609, 7, 196610, 7, 196611, 12 )
 
 
