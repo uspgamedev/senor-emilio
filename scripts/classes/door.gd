@@ -15,13 +15,27 @@ var locked = false
 
 func _ready():
   if start_opened:
-    anim.play("opened")
+    open()
   else:
-    anim.play("closed")
+    close()
   if key_required != null:
     locked = true
   else:
     locked = false
+
+func open():
+  if anim.get_current_animation() != "opened":
+    print("door open")
+    anim.play("opening")
+    anim.queue("opened")
+    deactivate_collision()
+
+func close():
+  if anim.get_current_animation() != "closed":
+    print("door closed")
+    anim.play("closing")
+    anim.queue("closed")
+    activate_collision()
 
 func is_closed():
   return anim.get_current_animation() != "opened"
@@ -35,19 +49,13 @@ func unlock(key):
 func on():
   if key_required != null and locked:
     return
-  print("door open")
-  anim.play("opening")
-  anim.queue("opened")
-  deactivate_collision()
+  open()
 
 func get_spawn_pos():
   return get_node("spawn").get_global_pos()
 
 func off():
-  print("door closed")
-  anim.play("closing")
-  anim.queue("closed")
-  activate_collision()
+  close()
 
 func interact(body):
   #emit_signal("change_stage", target_stage,  target_door)
