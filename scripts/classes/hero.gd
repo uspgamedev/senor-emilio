@@ -31,7 +31,7 @@ func _move_to(dir):
   pocket.set_rotd(-angle)
 
 func attach_object(body):
-  body.set_pos(Vector2(0,-80))
+  body.set_pos(Vector2(0,-48))
   body.set_collision_mask(0)
   body.set_layer_mask(0)
   pocket.add_child(body)
