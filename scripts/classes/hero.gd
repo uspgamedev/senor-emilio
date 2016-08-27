@@ -42,8 +42,8 @@ func attach_object(body):
 
 func detach_object(body):
   body.set_pos(get_pos() + get_front()*32)
-  body.set_collision_mask(15)
-  body.set_layer_mask(3)
+  body.set_collision_mask(get_collision_mask())
+  body.set_layer_mask(get_layer_mask())
   get_parent().add_child(body)
 
 func get_pocket_item():
