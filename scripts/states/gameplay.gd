@@ -7,8 +7,8 @@ const PAST = 1
 export(int, "FUTURE","PAST") var current = FUTURE
 
 onready var _maps = [
-  get_node("future"),
-  get_node("past")
+  get_node("stage/future"),
+  get_node("stage/past")
 ]
 onready var _chars = [
   _maps[FUTURE].get_node("bodies/human"),
