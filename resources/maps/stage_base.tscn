@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/instances/hero.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=3]
 
 [node name="stage" type="Node2D"]
 
@@ -23,7 +24,7 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( -1, 9, -65536, 5, -65535, 5, -65534, 5, -65533, 10, 65535, 8, 0, 0, 1, 0, 2, 0, 3, 6, 131071, 8, 65536, 0, 65537, 0, 65538, 0, 65539, 6, 196607, 8, 131072, 0, 131073, 0, 131074, 0, 131075, 6, 262143, 11, 196608, 7, 196609, 7, 196610, 7, 196611, 12 )
+tile_data = IntArray( -1, 10, -65536, 6, -65535, 6, -65534, 6, -65533, 11, 65535, 9, 0, 0, 1, 0, 2, 0, 3, 7, 131071, 9, 65536, 0, 65537, 0, 65538, 0, 65539, 7, 196607, 9, 131072, 0, 131073, 0, 131074, 0, 131075, 7, 262143, 12, 196608, 8, 196609, 8, 196610, 8, 196611, 13 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="bodies" type="YSort" parent="future"]
@@ -39,7 +40,7 @@ collision/mask = 1
 
 visibility/visible = false
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 3 )
 cell/size = Vector2( 32, 32 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -52,7 +53,7 @@ collision/bounce = 0.0
 collision/layers = 2
 collision/mask = 2
 occluder/light_mask = 1
-tile_data = IntArray( -1, 9, -65536, 5, -65535, 5, -65534, 5, -65533, 10, 65535, 8, 0, 0, 1, 0, 2, 0, 3, 6, 131071, 8, 65536, 0, 65537, 0, 65538, 0, 65539, 6, 196607, 8, 131072, 0, 131073, 0, 131074, 0, 131075, 6, 262143, 11, 196608, 7, 196609, 7, 196610, 7, 196611, 12 )
+tile_data = IntArray( -1, 10, -65536, 6, -65535, 6, -65534, 6, -65533, 11, 65535, 9, 0, 0, 1, 0, 2, 0, 3, 7, 131071, 9, 65536, 0, 65537, 0, 65538, 0, 65539, 7, 196607, 9, 131072, 0, 131073, 0, 131074, 0, 131075, 7, 262143, 12, 196608, 8, 196609, 8, 196610, 8, 196611, 13 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="bodies" type="YSort" parent="past"]

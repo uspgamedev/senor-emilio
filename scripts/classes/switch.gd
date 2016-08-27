@@ -1,4 +1,5 @@
-extends StaticBody2D
+
+extends "res://scripts/classes/prop.gd"
 
 export(NodePath) var device = null
 
