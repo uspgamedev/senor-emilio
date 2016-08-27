@@ -44,21 +44,26 @@ func detach_object(body):
 func get_pocket_item():
   return tmp_object
 
+func grab(body):
+  if !grabbing:
+    grabbing = true
+    tmp_object = body
+    body.get_parent().remove_child(body)
+    call_deferred("attach_object", body)
+
 func _act(act):
   printt("act=", act)
   if act == 0:
     if grabbing:
       pocket.remove_child(tmp_object)
       call_deferred("detach_object", tmp_object)
-    var range_bodies = hitbox.get_overlapping_bodies()
-    printt("bodies=", range_bodies)
-    for body in range_bodies:
-      if body.get_name() == "box":
-        if !grabbing:
-          grabbing = true
-          tmp_object = body
-          body.get_parent().remove_child(body)
-          call_deferred("attach_object", body)
+    else:
+      var range_bodies = hitbox.get_overlapping_bodies()
+      printt("bodies=", range_bodies)
+      for body in range_bodies:
+        if body.has_method("interact"):
+          body.interact(self)
+          break
     emit_signal("interact")
   elif act == 2:
     emit_signal("time_travel")
