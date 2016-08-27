@@ -30,6 +30,9 @@ func _move_to(dir):
   sprite.set_rotd(-angle)
   pocket.set_rotd(-angle)
 
+func get_front():
+  return get_relative_transform_to_parent(get_parent()).y
+
 func attach_object(body):
   body.set_pos(Vector2(0,-48))
   body.set_collision_mask(0)
@@ -38,7 +41,7 @@ func attach_object(body):
   emit_signal("grab", body)
 
 func detach_object(body):
-  body.set_pos(get_pos())
+  body.set_pos(get_pos() + get_front()*32)
   body.set_collision_mask(15)
   body.set_layer_mask(3)
   get_parent().add_child(body)
