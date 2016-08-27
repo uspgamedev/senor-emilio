@@ -10,7 +10,7 @@ const EPSILON = 1
 
 var _ref_dirs = DIR.new()
 
-export(int, "up", "right", "down", "left") var direction
+export(int, "up", "right", "down", "left") var direction = 1
 export(bool) var strife
 
 var speed = Vector2()

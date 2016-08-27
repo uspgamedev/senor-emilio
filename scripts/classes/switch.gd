@@ -24,12 +24,5 @@ func turn_on_off():
     on.show()
     _get_device().on()
 
-
-
-func _on_range_enter( body ):
-  printt("enter body=", body)
-  body.connect("interact", self, "turn_on_off")
-
-func _on_range_exit( body ):
-  printt("exit body=", body)
-  body.disconnect("interact", self, "turn_on_off")
+func interact(body):
+  turn_on_off()

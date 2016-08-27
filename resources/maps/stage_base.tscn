@@ -34,6 +34,7 @@ sort/enabled = true
 [node name="human" parent="future/bodies" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 16, 16 )
+collision/mask = 1
 
 [node name="past" type="TileMap" parent="."]
 
@@ -49,8 +50,8 @@ cell/y_sort = false
 collision/use_kinematic = false
 collision/friction = 1.0
 collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
+collision/layers = 2
+collision/mask = 2
 occluder/light_mask = 1
 tile_data = IntArray( -1, 9, -65536, 5, -65535, 5, -65534, 5, -65533, 10, 65535, 8, 0, 0, 1, 0, 2, 0, 3, 6, 131071, 8, 65536, 0, 65537, 0, 65538, 0, 65539, 6, 196607, 8, 131072, 0, 131073, 0, 131074, 0, 131075, 6, 262143, 11, 196608, 7, 196609, 7, 196610, 7, 196611, 12 )
 __meta__ = { "_edit_lock_":true }
@@ -62,6 +63,8 @@ sort/enabled = true
 [node name="cat" parent="past/bodies" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 16, 16 )
+collision/layers = 2
+collision/mask = 2
 
 [node name="bgm" type="StreamPlayer" parent="."]
 

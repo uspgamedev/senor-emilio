@@ -2,32 +2,41 @@ extends StaticBody2D
 
 export(NodePath) var portal_link = null
 
-onready var storage = get_node("Storage")
+var stored = null
 
 func get_portal_link():
   return get_node(portal_link)
 
 func is_full():
-  if storage.get_child_count() > 0:
-    return true
-  return false
+  return stored != null
 
 func store(item):
   if is_full():
     return
-  storage.add_child(item)
-  yield(get_tree(), "fixed_frame")
+  printt(get_name(), "storing item")
+  stored = item
+  item.hide()
   get_portal_link().store(item)
 
 func remove():
-  var item = get_item()
-  if item == null:
+  if !is_full():
     return
-  storage.remove_child(item)
-  yield(get_tree(), "fixed_frame")
-  get_portal_link().remove(item)
+  printt(get_name(), "removing item")
+  stored.show()
+  stored = null
+  get_portal_link().remove()
 
 func get_item():
-  if not is_full():
-    return null
-  return storage.get_child(0)
+  return stored
+
+func interact(body):
+  if body.grabbing:
+    var drop = body.get_pocket_item()
+    body.connect("drop", self, "store", [], CONNECT_ONESHOT)
+    body.drop()
+    printt(get_name(), "requesting drop")
+  elif is_full():
+    var item = get_item()
+    body.grab(item)
+    remove()
+    printt(get_name(), "requesting grab")
