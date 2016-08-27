@@ -8,6 +8,8 @@ onready var STAGES = [
   preload("res://resources/maps/stage2.tscn").instance(),
 ]
 
+onready var sfx = get_node("sfx")
+
 const FUTURE = 0
 const PAST = 1
 
@@ -48,7 +50,7 @@ func _change_stage(which,door_name):
   var door = get_current_map().get_node("bodies").get_node(door_name)
   if door.is_closed():
     return
-  
+
   printt(get_name(), "received request to change stage", which, door_name)
   _disconnect_state()
   remove_child(get_node("stage"))
@@ -56,13 +58,15 @@ func _change_stage(which,door_name):
   add_child(STAGES[which])
   _setup()
   _connect_state()
-  
+
   get_current_char().set_pos(door.get_spawn_pos())
 
 func _connect_state():
   input.connect("hold_direction", get_current_char(), "_move_to")
   input.connect("press_action", get_current_char(), "_act")
   get_current_char().connect("time_travel", self, "switch_time_state")
+  get_current_char().connect("grab", sfx, "play", ["grab"])
+  get_current_char().connect("just_drop", sfx, "play", ["drop"])
   get_current_char().add_child(_cam)
   get_current_map().show()
   get_current_map().set_collision_layer(1)
@@ -71,6 +75,8 @@ func _disconnect_state():
   input.disconnect("hold_direction", get_current_char(), "_move_to")
   input.disconnect("press_action", get_current_char(), "_act")
   get_current_char().disconnect("time_travel", self, "switch_time_state")
+  get_current_char().disconnect("grab", sfx, "play")
+  get_current_char().disconnect("just_drop", sfx, "play")
   get_current_char().remove_child(_cam)
   get_current_map().hide()
   get_current_map().set_collision_layer(0)
