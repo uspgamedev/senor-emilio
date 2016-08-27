@@ -15,21 +15,21 @@ var tmp_object
 
 func _move_to(dir):
   ._move_to(dir)
+  var angle = 0
   if direction == DIR.UP:
-    set_rotd(180)
-    sprite.set_rotd(-180)
+    angle = 180
   elif direction == DIR.DOWN:
-    set_rotd(0)
-    sprite.set_rotd(0)
+    angle = 0
   elif direction == DIR.LEFT:
-    set_rotd(270)
-    sprite.set_rotd(-270)
+    angle = 270
   elif direction == DIR.RIGHT:
-    set_rotd(90)
-    sprite.set_rotd(-90)
+    angle = 90
+  set_rotd(angle)
+  sprite.set_rotd(-angle)
+  pocket.set_rotd(-angle)
 
 func attach_object(body):
-  body.set_pos(Vector2(20,0))
+  body.set_pos(Vector2(0,-80))
   body.set_collision_mask(0)
   body.set_layer_mask(0)
   pocket.add_child(body)
