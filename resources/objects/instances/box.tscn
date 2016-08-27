@@ -11,10 +11,11 @@ direction = 1
 
 [node name="sprite" parent="."]
 
-transform/pos = Vector2( 0.583977, 31.8268 )
 texture = ExtResource( 3 )
-region = true
-region_rect = Rect2( 0, 32, 32, 32 )
+offset = Vector2( 0, 0 )
+vframes = 4
+hframes = 4
+frame = 4
 
 [node name="collision" parent="."]
 
