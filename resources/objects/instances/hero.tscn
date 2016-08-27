@@ -103,11 +103,7 @@ tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":FloatA
 [sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
-<<<<<<< HEAD
-extents = Vector2( 6, 6 )
-=======
 extents = Vector2( 4, 4 )
->>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 
 [sub_resource type="RectangleShape2D" id=10]
 
@@ -200,5 +196,3 @@ invert/border = 100.0
 [node name="pocket" type="Node2D" parent="."]
 
 [connection signal="timeout" from="invincibility" to="." method="_on_invincibility_timeout"]
-
-
