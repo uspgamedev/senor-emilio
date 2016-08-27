@@ -9,6 +9,8 @@ onready var pocket = get_node("pocket")
 
 signal time_travel
 signal interact
+signal grab(item)
+signal drop(item)
 
 var grabbing = false
 var tmp_object
@@ -33,9 +35,9 @@ func attach_object(body):
   body.set_collision_mask(0)
   body.set_layer_mask(0)
   pocket.add_child(body)
+  emit_signal("grab", body)
 
 func detach_object(body):
-  grabbing = false
   body.set_pos(get_pos())
   body.set_collision_mask(15)
   body.set_layer_mask(3)
@@ -48,22 +50,30 @@ func grab(body):
   if !grabbing:
     grabbing = true
     tmp_object = body
-    body.get_parent().remove_child(body)
+    if body.get_parent() != null:
+      body.get_parent().remove_child(body)
     call_deferred("attach_object", body)
+
+func drop():
+  if grabbing:
+    pocket.remove_child(tmp_object)
+    grabbing = false
+    call_deferred("emit_signal", "drop", tmp_object)
 
 func _act(act):
   printt("act=", act)
   if act == 0:
-    if grabbing:
-      pocket.remove_child(tmp_object)
+    var acted = false
+    var range_bodies = hitbox.get_overlapping_bodies()
+    printt("bodies=", range_bodies)
+    for body in range_bodies:
+      if body.has_method("interact"):
+        body.interact(self)
+        acted = true
+        break
+    if !acted and grabbing:
+      drop()
       call_deferred("detach_object", tmp_object)
-    else:
-      var range_bodies = hitbox.get_overlapping_bodies()
-      printt("bodies=", range_bodies)
-      for body in range_bodies:
-        if body.has_method("interact"):
-          body.interact(self)
-          break
     emit_signal("interact")
   elif act == 2:
     emit_signal("time_travel")
