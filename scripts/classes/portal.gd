@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 
 export(NodePath) var portal_link = null
 
