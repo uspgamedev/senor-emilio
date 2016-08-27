@@ -103,7 +103,11 @@ tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":FloatA
 [sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
+<<<<<<< HEAD
 extents = Vector2( 6, 6 )
+=======
+extents = Vector2( 4, 4 )
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 
 [sub_resource type="RectangleShape2D" id=10]
 

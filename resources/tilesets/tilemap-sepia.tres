@@ -2,27 +2,47 @@
 
 [ext_resource path="res://assets/imgs/tileset-sepia.png" type="Texture" id=1]
 
+<<<<<<< HEAD
 [sub_resource type="ConvexPolygonShape2D" id=6]
+=======
+[sub_resource type="ConvexPolygonShape2D" id=11]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 
 custom_solver_bias = 0.0
 points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 
+<<<<<<< HEAD
 [sub_resource type="ConvexPolygonShape2D" id=7]
+=======
+[sub_resource type="ConvexPolygonShape2D" id=12]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 
 custom_solver_bias = 0.0
 points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 
+<<<<<<< HEAD
 [sub_resource type="ConvexPolygonShape2D" id=8]
+=======
+[sub_resource type="ConvexPolygonShape2D" id=13]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 
 custom_solver_bias = 0.0
 points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 
+<<<<<<< HEAD
 [sub_resource type="ConvexPolygonShape2D" id=9]
+=======
+[sub_resource type="ConvexPolygonShape2D" id=14]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 
 custom_solver_bias = 0.0
 points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 
+<<<<<<< HEAD
 [sub_resource type="ConvexPolygonShape2D" id=10]
+=======
+[sub_resource type="ConvexPolygonShape2D" id=15]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 
 custom_solver_bias = 0.0
 points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
@@ -141,7 +161,11 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 10/occluder_offset = Vector2( 16, 16 )
 10/navigation_offset = Vector2( 16, 16 )
 10/shape_offset = Vector2( 16, 16 )
+<<<<<<< HEAD
 10/shapes = [ SubResource( 6 ) ]
+=======
+10/shapes = [ SubResource( 11 ) ]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 11/name = "wall up-right"
 11/texture = ExtResource( 1 )
 11/tex_offset = Vector2( 0, 0 )
@@ -149,7 +173,11 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 11/occluder_offset = Vector2( 16, 16 )
 11/navigation_offset = Vector2( 16, 16 )
 11/shape_offset = Vector2( 16, 16 )
+<<<<<<< HEAD
 11/shapes = [ SubResource( 7 ) ]
+=======
+11/shapes = [ SubResource( 12 ) ]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 12/name = "wall down-left"
 12/texture = ExtResource( 1 )
 12/tex_offset = Vector2( 0, 0 )
@@ -157,7 +185,11 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 12/occluder_offset = Vector2( 16, 16 )
 12/navigation_offset = Vector2( 16, 16 )
 12/shape_offset = Vector2( 16, 16 )
+<<<<<<< HEAD
 12/shapes = [ SubResource( 8 ) ]
+=======
+12/shapes = [ SubResource( 13 ) ]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 13/name = "wall down-right"
 13/texture = ExtResource( 1 )
 13/tex_offset = Vector2( 0, 0 )
@@ -165,7 +197,11 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 13/occluder_offset = Vector2( 16, 16 )
 13/navigation_offset = Vector2( 16, 16 )
 13/shape_offset = Vector2( 16, 16 )
+<<<<<<< HEAD
 13/shapes = [ SubResource( 9 ) ]
+=======
+13/shapes = [ SubResource( 14 ) ]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 14/name = "wall up-left inverted"
 14/texture = ExtResource( 1 )
 14/tex_offset = Vector2( 0, 0 )
@@ -173,7 +209,11 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 14/occluder_offset = Vector2( 16, 16 )
 14/navigation_offset = Vector2( 16, 16 )
 14/shape_offset = Vector2( 16, 16 )
+<<<<<<< HEAD
 14/shapes = [ SubResource( 6 ) ]
+=======
+14/shapes = [ SubResource( 11 ) ]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 15/name = "wall up-right inverted"
 15/texture = ExtResource( 1 )
 15/tex_offset = Vector2( 0, 0 )
@@ -181,7 +221,11 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 15/occluder_offset = Vector2( 16, 16 )
 15/navigation_offset = Vector2( 16, 16 )
 15/shape_offset = Vector2( 16, 16 )
+<<<<<<< HEAD
 15/shapes = [ SubResource( 7 ) ]
+=======
+15/shapes = [ SubResource( 12 ) ]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 16/name = "wall down-left inverted"
 16/texture = ExtResource( 1 )
 16/tex_offset = Vector2( 0, 0 )
@@ -189,7 +233,11 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 16/occluder_offset = Vector2( 16, 16 )
 16/navigation_offset = Vector2( 16, 16 )
 16/shape_offset = Vector2( 16, 16 )
+<<<<<<< HEAD
 16/shapes = [ SubResource( 10 ) ]
+=======
+16/shapes = [ SubResource( 15 ) ]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 17/name = "wall down-right inverted"
 17/texture = ExtResource( 1 )
 17/tex_offset = Vector2( 0, 0 )
@@ -197,7 +245,11 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 17/occluder_offset = Vector2( 16, 16 )
 17/navigation_offset = Vector2( 16, 16 )
 17/shape_offset = Vector2( 16, 16 )
+<<<<<<< HEAD
 17/shapes = [ SubResource( 9 ) ]
+=======
+17/shapes = [ SubResource( 14 ) ]
+>>>>>>> 995471ea41306e3e96fdf7a8957a9871ec933342
 18/name = "wall-up-no-collision"
 18/texture = ExtResource( 1 )
 18/tex_offset = Vector2( 0, 0 )
