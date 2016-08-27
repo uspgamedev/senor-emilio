@@ -453,4 +453,32 @@ polygon = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
+[node name="wall-up-no-collision" type="Sprite" parent="."]
+
+transform/pos = Vector2( 176, 80 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 128, 0, 32, 32 )
+
+[node name="wall-right-no-collision" type="Sprite" parent="."]
+
+transform/pos = Vector2( 208, 80 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 160, 0, 32, 32 )
+
+[node name="wall-down-no-collision" type="Sprite" parent="."]
+
+transform/pos = Vector2( 176, 112 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 192, 0, 32, 32 )
+
+[node name="wall-left-no-collision" type="Sprite" parent="."]
+
+transform/pos = Vector2( 208, 112 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 224, 0, 32, 32 )
+
 
