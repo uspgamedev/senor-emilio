@@ -10,4 +10,9 @@
 transform/pos = Vector2( 112, 48 )
 target_door = "door_1"
 
+[node name="spawn" parent="future/bodies/door_1"]
 
+transform/pos = Vector2( -23.2123, 0.107847 )
+
+
+[editable path="future/bodies/door_1"]

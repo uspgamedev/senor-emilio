@@ -60,6 +60,10 @@ func drop():
     grabbing = false
     call_deferred("emit_signal", "drop", tmp_object)
 
+func use_item():
+  if grabbing:
+    tmp_object.queue_free()
+
 func _act(act):
   printt("act=", act)
   if act == 0:

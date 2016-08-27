@@ -21,6 +21,8 @@ transform/pos = Vector2( 51.7468, 61.6981 )
 transform/pos = Vector2( -16, 64 )
 target_stage = 1
 target_door = "door_1"
+key_required = "box"
+start_opened = false
 
 [node name="Switch" parent="future/bodies" instance=ExtResource( 4 )]
 
@@ -42,3 +44,4 @@ portal_link = NodePath("../Portal")
 tile_data = IntArray( -1, 9, -65536, 5, -65535, 5, -65534, 5, -65533, 10, 65535, 8, 0, 1, 1, 1, 2, 1, 3, 6, 131071, 8, 65536, 1, 65537, 1, 65538, 1, 65539, 6, 196607, 8, 131072, 1, 131073, 1, 131074, 1, 131075, 6, 262143, 11, 196608, 7, 196609, 7, 196610, 7, 196611, 12 )
 
 
+[editable path="future/bodies/door_1"]
