@@ -1,4 +1,5 @@
-extends StaticBody2D
+
+extends "res://scripts/classes/prop.gd"
 
 onready var lock = get_node("lock")
 onready var anim = get_node("lock/AnimationPlayer")
@@ -37,6 +38,7 @@ func on():
   print("door open")
   anim.play("opening")
   anim.queue("opened")
+  deactivate_collision()
 
 func get_spawn_pos():
   return get_node("spawn").get_global_pos()
@@ -45,6 +47,7 @@ func off():
   print("door closed")
   anim.play("closing")
   anim.queue("closed")
+  activate_collision()
 
 func interact(body):
   #emit_signal("change_stage", target_stage,  target_door)
