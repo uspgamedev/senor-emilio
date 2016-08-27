@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://resources/tilesets/basic-tilemap.tres" type="TileSet" id=1]
+[ext_resource path="res://resources/objects/instances/box.tscn" type="PackedScene" id=2]
 
 [node name="map" type="TileMap"]
 
@@ -37,5 +38,9 @@ collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( 4, 1, 65548, 1, 65549, 1, 262155, 1, 393215, 1, 327685, 1, 458762, 1, 524306, 1, 524310, 1, 524315, 1, 589831, 1, 720909, 1, 786446, 1, 851977, 1, 917522, 1, 917527, 1, 1179657, 1, 1245198, 1, 1245207, 1, 1376264, 1, 1376270, 1, 1507345, 1, 1507349, 1, 1572875, 1, 1835028, 1, 1900559, 1 )
+
+[node name="box" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 356.044, 338.856 )
 
 

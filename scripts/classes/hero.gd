@@ -2,12 +2,14 @@
 extends "res://scripts/classes/monster.gd"
 
 const DIR = preload("res://scripts/utility/directions.gd")
-const MONSTER = preload("res://scripts/classes/monster.gd")
 
 onready var sprite = get_node("sprite")
 onready var hitbox = get_node("hitbox")
 
 signal time_travel
+
+var grabbing = false
+var tmp_object
 
 func _move_to(dir):
   ._move_to(dir)
@@ -24,10 +26,29 @@ func _move_to(dir):
     set_rotd(90)
     sprite.set_rotd(-90)
 
+func attach_object(body):
+  body.set_pos(Vector2(20,0))
+  add_child(body)
+
+func detach_object(body):
+  grabbing = false
+  body.set_pos(get_pos())
+  get_parent().add_child(body)
+
 func _act(act):
   printt("act=", act)
   if act == 0:
+    if grabbing:
+      remove_child(tmp_object)
+      call_deferred("detach_object", tmp_object)
     var range_bodies = hitbox.get_overlapping_bodies()
     printt("bodies=", range_bodies)
+    for body in range_bodies:
+      if body.get_name() == "box":
+        if !grabbing:
+          grabbing = true
+          tmp_object = body
+          body.get_parent().remove_child(body)
+          call_deferred("attach_object", body)
   elif act == 2:
     emit_signal("time_travel")
