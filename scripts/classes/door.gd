@@ -1,7 +1,6 @@
 extends StaticBody2D
 
-onready var closed = get_node("closed")
-onready var opened = get_node("opened")
+onready var lock = get_node("lock")
 
 export(int) var target_stage = 0
 export(String) var target_door = "door"
