@@ -22,18 +22,8 @@ func _move_to(dir):
     set_rotd(90)
     sprite.set_rotd(-90)
 
-func apply_damage(dmg):
-  self.damage += dmg
-  printt("health=", maxHP - damage, "name=", get_name(), "path=", get_path())
-  if damage >= maxHP:
-     emit_signal("died")
-
 func _act(act):
   printt("act=", act)
   if act == 0:
     var range_bodies = hitbox.get_overlapping_bodies()
     printt("bodies=", range_bodies)
-    for body in range_bodies:
-      if body extends MONSTER:
-        printt("monster=", body)
-        body.take_dmg(body.attack)
