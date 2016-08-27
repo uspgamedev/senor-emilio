@@ -132,12 +132,6 @@ start_opened = false
 transform/pos = Vector2( 80, 16 )
 collision/layers = 1
 collision/mask = 1
-device = NodePath("../door_1")
-
-[node name="door_2" parent="future/bodies" instance=ExtResource( 4 )]
-
-transform/pos = Vector2( 272, 66 )
-transform/rot = 270.0
 
 [node name="Portal" parent="future/bodies" instance=ExtResource( 6 )]
 
@@ -146,10 +140,23 @@ collision/layers = 1
 collision/mask = 1
 portal_link = NodePath("../../../past/bodies/Portal")
 
-[node name="door_3" parent="future/bodies" instance=ExtResource( 4 )]
+[node name="Portal 2" parent="future/bodies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 52.3451, 335.998 )
 transform/rot = 180.0
+
+[node name="door_1" parent="future" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+transform/pos = Vector2( -176, 66 )
+transform/rot = 90.0
+
+[node name="door_2" parent="future" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 272, 64 )
+transform/rot = -90.0
+
+[node name="door_3" parent="future" instance=ExtResource( 5 )]
 
 [node name="past" parent="."]
 
@@ -171,8 +178,8 @@ transform/rot = 270.0
 
 [node name="door_3" parent="past/bodies" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 52.3451, 335.998 )
-transform/rot = 180.0
+transform/pos = Vector2( 64, 336 )
+transform/rot = -180.0
 
 [node name="Portal" parent="past/bodies" instance=ExtResource( 6 )]
 

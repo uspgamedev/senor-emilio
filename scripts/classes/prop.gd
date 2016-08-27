@@ -4,7 +4,10 @@ extends StaticBody2D
 var _mask
 
 func _ready():
-  var timezone = get_parent().get_parent().get_name()
+  var parent = get_parent()
+  while parent.get_name() != "past" and parent.get_name() != "future":
+    parent = parent.get_parent()
+  var timezone = parent.get_name()
   if timezone == "future":
     _mask = 1
   elif timezone == "past":

@@ -11,6 +11,8 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="future" type="TileMap" parent="."]
 
+z/z = 5
+z/relative = false
 mode = 0
 tile_set = ExtResource( 1 )
 cell/size = Vector2( 32, 32 )
@@ -35,6 +37,8 @@ sort/enabled = true
 [node name="human" parent="future/bodies" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 16, 16 )
+z/z = 7
+z/relative = false
 collision/mask = 1
 
 [node name="sprite" parent="future/bodies/human"]
@@ -44,6 +48,8 @@ texture = ExtResource( 3 )
 [node name="past" type="TileMap" parent="."]
 
 visibility/visible = false
+z/z = 5
+z/relative = false
 mode = 0
 tile_set = ExtResource( 4 )
 cell/size = Vector2( 32, 32 )
@@ -68,6 +74,8 @@ sort/enabled = true
 [node name="cat" parent="past/bodies" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 16, 16 )
+z/z = 7
+z/relative = false
 collision/layers = 2
 collision/mask = 2
 
