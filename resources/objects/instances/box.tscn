@@ -6,6 +6,7 @@
 
 [node name="box" instance=ExtResource( 1 )]
 
+collision/mask = 3
 script/script = ExtResource( 2 )
 direction = 1
 
