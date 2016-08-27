@@ -5,16 +5,15 @@
 
 [node name="stage" instance=ExtResource( 1 )]
 
-[node name="door_1" parent="future/bodies" instance=ExtResource( 2 )]
+[node name="door_1" parent="future" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 112, 48 )
-collision/layers = 1
-collision/mask = 1
+transform/rot = -90.0
 target_door = "door_1"
 
-[node name="spawn" parent="future/bodies/door_1"]
+[node name="spawn" parent="future/door_1"]
 
-transform/pos = Vector2( -23.2123, 0.107847 )
+transform/pos = Vector2( -9.53674e-07, 16 )
 
 
-[editable path="future/bodies/door_1"]
+[editable path="future/door_1"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/classes/door.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/doorway-gate.png" type="Texture" id=2]
@@ -55,6 +55,11 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 2, 3, 4, 5, 6, 7 ] }
 
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 16 )
+
 [node name="Door" type="StaticBody2D"]
 
 input/pickable = false
@@ -75,6 +80,7 @@ start_opened = true
 
 [node name="top" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, -32 )
 z/z = 11
 z/relative = false
@@ -157,9 +163,30 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
+[node name="teleport" type="Area2D" parent="."]
+
+transform/pos = Vector2( 0, -32 )
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleport"]
+
+shape = SubResource( 6 )
+trigger = true
+_update_shape_index = 0
+
 [node name="spawn" type="Node2D" parent="."]
 
-transform/pos = Vector2( 25.7877, 1.10785 )
-transform/scale = Vector2( 0.262813, 0.258422 )
+transform/pos = Vector2( 0, 16 )
+
+[connection signal="body_enter" from="teleport" to="." method="_teleport"]
+
+[connection signal="body_enter_shape" from="teleport" to="." method="_teleport"]
 
 

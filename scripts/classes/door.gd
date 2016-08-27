@@ -1,6 +1,8 @@
 
 extends "res://scripts/classes/prop.gd"
 
+const Hero = preload("res://scripts/classes/hero.gd")
+
 onready var lock = get_node("lock")
 onready var anim = get_node("lock/AnimationPlayer")
 
@@ -57,13 +59,14 @@ func get_spawn_pos():
 func off():
   close()
 
+func _teleport(body):
+  if body.get_script() == Hero and anim.get_current_animation() == "opened":
+    get_node("/root/main/gameplay")._change_stage(target_stage, target_door)
+    printt(get_name(), "door used!", body.get_name())
+
 func interact(body):
   #emit_signal("change_stage", target_stage,  target_door)
   if locked:
     if body.get_pocket_item() != null:
       if unlock(body.get_pocket_item()):
         body.drop()
-    return
-  if anim.get_current_animation() == "opened":
-    get_node("/root/main/gameplay")._change_stage(target_stage, target_door)
-    printt(get_name(), "door used!", body.get_name())

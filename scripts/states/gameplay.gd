@@ -47,10 +47,6 @@ func _setup():
   ]
 
 func _change_stage(which,door_name):
-  var door = get_current_map().get_node(door_name)
-  if door.is_closed():
-    return
-
   printt(get_name(), "received request to change stage", which, door_name)
   _disconnect_state()
   remove_child(get_node("stage"))
@@ -58,7 +54,7 @@ func _change_stage(which,door_name):
   add_child(STAGES[which])
   _setup()
   _connect_state()
-
+  var door = get_current_map().get_node(door_name)
   get_current_char().set_pos(door.get_spawn_pos())
 
 func _connect_state():
