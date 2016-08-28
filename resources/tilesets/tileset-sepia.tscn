@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=13 format=1]
 
-[ext_resource path="res://assets/imgs/tileset-sepia.png" type="Texture" id=1]
+[ext_resource path="res://assets/imgs/tileset-demo-sepia.png" type="Texture" id=1]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -50,7 +50,12 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 [sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
+points = Vector2Array( -32, -16, 32, -16, 32, 16, -32, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -12, -12, 12, -12, 12, 12, -12, 12 )
 
 [node name="tileset" type="Node2D"]
 
@@ -91,31 +96,11 @@ region_rect = Rect2( 32, 32, 32, 32 )
 
 [node name="above-wall" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 144, 16 )
+z/z = 10
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 96, 0, 32, 32 )
-
-[node name="hitbox" type="StaticBody2D" parent="above-wall"]
-
-input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="shape1" type="CollisionPolygon2D" parent="above-wall/hitbox"]
-
-build_mode = 0
-polygon = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
-shape_range = Vector2( 0, 0 )
-trigger = false
 
 [node name="wall-up" type="Sprite" parent="."]
 
@@ -128,7 +113,7 @@ region_rect = Rect2( 128, 0, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall-up"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -156,7 +141,7 @@ region_rect = Rect2( 160, 0, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall-right"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -184,7 +169,7 @@ region_rect = Rect2( 192, 0, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall-down"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -212,7 +197,7 @@ region_rect = Rect2( 224, 0, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall-left"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -240,7 +225,7 @@ region_rect = Rect2( 192, 32, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall up-left"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -268,7 +253,7 @@ region_rect = Rect2( 224, 32, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall up-right"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -296,7 +281,7 @@ region_rect = Rect2( 192, 64, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall down-left"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -324,7 +309,7 @@ region_rect = Rect2( 224, 64, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall down-right"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 9 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -352,7 +337,7 @@ region_rect = Rect2( 128, 32, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall up-left inverted"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -380,7 +365,7 @@ region_rect = Rect2( 160, 32, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall up-right inverted"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -408,7 +393,7 @@ region_rect = Rect2( 128, 64, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall down-left inverted"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -436,7 +421,7 @@ region_rect = Rect2( 160, 64, 32, 32 )
 [node name="hitbox" type="StaticBody2D" parent="wall down-right inverted"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 9 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -480,5 +465,191 @@ transform/pos = Vector2( 208, 112 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 224, 0, 32, 32 )
+
+[node name="rodape-up" type="Sprite" parent="."]
+
+transform/pos = Vector2( 16, 112 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 64, 32, 32, 32 )
+
+[node name="rodape-left" type="Sprite" parent="."]
+
+transform/pos = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 96, 32, 32, 32 )
+
+[node name="rodape-bottom" type="Sprite" parent="."]
+
+transform/pos = Vector2( 16, 144 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 64, 64, 32, 32 )
+
+[node name="rodape-right" type="Sprite" parent="."]
+
+transform/pos = Vector2( 48, 144 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 96, 64, 32, 32 )
+
+[node name="rodape-bottom-right" type="Sprite" parent="."]
+
+transform/pos = Vector2( 80, 112 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 64, 96, 32, 32 )
+
+[node name="rodape-bottom-left" type="Sprite" parent="."]
+
+transform/pos = Vector2( 112, 112 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 96, 96, 32, 32 )
+
+[node name="rodape-up-right" type="Sprite" parent="."]
+
+transform/pos = Vector2( 80, 144 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 64, 128, 32, 32 )
+
+[node name="rodape-up-left" type="Sprite" parent="."]
+
+transform/pos = Vector2( 112, 144 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 96, 128, 32, 32 )
+
+[node name="rodape-bottom-right-inverse" type="Sprite" parent="."]
+
+transform/pos = Vector2( 16, 176 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 128, 96, 32, 32 )
+
+[node name="rodape-bottom-left-inverse" type="Sprite" parent="."]
+
+transform/pos = Vector2( 48, 176 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 160, 96, 32, 32 )
+
+[node name="rodape-up-right-inverse" type="Sprite" parent="."]
+
+transform/pos = Vector2( 16, 208 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 128, 128, 32, 32 )
+
+[node name="rodape-up-left-inverse" type="Sprite" parent="."]
+
+transform/pos = Vector2( 48, 208 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 160, 128, 32, 32 )
+
+[node name="wall-cracked-top" type="Sprite" parent="."]
+
+transform/pos = Vector2( 112, 48 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 64, 32, 32 )
+
+[node name="wall-cracked-right" type="Sprite" parent="."]
+
+transform/pos = Vector2( 144, 48 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 32, 64, 32, 32 )
+
+[node name="wall-cracked-bottom" type="Sprite" parent="."]
+
+transform/pos = Vector2( 112, 80 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 96, 32, 32 )
+
+[node name="wall-cracked-left" type="Sprite" parent="."]
+
+transform/pos = Vector2( 144, 80 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 32, 96, 32, 32 )
+
+[node name="tapestry-horizontal" type="Sprite" parent="."]
+
+transform/pos = Vector2( 208, 144 )
+z/z = 10
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 128, 160, 96, 32 )
+
+[node name="tapestry-vertical" type="Sprite" parent="."]
+
+transform/pos = Vector2( 272, 176 )
+z/z = 10
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 224, 160, 32, 96 )
+
+[node name="table" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 192, 176 )
+z/z = 10
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 128, 192, 64, 32 )
+
+[node name="hitbox" type="StaticBody2D" parent="table"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 10 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="shape" type="CollisionPolygon2D" parent="table/hitbox"]
+
+build_mode = 0
+polygon = Vector2Array( -32, -16, 32, -16, 32, 16, -32, 16 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="the book is on it" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 240, 176 )
+z/z = 10
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 192, 224, 32, 32 )
+
+[node name="hitbox" type="StaticBody2D" parent="the book is on it"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 11 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="shape" type="CollisionPolygon2D" parent="the book is on it/hitbox"]
+
+build_mode = 0
+polygon = Vector2Array( -12, -12, 12, -12, 12, 12, -12, 12 )
+shape_range = Vector2( 0, 0 )
+trigger = false
 
 
