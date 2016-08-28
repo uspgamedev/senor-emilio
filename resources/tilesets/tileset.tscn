@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://assets/imgs/tileset-demo.png" type="Texture" id=1]
 
@@ -42,6 +42,11 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 custom_solver_bias = 0.0
 points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 
+[sub_resource type="ConvexPolygonShape2D" id=12]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
+
 [sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
@@ -57,6 +62,16 @@ points = Vector2Array( -32, -16, 32, -16, 32, 16, -32, 16 )
 custom_solver_bias = 0.0
 points = Vector2Array( -12, -12, 12, -12, 12, 12, -12, 12 )
 
+[sub_resource type="ConvexPolygonShape2D" id=13]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -12, -12, 20, -12, 20, 20, -12, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -12, -12, 20, -12, 20, 20, -12, 20 )
+
 [node name="tileset" type="Node2D"]
 
 [node name="floor-tile" type="Sprite" parent="."]
@@ -65,6 +80,7 @@ transform/pos = Vector2( 16, 16 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 0, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="floor-cracked" type="Sprite" parent="."]
 
@@ -72,6 +88,7 @@ transform/pos = Vector2( 48, 16 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 0, 32, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="floor-special" type="Sprite" parent="."]
 
@@ -79,6 +96,7 @@ transform/pos = Vector2( 112, 16 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 64, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="btn" type="Sprite" parent="."]
 
@@ -86,6 +104,7 @@ transform/pos = Vector2( 16, 48 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 32, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="btn-pressed" type="Sprite" parent="."]
 
@@ -93,6 +112,7 @@ transform/pos = Vector2( 48, 48 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 32, 32, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="above-wall" type="Sprite" parent="."]
 
@@ -101,6 +121,7 @@ z/z = 10
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 96, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="wall-up" type="Sprite" parent="."]
 
@@ -109,6 +130,7 @@ transform/pos = Vector2( 176, 16 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 128, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall-up"]
 
@@ -137,6 +159,7 @@ transform/pos = Vector2( 208, 16 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 160, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall-right"]
 
@@ -165,6 +188,7 @@ transform/pos = Vector2( 176, 48 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 192, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall-down"]
 
@@ -193,6 +217,7 @@ transform/pos = Vector2( 208, 48 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 224, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall-left"]
 
@@ -221,6 +246,7 @@ transform/pos = Vector2( 240, 16 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 192, 32, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall up-left"]
 
@@ -249,6 +275,7 @@ transform/pos = Vector2( 272, 16 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 224, 32, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall up-right"]
 
@@ -277,6 +304,7 @@ transform/pos = Vector2( 240, 48 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 192, 64, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall down-left"]
 
@@ -305,6 +333,7 @@ transform/pos = Vector2( 272, 48 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 224, 64, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall down-right"]
 
@@ -328,16 +357,16 @@ trigger = false
 
 [node name="wall up-left inverted" type="Sprite" parent="."]
 
-editor/display_folded = true
-transform/pos = Vector2( 240, 81 )
+transform/pos = Vector2( 240, 80 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 128, 32, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall up-left inverted"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -356,11 +385,11 @@ trigger = false
 
 [node name="wall up-right inverted" type="Sprite" parent="."]
 
-editor/display_folded = true
-transform/pos = Vector2( 272, 81 )
+transform/pos = Vector2( 272, 80 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 160, 32, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall up-right inverted"]
 
@@ -389,6 +418,7 @@ transform/pos = Vector2( 240, 112 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 128, 64, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall down-left inverted"]
 
@@ -412,10 +442,12 @@ trigger = false
 
 [node name="wall down-right inverted" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 272, 112 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 160, 64, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="wall down-right inverted"]
 
@@ -443,6 +475,7 @@ transform/pos = Vector2( 176, 80 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 128, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="wall-right-no-collision" type="Sprite" parent="."]
 
@@ -450,6 +483,7 @@ transform/pos = Vector2( 208, 80 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 160, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="wall-down-no-collision" type="Sprite" parent="."]
 
@@ -457,6 +491,7 @@ transform/pos = Vector2( 176, 112 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 192, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="wall-left-no-collision" type="Sprite" parent="."]
 
@@ -464,6 +499,7 @@ transform/pos = Vector2( 208, 112 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 224, 0, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-up" type="Sprite" parent="."]
 
@@ -471,6 +507,7 @@ transform/pos = Vector2( 16, 112 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 64, 32, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-left" type="Sprite" parent="."]
 
@@ -478,6 +515,7 @@ transform/pos = Vector2( 48, 112 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 96, 32, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-bottom" type="Sprite" parent="."]
 
@@ -485,6 +523,7 @@ transform/pos = Vector2( 16, 144 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 64, 64, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-right" type="Sprite" parent="."]
 
@@ -492,6 +531,7 @@ transform/pos = Vector2( 48, 144 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 96, 64, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-bottom-right" type="Sprite" parent="."]
 
@@ -499,6 +539,7 @@ transform/pos = Vector2( 80, 112 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 64, 96, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-bottom-left" type="Sprite" parent="."]
 
@@ -506,6 +547,7 @@ transform/pos = Vector2( 112, 112 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 96, 96, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-up-right" type="Sprite" parent="."]
 
@@ -513,6 +555,7 @@ transform/pos = Vector2( 80, 144 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 64, 128, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-up-left" type="Sprite" parent="."]
 
@@ -520,6 +563,7 @@ transform/pos = Vector2( 112, 144 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 96, 128, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-bottom-right-inverse" type="Sprite" parent="."]
 
@@ -527,6 +571,7 @@ transform/pos = Vector2( 16, 176 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 128, 96, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-bottom-left-inverse" type="Sprite" parent="."]
 
@@ -534,6 +579,7 @@ transform/pos = Vector2( 48, 176 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 160, 96, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-up-right-inverse" type="Sprite" parent="."]
 
@@ -541,6 +587,7 @@ transform/pos = Vector2( 16, 208 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 128, 128, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="rodape-up-left-inverse" type="Sprite" parent="."]
 
@@ -548,6 +595,7 @@ transform/pos = Vector2( 48, 208 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 160, 128, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="wall-cracked-top" type="Sprite" parent="."]
 
@@ -555,6 +603,7 @@ transform/pos = Vector2( 112, 48 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 0, 64, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="wall-cracked-right" type="Sprite" parent="."]
 
@@ -562,6 +611,7 @@ transform/pos = Vector2( 144, 48 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 32, 64, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="wall-cracked-bottom" type="Sprite" parent="."]
 
@@ -569,6 +619,7 @@ transform/pos = Vector2( 112, 80 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 0, 96, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="wall-cracked-left" type="Sprite" parent="."]
 
@@ -576,6 +627,7 @@ transform/pos = Vector2( 144, 80 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 32, 96, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="tapestry-horizontal" type="Sprite" parent="."]
 
@@ -584,6 +636,7 @@ z/z = 10
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 128, 160, 96, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="tapestry-vertical" type="Sprite" parent="."]
 
@@ -592,6 +645,7 @@ z/z = 10
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 224, 160, 32, 96 )
+__meta__ = { "_edit_group_":true }
 
 [node name="table" type="Sprite" parent="."]
 
@@ -601,6 +655,7 @@ z/z = 10
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 128, 192, 64, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="table"]
 
@@ -624,11 +679,13 @@ trigger = false
 
 [node name="the book is on it" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 240, 176 )
 z/z = 10
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 192, 224, 32, 32 )
+__meta__ = { "_edit_group_":true }
 
 [node name="hitbox" type="StaticBody2D" parent="the book is on it"]
 
@@ -652,18 +709,64 @@ trigger = false
 
 [node name="plant" type="Sprite" parent="."]
 
-transform/pos = Vector2( 303.44, 16.2108 )
+editor/display_folded = true
+transform/pos = Vector2( 304, 16 )
 texture = ExtResource( 1 )
 vframes = 8
 hframes = 8
 frame = 48
+__meta__ = { "_edit_group_":true }
+
+[node name="hitbox1" type="StaticBody2D" parent="plant"]
+
+transform/pos = Vector2( -4, -4 )
+input/pickable = false
+shapes/0/shape = SubResource( 13 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="shape" type="CollisionPolygon2D" parent="plant/hitbox1"]
+
+build_mode = 0
+polygon = Vector2Array( -12, -12, 20, -12, 20, 20, -12, 20 )
+shape_range = Vector2( 0, 0 )
+trigger = false
 
 [node name="vase" type="Sprite" parent="."]
 
-transform/pos = Vector2( 304.303, 52.7937 )
+editor/display_folded = true
+transform/pos = Vector2( 304, 48 )
 texture = ExtResource( 1 )
 vframes = 8
 hframes = 8
 frame = 54
+__meta__ = { "_edit_group_":true }
+
+[node name="hitbox2" type="StaticBody2D" parent="vase"]
+
+transform/pos = Vector2( -4, -4 )
+input/pickable = false
+shapes/0/shape = SubResource( 14 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="shape" type="CollisionPolygon2D" parent="vase/hitbox2"]
+
+build_mode = 0
+polygon = Vector2Array( -12, -12, 20, -12, 20, 20, -12, 20 )
+shape_range = Vector2( 0, 0 )
+trigger = false
 
 
