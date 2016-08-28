@@ -10,6 +10,7 @@
 
 [node name="gameplay" type="Node2D"]
 
+transform/scale = Vector2( 2, 2 )
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_lock_":true }
 current = 0
