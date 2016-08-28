@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/door-sepia.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=4]
+[ext_resource path="res://resources/objects/types/chest.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 
@@ -70,6 +71,71 @@ step = 0.1
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
+[sub_resource type="Animation" id=10]
+
+resource/name = "down_idle"
+length = 1.0
+loop = true
+step = 0.1
+
+[sub_resource type="Animation" id=11]
+
+resource/name = "down_moving"
+length = 1.0
+loop = true
+step = 0.1
+
+[sub_resource type="Animation" id=12]
+
+resource/name = "left_idle"
+length = 1.0
+loop = true
+step = 0.1
+
+[sub_resource type="Animation" id=13]
+
+resource/name = "left_moving"
+length = 1.0
+loop = true
+step = 0.1
+
+[sub_resource type="Animation" id=14]
+
+resource/name = "right_idle"
+length = 1.0
+loop = true
+step = 0.1
+
+[sub_resource type="Animation" id=15]
+
+resource/name = "right_moving"
+length = 1.0
+loop = true
+step = 0.1
+
+[sub_resource type="Animation" id=16]
+
+resource/name = "up_idle"
+length = 0.9
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.45, 0.6 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 0, 2 ] }
+
+[sub_resource type="Animation" id=17]
+
+length = 1.0
+loop = true
+step = 0.1
+
+[sub_resource type="RectangleShape2D" id=18]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
 [node name="room_2" type="TileMap"]
 
 mode = 0
@@ -101,10 +167,10 @@ cell/y_sort = false
 collision/use_kinematic = false
 collision/friction = 1.0
 collision/bounce = 0.0
-collision/layers = 0
-collision/mask = 0
+collision/layers = 2
+collision/mask = 2
 occluder/light_mask = 1
-tile_data = IntArray( -393198, 42, -393190, 42, -327662, 43, -327659, 38, -327654, 43, -131045, -1610612696, 27, -1610612696, 65553, 39, 262167, 38 )
+tile_data = IntArray( -393198, 42, -393190, 42, -327663, 0, -327662, 43, -327659, 38, -327654, 43, -131045, -1610612696, 27, -1610612696, 65553, 39, 262167, 38 )
 
 [node name="bodies" type="YSort" parent="."]
 
@@ -113,11 +179,17 @@ sort/enabled = true
 [node name="door_room4" parent="bodies" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 718.646, -176.044 )
+collision/layers = 2
+collision/mask = 2
+key_required = ""
+start_opened = false
 
 [node name="door_hall" parent="bodies" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 529.215, 79.5922 )
 transform/rot = 90.0
+collision/layers = 2
+collision/mask = 2
 
 [node name="key_red" parent="bodies" instance=ExtResource( 3 )]
 
@@ -163,7 +235,7 @@ collision/mask = 2
 
 [node name="sprite" parent="bodies/key_blue"]
 
-modulate = Color( 0.283422, 0.137939, 0.882813, 1 )
+modulate = Color( 0.447988, 0.418991, 0.949219, 1 )
 
 [node name="animation" parent="bodies/key_blue/sprite"]
 
@@ -263,8 +335,49 @@ trigger = false
 _update_shape_index = 0
 script/script = ExtResource( 4 )
 
+[node name="chest" parent="bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 628.797, 140.095 )
+
+[node name="crystal_red" parent="bodies/chest/Storage" instance=ExtResource( 3 )]
+
+visibility/visible = false
+transform/pos = Vector2( 677.668, 70.8619 )
+
+[node name="sprite" parent="bodies/chest/Storage/crystal_red"]
+
+frame = 14
+
+[node name="animation" parent="bodies/chest/Storage/crystal_red/sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/down_idle = SubResource( 10 )
+anims/down_moving = SubResource( 11 )
+anims/left_idle = SubResource( 12 )
+anims/left_moving = SubResource( 13 )
+anims/right_idle = SubResource( 14 )
+anims/right_moving = SubResource( 15 )
+anims/up_idle = SubResource( 16 )
+anims/up_moving = SubResource( 17 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "down_idle"
+script/script = null
+
+[node name="collision" parent="bodies/chest/Storage/crystal_red"]
+
+shape = SubResource( 18 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 4 )
+
 
 [editable path="bodies/key_red"]
 [editable path="bodies/key_blue"]
 [editable path="bodies/key_green"]
 [editable path="bodies/key_yellow"]
+[editable path="bodies/chest"]
+[editable path="bodies/chest/Storage/crystal_red"]
