@@ -73,9 +73,10 @@ _update_shape_index = 0
 transform/pos = Vector2( -176.84, 619.763 )
 transform/rot = 90.0
 
-[node name="roof" type="TileMap" parent="bodies"]
+[node name="roof" type="TileMap" parent="."]
 
 visibility/visible = false
+transform/rot = -90.0
 z/z = 100
 mode = 0
 tile_set = ExtResource( 1 )
