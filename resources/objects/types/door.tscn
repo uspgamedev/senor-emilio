@@ -165,6 +165,7 @@ _update_shape_index = 0
 
 [node name="teleport" type="Area2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, -32 )
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
@@ -184,5 +185,3 @@ _update_shape_index = 0
 [node name="spawn" type="Node2D" parent="."]
 
 transform/pos = Vector2( 0, 16 )
-
-[connection signal="body_enter" from="teleport" to="." method="_teleport"]
