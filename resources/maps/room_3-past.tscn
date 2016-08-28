@@ -32,6 +32,7 @@ transform/rot = 180.0
 
 [node name="roof" type="TileMap" parent="."]
 
+visibility/visible = false
 z/z = 100
 mode = 0
 tile_set = ExtResource( 1 )
