@@ -55,7 +55,7 @@ func grab(body):
   if !grabbing:
     grabbing = true
     tmp_object = body
-    node_to_return_obj = get_node(get_path_to(tmp_object.get_parent()))
+    node_to_return_obj = tmp_object.get_parent()
     if body.get_parent() != null:
       body.get_parent().remove_child(body)
     emit_signal("grab")
