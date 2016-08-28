@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/objects/types/door-sepia.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/classes/prop.gd" type="Script" id=4]
 [ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=5]
+[ext_resource path="res://resources/objects/types/transfer_zone.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=2]
 
@@ -70,6 +71,11 @@ extents = Vector2( 16, 16 )
 [sub_resource type="GDScript" id=8]
 
 script/source = "\nextends Area2D\n\nconst Hero = preload(\"res://scripts/classes/hero.gd\")\n\nvar _mask\n\nonready var room = get_parent().get_parent().get_parent()\n\nfunc _stage():\n\tvar parent = get_parent()\n\twhile parent.get_name() != \"past\" and parent.get_name() != \"future\":\n\t\tparent = parent.get_parent()\n\treturn parent\n\nfunc _ready():\n  var parent = _stage()\n  var timezone = parent.get_name()\n  if timezone == \"future\":\n    _mask = 1\n  elif timezone == \"past\":\n    _mask = 2\n  activate_collision()\n\nfunc activate_collision():\n  set_layer_mask(_mask)\n  set_collision_mask(_mask)\n\nfunc deactivate_collision():\n  set_layer_mask(0)\n  set_collision_mask(0)\n\nfunc _enter( body ):\n\tprintt(\"body transfered\?\", body)\n\tif body.get_script() == Hero:\n\t\tprint(\"yes\")\n\t\tbody.current_room = room\n\t\tif room.has_node(\"roof\"):\n\t\t\troom.get_node(\"roof\").hide()\n\t\tfor other in _stage().get_children():\n\t\t\tif other extends TileMap and other != room and other.has_node(\"roof\"):\n\t\t\t\tother.get_node(\"roof\").show()\n"
+
+[sub_resource type="RectangleShape2D" id=9]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
 
 [node name="hall" type="TileMap"]
 
@@ -249,6 +255,14 @@ transform/pos = Vector2( 0, 32 )
 input/pickable = true
 script/script = SubResource( 8 )
 
+[node name="transfer_zone" parent="bodies" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 48, 32 )
+
+[node name="CollisionShape2D" parent="bodies/transfer_zone"]
+
+shape = SubResource( 9 )
+
 [node name="roof" type="TileMap" parent="."]
 
 visibility/visible = false
@@ -273,3 +287,4 @@ tile_data = IntArray( -393229, 5, -393228, 5, -393227, 5, -393226, 5, -393225, 5
 
 [editable path="bodies/Door1"]
 [editable path="bodies/Door2"]
+[editable path="bodies/transfer_zone"]

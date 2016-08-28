@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://scripts/classes/speech.gd" type="Script" id=4]
 [ext_resource path="res://scripts/classes/answer.gd" type="Script" id=5]
 [ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/objects/types/transfer_zone.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 48, 16 )
 
 [node name="hall" type="TileMap"]
 
@@ -92,6 +98,7 @@ modulate = Color( 0.910156, 0.829273, 0.170654, 1 )
 
 [node name="Door2" parent="bodies" instance=ExtResource( 6 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 464, 96 )
 transform/rot = -90.0
 key_required = "key_red"
@@ -100,6 +107,14 @@ start_opened = false
 [node name="lock" parent="bodies/Door2"]
 
 modulate = Color( 1, 0.265625, 0.265625, 1 )
+
+[node name="transfer_zone" parent="bodies" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 48, 384 )
+
+[node name="CollisionShape2D" parent="bodies/transfer_zone"]
+
+shape = SubResource( 1 )
 
 [node name="roof" type="TileMap" parent="."]
 
@@ -125,3 +140,4 @@ tile_data = IntArray( -393229, 5, -393228, 5, -393227, 5, -393226, 5, -393225, 5
 
 [editable path="bodies/Door1"]
 [editable path="bodies/Door2"]
+[editable path="bodies/transfer_zone"]
