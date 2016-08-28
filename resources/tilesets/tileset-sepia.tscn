@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://assets/imgs/tileset-demo-sepia.png" type="Texture" id=1]
 
@@ -56,6 +56,11 @@ points = Vector2Array( -32, -16, 32, -16, 32, 16, -32, 16 )
 
 custom_solver_bias = 0.0
 points = Vector2Array( -12, -12, 12, -12, 12, 12, -12, 12 )
+
+[sub_resource type="RectangleShape2D" id=12]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
 
 [node name="tileset" type="Node2D"]
 
@@ -583,12 +588,30 @@ region_rect = Rect2( 32, 96, 32, 32 )
 transform/pos = Vector2( 208, 144 )
 z/z = 10
 texture = ExtResource( 1 )
+offset = Vector2( -16, 0 )
 region = true
 region_rect = Rect2( 128, 160, 96, 32 )
 
 [node name="tapestry-vertical" type="Sprite" parent="."]
 
-transform/pos = Vector2( 272, 176 )
+transform/pos = Vector2( 272, 192 )
+z/z = 10
+texture = ExtResource( 1 )
+offset = Vector2( 0, -16 )
+region = true
+region_rect = Rect2( 224, 160, 32, 96 )
+
+[node name="tapestry-horizontal2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 112, 192 )
+z/z = 10
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 128, 160, 96, 32 )
+
+[node name="tapestry-vertical2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 304, 176 )
 z/z = 10
 texture = ExtResource( 1 )
 region = true
@@ -625,7 +648,6 @@ trigger = false
 
 [node name="the book is on it" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 240, 176 )
 z/z = 10
 texture = ExtResource( 1 )
@@ -660,6 +682,25 @@ vframes = 8
 hframes = 8
 frame = 48
 
+[node name="hitbox" type="StaticBody2D" parent="plant"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 12 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plant/hitbox"]
+
+shape = SubResource( 12 )
+trigger = false
+_update_shape_index = 0
+
 [node name="vase" type="Sprite" parent="."]
 
 transform/pos = Vector2( 305.303, 50.7937 )
@@ -667,5 +708,24 @@ texture = ExtResource( 1 )
 vframes = 8
 hframes = 8
 frame = 54
+
+[node name="hitbox" type="StaticBody2D" parent="vase"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 12 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vase/hitbox"]
+
+shape = SubResource( 12 )
+trigger = false
+_update_shape_index = 0
 
 
