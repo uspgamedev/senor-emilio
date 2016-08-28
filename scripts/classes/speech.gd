@@ -1,6 +1,6 @@
 extends Node
 
-export(String) var speech= "..."
+export(String, MULTILINE) var speech= "..."
 
 func get_actor():
   return get_node("../..")
