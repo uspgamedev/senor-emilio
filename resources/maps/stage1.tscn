@@ -35,9 +35,13 @@ transform/pos = Vector2( 32, 368 )
 
 [node name="hall" parent="future" instance=ExtResource( 2 )]
 
-editor/display_folded = true
+[node name="Portal" parent="future/hall/bodies"]
+
+portal_link = NodePath("../../../../past/hall/bodies/Portal")
 
 [node name="room_1" parent="future" instance=ExtResource( 3 )]
+
+editor/display_folded = true
 
 [node name="room_2" parent="future" instance=ExtResource( 4 )]
 
@@ -76,7 +80,9 @@ editor/display_folded = true
 
 [node name="hall" parent="past" instance=ExtResource( 14 )]
 
-editor/display_folded = true
+[node name="Portal" parent="past/hall/bodies"]
+
+portal_link = NodePath("../../../../future/hall/bodies/Portal")
 
 [node name="room_1" parent="past" instance=ExtResource( 15 )]
 
