@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
+[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=2]
 
 [node name="room_2" type="TileMap"]
 
@@ -23,5 +24,32 @@ tile_data = IntArray( -458737, 5, -458736, 5, -458735, 5, -458734, 5, -458733, 5
 [node name="bodies" type="YSort" parent="."]
 
 sort/enabled = true
+
+[node name="door_hall" parent="bodies" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 527.989, 75.8701 )
+transform/rot = 90.0
+
+[node name="door_room4" parent="bodies" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 722.739, -174.107 )
+
+[node name="detail" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 32, 32 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( -393199, 35, -393197, 36, -393191, 1, -393190, 1, -393189, 36, -327664, 35, -327663, 36, -327655, 42, -327654, 42, -327653, 1, -327652, 1, -262128, 35, -262127, 1, -262124, 1, -262121, 42, -262119, 1, -262118, 1, -262117, 42, -196590, 1, -196584, 42, -196583, 42, -196581, 42, -196580, 37, -131054, 1, -131051, 1, -131049, 42, -131046, 42, -131044, 1, -65520, 35, -65514, 1, -65513, 1, -65512, 1, 16, 35, 21, 1, 22, 1, 65558, 1, 131090, 1, 131092, 1, 131098, 1, 196625, 42, 196626, 1, 196627, 1, 196633, 1, 196634, 35, 196636, 1, 262160, 1, 262161, 1, 262162, 34, 262163, 42, 262171, 1, 262172, 1, 327697, 1, 327698, 1, 327702, 1, 327704, 1, 327706, 1, 327707, 1 )
 
 

@@ -652,4 +652,20 @@ polygon = Vector2Array( -12, -12, 12, -12, 12, 12, -12, 12 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
+[node name="plant" type="Sprite" parent="."]
+
+transform/pos = Vector2( 305.303, 16.2108 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 48
+
+[node name="vase" type="Sprite" parent="."]
+
+transform/pos = Vector2( 305.303, 50.7937 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 54
+
 

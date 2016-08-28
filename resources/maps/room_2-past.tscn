@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=1]
+[ext_resource path="res://resources/objects/types/door-sepia.tscn" type="PackedScene" id=2]
 
 [node name="room_2" type="TileMap"]
 
@@ -23,5 +24,32 @@ tile_data = IntArray( -458737, 5, -458736, 5, -458735, 5, -458734, 5, -458733, 5
 [node name="bodies" type="YSort" parent="."]
 
 sort/enabled = true
+
+[node name="door_room4" parent="bodies" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 718.646, -176.044 )
+
+[node name="door_hall" parent="bodies" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 529.215, 77.5922 )
+transform/rot = 90.0
+
+[node name="detail" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 32, 32 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 0
+collision/mask = 0
+occluder/light_mask = 1
+tile_data = IntArray( -393198, 42, -393190, 42, -327662, 43, -327659, 38, -327654, 43, -131045, -1610612696, 27, -1610612696, 65553, 39, 262167, 38 )
 
 
