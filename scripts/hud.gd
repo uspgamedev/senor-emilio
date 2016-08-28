@@ -21,6 +21,7 @@ func init_dialog(speech):
   if not reader.is_hidden():
     return
   player = get_node("/root/main/gameplay").get_current_char()
+  player.freeze()
   actual_speech = speech
   update_dialog()
   reader.show()
@@ -43,6 +44,7 @@ func _on_answer_button_selected( button_idx ):
   if actual_speech.get_answers().size() <= 0:
     set_process_unhandled_key_input(false)
     reader.hide()
+    player.unfreeze()
     return
   var answer = actual_speech.get_answers()[button_idx]
   if not answer.is_answer_action():
@@ -52,3 +54,4 @@ func _on_answer_button_selected( button_idx ):
     answer.run_action(actual_speech.get_actor(), player)
     set_process_unhandled_key_input(false)
     reader.hide()
+    player.unfreeze()

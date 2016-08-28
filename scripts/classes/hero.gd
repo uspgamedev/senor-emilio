@@ -15,8 +15,11 @@ signal just_drop
 
 var grabbing = false
 var tmp_object
+var freeze = false
 
 func _move_to(dir):
+  if freeze:
+    return
   ._move_to(dir)
   var angle = 0
   if direction == DIR.UP:
@@ -80,3 +83,9 @@ func _act(act):
     emit_signal("interact")
   elif act == 2:
     emit_signal("time_travel")
+
+func freeze():
+  freeze = true
+
+func unfreeze():
+  freeze = false
