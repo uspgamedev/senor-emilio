@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=1]
+[gd_scene load_steps=27 format=1]
 
 [ext_resource path="res://resources/maps/stage_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=2]
@@ -14,19 +14,18 @@
 [ext_resource path="res://resources/maps/tower_4-future.tscn" type="PackedScene" id=12]
 [ext_resource path="res://resources/maps/tower_5-future.tscn" type="PackedScene" id=13]
 [ext_resource path="res://resources/maps/garden-future.tscn" type="PackedScene" id=14]
-[ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=15]
-[ext_resource path="res://resources/maps/hall-past.tscn" type="PackedScene" id=16]
-[ext_resource path="res://resources/maps/room_1-past.tscn" type="PackedScene" id=17]
-[ext_resource path="res://resources/maps/room_2-past.tscn" type="PackedScene" id=18]
-[ext_resource path="res://resources/maps/room_3-past.tscn" type="PackedScene" id=19]
-[ext_resource path="res://resources/maps/room_4-past.tscn" type="PackedScene" id=20]
-[ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=21]
-[ext_resource path="res://resources/maps/tower_1-past.tscn" type="PackedScene" id=22]
-[ext_resource path="res://resources/maps/tower_2-past.tscn" type="PackedScene" id=23]
-[ext_resource path="res://resources/maps/tower_3-past.tscn" type="PackedScene" id=24]
-[ext_resource path="res://resources/maps/tower_4-past.tscn" type="PackedScene" id=25]
-[ext_resource path="res://resources/maps/tower_5-past.tscn" type="PackedScene" id=26]
-[ext_resource path="res://resources/maps/garden-past.tscn" type="PackedScene" id=27]
+[ext_resource path="res://resources/maps/hall-past.tscn" type="PackedScene" id=15]
+[ext_resource path="res://resources/maps/room_1-past.tscn" type="PackedScene" id=16]
+[ext_resource path="res://resources/maps/room_2-past.tscn" type="PackedScene" id=17]
+[ext_resource path="res://resources/maps/room_3-past.tscn" type="PackedScene" id=18]
+[ext_resource path="res://resources/maps/room_4-past.tscn" type="PackedScene" id=19]
+[ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=20]
+[ext_resource path="res://resources/maps/tower_1-past.tscn" type="PackedScene" id=21]
+[ext_resource path="res://resources/maps/tower_2-past.tscn" type="PackedScene" id=22]
+[ext_resource path="res://resources/maps/tower_3-past.tscn" type="PackedScene" id=23]
+[ext_resource path="res://resources/maps/tower_4-past.tscn" type="PackedScene" id=24]
+[ext_resource path="res://resources/maps/tower_5-past.tscn" type="PackedScene" id=25]
+[ext_resource path="res://resources/maps/garden-past.tscn" type="PackedScene" id=26]
 
 [node name="stage" instance=ExtResource( 1 )]
 
@@ -82,12 +81,6 @@ editor/display_folded = true
 
 [node name="garden" parent="future" instance=ExtResource( 14 )]
 
-[node name="bodies 2" type="YSort" parent="future/garden"]
-
-sort/enabled = true
-
-[node name="bodies" parent="past"]
-
 editor/display_folded = true
 
 [node name="cat" parent="past/bodies"]
@@ -97,11 +90,6 @@ editor/display_folded = true
 [node name="sprite" parent="past/bodies/cat"]
 
 editor/display_folded = true
-
-[node name="Portal" parent="past/bodies" instance=ExtResource( 15 )]
-
-collision/layers = 2
-collision/mask = 2
 
 [node name="door_1" parent="past" instance=ExtResource( 2 )]
 
@@ -119,33 +107,33 @@ transform/rot = 90.0
 transform/pos = Vector2( 464, 64 )
 transform/rot = -90.0
 
-[node name="hall" parent="past" instance=ExtResource( 16 )]
+[node name="hall" parent="past" instance=ExtResource( 15 )]
 
-[node name="room_1" parent="past" instance=ExtResource( 17 )]
+[node name="room_1" parent="past" instance=ExtResource( 16 )]
 
-[node name="room_2" parent="past" instance=ExtResource( 18 )]
+[node name="room_2" parent="past" instance=ExtResource( 17 )]
 
-[node name="room_3" parent="past" instance=ExtResource( 19 )]
+[node name="room_3" parent="past" instance=ExtResource( 18 )]
 
-[node name="room_4" parent="past" instance=ExtResource( 20 )]
+[node name="room_4" parent="past" instance=ExtResource( 19 )]
 
 [node name="corridor" parent="past" instance=ExtResource( 8 )]
 
-tile_set = ExtResource( 21 )
+tile_set = ExtResource( 20 )
 collision/layers = 2
 collision/mask = 2
 
-[node name="tower_1" parent="past" instance=ExtResource( 22 )]
+[node name="tower_1" parent="past" instance=ExtResource( 21 )]
 
-[node name="tower_2" parent="past" instance=ExtResource( 23 )]
+[node name="tower_2" parent="past" instance=ExtResource( 22 )]
 
-[node name="tower_3" parent="past" instance=ExtResource( 24 )]
+[node name="tower_3" parent="past" instance=ExtResource( 23 )]
 
-[node name="tower_4" parent="past" instance=ExtResource( 25 )]
+[node name="tower_4" parent="past" instance=ExtResource( 24 )]
 
-[node name="tower_5" parent="past" instance=ExtResource( 26 )]
+[node name="tower_5" parent="past" instance=ExtResource( 25 )]
 
-[node name="garden" parent="past" instance=ExtResource( 27 )]
+[node name="garden" parent="past" instance=ExtResource( 26 )]
 
 [connection signal="timeout" from="future/bodies/human/invincibility" to="future/bodies/human" method="_on_invincibility_timeout"]
 
