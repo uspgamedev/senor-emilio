@@ -4,8 +4,7 @@ extends Node2D
 const Door = preload("res://scripts/classes/door.gd")
 
 onready var STAGES = [
-  preload("res://resources/maps/stage1.tscn").instance(),
-  preload("res://resources/maps/stage2.tscn").instance(),
+  preload("res://resources/maps/teste.tscn").instance(),
 ]
 
 onready var sfx = get_node("sfx")
