@@ -84,6 +84,10 @@ collision/mask = 2
 collision/layers = 2
 collision/mask = 2
 
+[connection signal="timeout" from="future/bodies/human/invincibility" to="future/bodies/human" method="_on_invincibility_timeout"]
+
+[connection signal="timeout" from="past/bodies/cat/invincibility" to="past/bodies/cat" method="_on_invincibility_timeout"]
+
 
 [editable path="future/bodies/human"]
 [editable path="past/bodies/cat"]
