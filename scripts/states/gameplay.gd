@@ -25,15 +25,6 @@ func _ready():
     _start_camera()
     _connect_state()
     input.connect("press_quit", self, "_quit")
-    for stage in STAGES:
-      for body in stage.get_node("future").get_children():
-        if body.get_script() == Door:
-          printt(body.get_name(), "door detected!")
-          body.connect("change_stage", self, "_change_stage")
-      for body in stage.get_node("past").get_children():
-        if body.get_script() == Door:
-          body.connect("change_stage", self, "_change_stage")
-    _change_stage(0,"door_1")
 
 func _setup():
   _maps = [

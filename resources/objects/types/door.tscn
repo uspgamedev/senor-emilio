@@ -3,6 +3,7 @@
 [ext_resource path="res://scripts/classes/door.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/doorway-gate.png" type="Texture" id=2]
 [ext_resource path="res://assets/imgs/tileset-demo.png" type="Texture" id=3]
+[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -54,11 +55,6 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 2, 3, 4, 5, 6, 7 ] }
-
-[sub_resource type="RectangleShape2D" id=6]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 16 )
 
 [sub_resource type="CapsuleShape2D" id=7]
 
@@ -165,24 +161,6 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="teleport" type="Area2D" parent="."]
-
-transform/pos = Vector2( 0, -32 )
-input/pickable = true
-shapes/0/shape = SubResource( 6 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="teleport"]
-
-shape = SubResource( 6 )
-trigger = true
-_update_shape_index = 0
-
 [node name="spawn" type="Node2D" parent="."]
 
 transform/pos = Vector2( 0, 16 )
@@ -207,6 +185,7 @@ transform/pos = Vector2( -11.1292, -7.13481 )
 shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 0
+script/script = ExtResource( 4 )
 
 [node name="StaticBody2D1" type="StaticBody2D" parent="."]
 
@@ -228,5 +207,6 @@ transform/pos = Vector2( -13.1292, -7.13481 )
 shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 0
+script/script = ExtResource( 4 )
 
 
