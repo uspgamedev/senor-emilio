@@ -7,7 +7,6 @@ var _open = false
 
 onready var lock = get_node("lock")
 onready var anim = get_node("lock/AnimationPlayer")
-onready var teleport = get_node("teleport")
 
 export(String) var key_required = null
 export(bool) var start_opened = true
@@ -21,8 +20,6 @@ func _ready():
     close()
   printt("mask", _mask)
   printt("open", _open)
-  teleport.set_layer_mask(_mask)
-  teleport.set_collision_mask(_mask)
 
 func open():
   print("door open")

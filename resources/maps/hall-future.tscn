@@ -1,32 +1,21 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/classes/portal.gd" type="Script" id=3]
-[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/classes/notes.gd" type="Script" id=5]
-[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=6]
-[ext_resource path="res://scripts/classes/answer.gd" type="Script" id=7]
-[ext_resource path="res://resources/objects/types/transfer_zone.tscn" type="PackedScene" id=8]
+[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=4]
+[ext_resource path="res://scripts/classes/answer.gd" type="Script" id=5]
+[ext_resource path="res://resources/objects/types/transfer_zone.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=7]
 
-[sub_resource type="RectangleShape2D" id=3]
-
-custom_solver_bias = 0.0
-extents = Vector2( 16.3034, 16.1142 )
-
-[sub_resource type="RectangleShape2D" id=4]
-
-custom_solver_bias = 0.0
-extents = Vector2( 18.5875, 15.9507 )
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 16, 32 )
-
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 script/source = "\nextends Area2D\n\nconst Hero = preload(\"res://scripts/classes/hero.gd\")\n\nonready var room = get_parent().get_parent()\n\nfunc _ready():\n\tpass\n\nfunc _enter( body ):\n\tprintt(\"body transfered\?\", body)\n\tif body.get_script() == Hero:\n\t\tprint(\"yes\")\n\t\tbody.current_room = room\n"
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 16 )
 
 [node name="hall" type="TileMap"]
 
@@ -50,70 +39,76 @@ tile_data = IntArray( -458753, 5, -524288, 5, -524287, 5, -524286, 5, -524285, 5
 
 sort/enabled = true
 
-[node name="Portal" type="StaticBody2D" parent="bodies" instance=ExtResource( 2 )]
+[node name="Portal" parent="bodies" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 384, 288 )
-input/pickable = false
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script/script = ExtResource( 3 )
-portal_link = null
 
-[node name="Notes" type="StaticBody2D" parent="bodies" instance=ExtResource( 4 )]
+[node name="Notes" parent="bodies" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 64, 288 )
-input/pickable = false
-shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script/script = ExtResource( 5 )
 first_message = NodePath("Message/P1")
 
 [node name="Message" type="Node" parent="bodies/Notes"]
 
 [node name="P1" type="Node" parent="bodies/Notes/Message"]
 
-script/script = ExtResource( 6 )
+script/script = ExtResource( 4 )
 speech = "Hello"
 
 [node name="Answer" type="Node" parent="bodies/Notes/Message/P1"]
 
-script/script = ExtResource( 7 )
+script/script = ExtResource( 5 )
 text = ""
 next_speech = NodePath("../../P2")
 action = "printt(\"hi\")"
 
 [node name="P2" type="Node" parent="bodies/Notes/Message"]
 
-script/script = ExtResource( 6 )
+script/script = ExtResource( 4 )
 speech = "Bye"
 
-[node name="transfer_zone" type="Area2D" parent="bodies" instance=ExtResource( 8 )]
+[node name="transfer_zone" parent="bodies" instance=ExtResource( 6 )]
 
+editor/display_folded = true
 transform/pos = Vector2( -336, 64 )
-input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-script/script = SubResource( 2 )
+script/script = SubResource( 1 )
 
-[connection signal="body_enter" from="bodies/transfer_zone" to="bodies/transfer_zone" method="_enter"]
+[node name="transfer_zone1" parent="bodies" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 432, 64 )
+script/script = SubResource( 1 )
+
+[node name="transfer_zone2" parent="bodies" instance=ExtResource( 6 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 48, 368 )
+script/script = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="bodies/transfer_zone2"]
+
+shape = SubResource( 2 )
+
+[node name="Door" parent="bodies" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 48, 400 )
+transform/rot = 180.0
+
+[node name="Door1" parent="bodies" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( -368, 64 )
+transform/rot = 90.0
+start_opened = false
+
+[node name="Door2" parent="bodies" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 464, 64 )
+transform/rot = -90.0
+start_opened = false
 
 
+[editable path="bodies/transfer_zone"]
+[editable path="bodies/transfer_zone2"]
