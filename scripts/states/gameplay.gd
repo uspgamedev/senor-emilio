@@ -64,7 +64,7 @@ func _connect_state():
   get_current_char().connect("just_drop", sfx, "play", ["drop"])
   get_current_char().add_child(_cam)
   get_current_map().show()
-  get_current_map().set_collision_layer(1)
+  #get_current_map().set_collision_layer(1)
 
 func _disconnect_state():
   input.disconnect("hold_direction", get_current_char(), "_move_to")
@@ -74,7 +74,7 @@ func _disconnect_state():
   get_current_char().disconnect("just_drop", sfx, "play")
   get_current_char().remove_child(_cam)
   get_current_map().hide()
-  get_current_map().set_collision_layer(0)
+  #get_current_map().set_collision_layer(0)
 
 func _start_camera():
   _cam.make_current()
