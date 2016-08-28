@@ -1,6 +1,0 @@
-[gd_resource type="CanvasItemShader" format=1]
-
-[resource]
-
-_code = { "fragment":"// http://gamedev.stackexchange.com/questions/59797/glsl-shader-change-hue-saturation-brightness\n\nuniform float hue = 0;\nvec3 rgb2hsv(vec3 c)\n{\n    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);\n    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));\n    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));\n\n    float d = q.x - min(q.w, q.y);\n    float e = 1.0e-10;\n    return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);\n}\n\nvec3 hsv2rgb(vec3 c)\n{\n    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);\n    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);\n    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);\n}\n\ncolor in = tex(TEXTURE, UV);\nvec3 hsv = rgb2hsv(in.rgb);\nhsv.x = hue;\n\nCOLOR = color(hsv2rgb(hsv), in.a);\n\n\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
-
