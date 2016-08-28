@@ -104,6 +104,7 @@ modulate = Color( 1, 0.265625, 0.265625, 1 )
 
 [node name="roof" type="TileMap" parent="."]
 
+visibility/visible = false
 z/z = 100
 z/relative = false
 mode = 0
