@@ -1,11 +1,14 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://resources/maps/stage_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=3]
 [ext_resource path="res://resources/objects/types/switch.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=7]
+[ext_resource path="res://scripts/classes/answer.gd" type="Script" id=8]
+[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -130,13 +133,49 @@ collision/layers = 1
 collision/mask = 1
 portal_link = NodePath("../../../past/bodies/Portal")
 
-[node name="door_1" parent="future" instance=ExtResource( 6 )]
+[node name="Notes" parent="future/bodies" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 163.189, 280.987 )
+first_message = NodePath("Message/Text1")
+
+[node name="Message" type="Node" parent="future/bodies/Notes"]
+
+[node name="Text1" type="Node" parent="future/bodies/Notes/Message"]
+
+script/script = ExtResource( 7 )
+speech = "Beware"
+
+[node name="Answer" type="Node" parent="future/bodies/Notes/Message/Text1"]
+
+script/script = ExtResource( 8 )
+text = ""
+next_speech = NodePath("../../Text2")
+action = "printt(\"hi\")"
+
+[node name="Text2" type="Node" parent="future/bodies/Notes/Message"]
+
+script/script = ExtResource( 7 )
+speech = "If you\'re reading this"
+
+[node name="Answer" type="Node" parent="future/bodies/Notes/Message/Text2"]
+
+script/script = ExtResource( 8 )
+text = ""
+next_speech = NodePath("../../Text3")
+action = "printt(\"hi\")"
+
+[node name="Text3" type="Node" parent="future/bodies/Notes/Message"]
+
+script/script = ExtResource( 7 )
+speech = "You are not blind"
+
+[node name="door_1" parent="future" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 64, 336 )
 transform/rot = 180.0
 key_required = ""
 
-[node name="door_2" parent="future" instance=ExtResource( 6 )]
+[node name="door_2" parent="future" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( -176, 64 )
 transform/rot = 90.0
@@ -163,23 +202,26 @@ collision/layers = 2
 collision/mask = 2
 portal_link = NodePath("../../../future/bodies/Portal")
 
-[node name="door_1" parent="past" instance=ExtResource( 6 )]
+[node name="door_1" parent="past" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( -176, 66 )
 transform/rot = 90.0
 
-[node name="door_2" parent="past" instance=ExtResource( 6 )]
+[node name="door_2" parent="past" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 272, 66 )
 transform/rot = -90.0
 
-[node name="door_3" parent="past" instance=ExtResource( 6 )]
+[node name="door_3" parent="past" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 64, 336 )
 transform/rot = 180.0
 
+[connection signal="timeout" from="future/bodies/human/invincibility" to="future/bodies/human" method="_on_invincibility_timeout"]
+
 [connection signal="timeout" from="past/bodies/cat/invincibility" to="past/bodies/cat" method="_on_invincibility_timeout"]
 
 
+[editable path="future/bodies/human"]
 [editable path="future/bodies/key"]
 [editable path="past/bodies/cat"]

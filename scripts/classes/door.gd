@@ -63,7 +63,7 @@ func off():
 func _fixed_process(dt):
   var bodies = teleport.get_overlapping_bodies()
   if bodies.size() > 0:
-    print("tp bodies= ", bodies)
+    #print("tp bodies= ", bodies)
     for body in bodies:
       if body.has_method("get_layer_mask") and body.get_layer_mask() == teleport.get_collision_mask():
         _teleport(body)
