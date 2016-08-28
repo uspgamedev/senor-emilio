@@ -92,7 +92,6 @@ modulate = Color( 0.910156, 0.829273, 0.170654, 1 )
 
 [node name="Door2" parent="bodies" instance=ExtResource( 6 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 464, 96 )
 transform/rot = -90.0
 key_required = "key_red"
