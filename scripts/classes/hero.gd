@@ -27,12 +27,10 @@ func _move_to(dir):
     angle = 270
   elif direction == DIR.RIGHT:
     angle = 90
-  set_rotd(angle)
-  sprite.set_rotd(-angle)
-  pocket.set_rotd(-angle)
+  hitbox.set_rotd(angle)
 
 func get_front():
-  return get_relative_transform_to_parent(get_parent()).y
+  return hitbox.get_relative_transform_to_parent(self).y
 
 func attach_object(body):
   body.set_pos(Vector2(0,-48))

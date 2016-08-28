@@ -103,12 +103,12 @@ tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":FloatA
 [sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
-extents = Vector2( 4, 4 )
+extents = Vector2( 10, 6 )
 
 [sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
-extents = Vector2( 31.1169, 33.6211 )
+extents = Vector2( 16, 16 )
 
 [node name="hero" instance=ExtResource( 1 )]
 
@@ -123,7 +123,7 @@ offset = Vector2( 0, -20 )
 flip_h = true
 vframes = 4
 hframes = 3
-frame = 8
+frame = 1
 script/script = null
 
 [node name="animation" parent="sprite"]
@@ -159,11 +159,9 @@ script/script = null
 
 [node name="hitbox" type="Area2D" parent="."]
 
-transform/pos = Vector2( 0, 22.1967 )
-transform/scale = Vector2( 1, 0.443648 )
 input/pickable = true
 shapes/0/shape = SubResource( 10 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 16 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -172,26 +170,10 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 
+transform/pos = Vector2( 0, 16 )
 shape = SubResource( 10 )
 trigger = false
 _update_shape_index = 0
-
-[node name="Polygon2D" type="Polygon2D" parent="hitbox"]
-
-visibility/visible = false
-transform/pos = Vector2( -0.189133, -39.944 )
-transform/scale = Vector2( 1, 2.25404 )
-polygon = Vector2Array( -0.245819, 10.2393, -30.0806, 4.44404, 0.183456, 30.2007, 30.6622, 5.08795 )
-uv = Vector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = ColorArray(  )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
 
 [node name="pocket" type="Node2D" parent="."]
 
