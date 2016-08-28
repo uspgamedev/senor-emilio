@@ -21,7 +21,6 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 script/script = ExtResource( 1 )
-stored = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -29,11 +28,18 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="closed" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
+
+[node name="open" type="Sprite" parent="."]
+
+visibility/visible = false
+texture = ExtResource( 2 )
+region = true
+region_rect = Rect2( 32, 0, 32, 32 )
 
 [node name="Storage" type="Node" parent="."]
 
