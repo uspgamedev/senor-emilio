@@ -4,6 +4,8 @@ extends "res://scripts/classes/prop.gd"
 var stored
 
 func _ready():
+  if get_node("Storage").get_child_count() <= 0:
+    return
   stored = get_node("Storage").get_children()[0]
 
 func is_full():
