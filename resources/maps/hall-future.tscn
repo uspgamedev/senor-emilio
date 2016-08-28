@@ -61,7 +61,6 @@ collision/mask = 1
 
 [node name="Notes" parent="bodies" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 64, 288 )
 first_message = NodePath("Message/P1")
 
@@ -70,7 +69,7 @@ first_message = NodePath("Message/P1")
 [node name="P1" type="Node" parent="bodies/Notes/Message"]
 
 script/script = ExtResource( 4 )
-speech = "Hello"
+speech = "WARNING: Time-space hazard zone"
 
 [node name="Answer" type="Node" parent="bodies/Notes/Message/P1"]
 
@@ -82,7 +81,7 @@ action = "printt(\"hi\")"
 [node name="P2" type="Node" parent="bodies/Notes/Message"]
 
 script/script = ExtResource( 4 )
-speech = "Bye"
+speech = "Granny: Where in heavens did Señor Emilio snuck his longfaced muzzle\?"
 
 [node name="Door1" parent="bodies" instance=ExtResource( 6 )]
 
