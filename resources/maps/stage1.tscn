@@ -30,8 +30,12 @@
 
 [node name="human" parent="future/bodies"]
 
-editor/display_folded = true
 transform/pos = Vector2( 32, 368 )
+collision/layers = 5
+collision/mask = 5
+
+[node name="hitbox" parent="future/bodies/human"]
+
 collision/layers = 5
 collision/mask = 5
 
@@ -47,6 +51,8 @@ editor/display_folded = true
 
 [node name="room_2" parent="future" instance=ExtResource( 4 )]
 
+transform/pos = Vector2( 0, 28 )
+
 [node name="room_3" parent="future" instance=ExtResource( 5 )]
 
 [node name="room_4" parent="future" instance=ExtResource( 6 )]
@@ -61,6 +67,8 @@ editor/display_folded = true
 
 [node name="tower_4" parent="future" instance=ExtResource( 11 )]
 
+transform/pos = Vector2( 0, 24 )
+
 [node name="tower_5" parent="future" instance=ExtResource( 12 )]
 
 [node name="garden" parent="future" instance=ExtResource( 13 )]
@@ -69,7 +77,6 @@ editor/display_folded = true
 
 [node name="cat" parent="past/bodies"]
 
-editor/display_folded = true
 transform/pos = Vector2( 48, 32 )
 collision/layers = 10
 collision/mask = 10
@@ -77,6 +84,11 @@ collision/mask = 10
 [node name="sprite" parent="past/bodies/cat"]
 
 editor/display_folded = true
+
+[node name="hitbox" parent="past/bodies/cat"]
+
+collision/layers = 10
+collision/mask = 10
 
 [node name="hall" parent="past" instance=ExtResource( 14 )]
 
