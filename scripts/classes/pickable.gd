@@ -5,5 +5,6 @@ func _ready():
   print("box spawned")
 
 func interact(body):
-  if self.get_layer_mask() == body.get_layer_mask():
+  var collide = self.get_layer_mask() & body.get_collision_mask() 
+  if collide != 0:
     body.grab(self)
