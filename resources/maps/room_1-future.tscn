@@ -41,13 +41,12 @@ script/script = SubResource( 1 )
 [node name="chest" parent="bodies" instance=ExtResource( 3 )]
 
 editor/display_folded = true
-transform/pos = Vector2( -147.156, 143.548 )
-transform/rot = 90.0
+transform/pos = Vector2( -128.58, 128.953 )
 
 [node name="key" parent="bodies/chest/Storage" instance=ExtResource( 4 )]
 
 editor/display_folded = true
-transform/pos = Vector2( -752.551, -45.865 )
+transform/pos = Vector2( -688.862, -18.6647 )
 collision/layers = 1
 collision/mask = 1
 
@@ -55,10 +54,10 @@ collision/mask = 1
 
 transform/pos = Vector2( -11, -16 )
 
-[node name="door_1" parent="." instance=ExtResource( 5 )]
+[node name="door_1" parent="bodies" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 175.746, 224.283 )
-transform/rot = 270.0
+transform/rot = -90.0
 
 
 [editable path="bodies/chest"]
