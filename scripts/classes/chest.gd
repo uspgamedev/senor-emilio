@@ -1,7 +1,10 @@
 
 extends "res://scripts/classes/prop.gd"
 
-export(NodePath)var stored
+var stored
+
+func _ready():
+  stored = get_node("Storage").get_children()[0]
 
 func is_full():
   return stored != null
@@ -18,18 +21,14 @@ func remove():
     return
   printt(get_name(), "removing item")
   stored.show()
+  get_node("open").show()
   stored = null
 
 func get_item():
   return stored
 
 func interact(body):
-  if body.grabbing:
-    var drop = body.get_pocket_item()
-    body.connect("drop", self, "store", [], CONNECT_ONESHOT)
-    body.drop()
-    printt(get_name(), "requesting drop")
-  elif is_full():
+  if is_full():
     var item = get_item()
     item.set_layer_mask(body.get_layer_mask())
     body.grab(item)
