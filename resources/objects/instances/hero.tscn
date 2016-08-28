@@ -103,7 +103,7 @@ tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":FloatA
 [sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
-extents = Vector2( 4, 4 )
+extents = Vector2( 10, 6 )
 
 [sub_resource type="RectangleShape2D" id=10]
 
@@ -123,7 +123,7 @@ offset = Vector2( 0, -20 )
 flip_h = true
 vframes = 4
 hframes = 3
-frame = 8
+frame = 1
 script/script = null
 
 [node name="animation" parent="sprite"]
@@ -196,3 +196,5 @@ invert/border = 100.0
 [node name="pocket" type="Node2D" parent="."]
 
 [connection signal="timeout" from="invincibility" to="." method="_on_invincibility_timeout"]
+
+
