@@ -59,7 +59,7 @@ transform/pos = Vector2( -11, -16 )
 transform/pos = Vector2( 175.746, 256.283 )
 transform/rot = -90.0
 
-[node name="roof" type="TileMap" parent="bodies"]
+[node name="roof" type="TileMap" parent="."]
 
 visibility/visible = false
 z/z = 100
