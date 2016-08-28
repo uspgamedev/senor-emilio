@@ -28,6 +28,11 @@
 
 [node name="stage" instance=ExtResource( 1 )]
 
+[node name="future" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+
 [node name="human" parent="future/bodies"]
 
 transform/pos = Vector2( 32, 368 )
@@ -75,6 +80,10 @@ transform/pos = Vector2( 0, 24 )
 
 editor/display_folded = true
 
+[node name="past" parent="."]
+
+visibility/visible = true
+
 [node name="cat" parent="past/bodies"]
 
 transform/pos = Vector2( 48, 32 )
@@ -100,6 +109,8 @@ portal_link = NodePath("../../../../future/hall/bodies/Portal")
 
 [node name="room_2" parent="past" instance=ExtResource( 16 )]
 
+transform/pos = Vector2( 0, 15 )
+
 [node name="room_3" parent="past" instance=ExtResource( 17 )]
 
 [node name="room_4" parent="past" instance=ExtResource( 18 )]
@@ -117,6 +128,8 @@ collision/mask = 2
 [node name="tower_3" parent="past" instance=ExtResource( 22 )]
 
 [node name="tower_4" parent="past" instance=ExtResource( 23 )]
+
+transform/pos = Vector2( 0, 15 )
 
 [node name="tower_5" parent="past" instance=ExtResource( 24 )]
 
