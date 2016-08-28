@@ -1,40 +1,23 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
-[ext_resource path="res://resources/objects/instances/hero.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/imgs/grandma.png" type="Texture" id=3]
-[ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=4]
+[ext_resource path="res://resources/objects/instances/hero.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/imgs/grandma.png" type="Texture" id=2]
 
 [node name="stage" type="Node2D"]
 
 __meta__ = { "_edit_lock_":true }
 
-[node name="future" type="TileMap" parent="."]
+[node name="future" type="Node2D" parent="."]
 
 z/z = 5
 z/relative = false
-mode = 0
-tile_set = ExtResource( 1 )
-cell/size = Vector2( 32, 32 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( -1, 10, -65536, 6, -65535, 6, -65534, 6, -65533, 11, 65535, 9, 0, 0, 1, 0, 2, 0, 3, 7, 131071, 9, 65536, 0, 65537, 0, 65538, 0, 65539, 7, 196607, 9, 131072, 0, 131073, 0, 131074, 0, 131075, 7, 262143, 12, 196608, 8, 196609, 8, 196610, 8, 196611, 13 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="bodies" type="YSort" parent="future"]
 
 sort/enabled = true
 
-[node name="human" parent="future/bodies" instance=ExtResource( 2 )]
+[node name="human" parent="future/bodies" instance=ExtResource( 1 )]
 
 transform/pos = Vector2( 16, 16 )
 z/z = 7
@@ -43,35 +26,20 @@ collision/mask = 1
 
 [node name="sprite" parent="future/bodies/human"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
-[node name="past" type="TileMap" parent="."]
+[node name="past" type="Node2D" parent="."]
 
 visibility/visible = false
 z/z = 5
 z/relative = false
-mode = 0
-tile_set = ExtResource( 4 )
-cell/size = Vector2( 32, 32 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 2
-collision/mask = 2
-occluder/light_mask = 1
-tile_data = IntArray( -1, 10, -65536, 6, -65535, 6, -65534, 6, -65533, 11, 65535, 9, 0, 0, 1, 0, 2, 0, 3, 7, 131071, 9, 65536, 0, 65537, 0, 65538, 0, 65539, 7, 196607, 9, 131072, 0, 131073, 0, 131074, 0, 131075, 7, 262143, 12, 196608, 8, 196609, 8, 196610, 8, 196611, 13 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="bodies" type="YSort" parent="past"]
 
 sort/enabled = true
 
-[node name="cat" parent="past/bodies" instance=ExtResource( 2 )]
+[node name="cat" parent="past/bodies" instance=ExtResource( 1 )]
 
 transform/pos = Vector2( 16, 16 )
 z/z = 7
