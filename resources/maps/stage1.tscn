@@ -110,6 +110,10 @@ collision/mask = 2
 
 [node name="garden" parent="past" instance=ExtResource( 25 )]
 
+[connection signal="timeout" from="future/bodies/human/invincibility" to="future/bodies/human" method="_on_invincibility_timeout"]
+
+[connection signal="timeout" from="past/bodies/cat/invincibility" to="past/bodies/cat" method="_on_invincibility_timeout"]
+
 
 [editable path="future/bodies/human"]
 [editable path="future/hall"]
