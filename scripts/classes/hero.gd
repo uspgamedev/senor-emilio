@@ -6,6 +6,7 @@ const DIR = preload("res://scripts/utility/directions.gd")
 onready var sprite = get_node("sprite")
 onready var hitbox = get_node("hitbox")
 onready var pocket = get_node("pocket")
+onready var current_room = get_parent().get_parent()
 
 signal time_travel
 signal interact
@@ -43,10 +44,12 @@ func attach_object(body):
   pocket.add_child(body)
 
 func detach_object(body):
-  body.set_pos(get_pos() + get_front()*32)
+  body.set_pos(get_pos() - current_room.get_pos() + get_front()*32)
   body.set_collision_mask(get_collision_mask())
   body.set_layer_mask(get_layer_mask())
-  node_to_return_obj.add_child(body)
+  #node_to_return_obj.add_child(body)
+  current_room.get_node("bodies").add_child(body)
+  printt("dropped on", current_room.get_node("bodies").get_path(), body.get_pos())
 
 func get_pocket_item():
   return tmp_object
