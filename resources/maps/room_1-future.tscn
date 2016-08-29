@@ -30,7 +30,6 @@ sort/enabled = true
 
 [node name="chest" parent="bodies" instance=ExtResource( 2 )]
 
-editor/display_folded = true
 transform/pos = Vector2( -128.58, 128.953 )
 
 [node name="key" parent="bodies/chest/Storage" instance=ExtResource( 3 )]
@@ -39,6 +38,8 @@ editor/display_folded = true
 transform/pos = Vector2( -688.862, -18.6647 )
 collision/layers = 1
 collision/mask = 1
+
+[node name="key_blue" type="Node" parent="bodies/chest/Storage"]
 
 [node name="door_2" parent="bodies" instance=ExtResource( 4 )]
 

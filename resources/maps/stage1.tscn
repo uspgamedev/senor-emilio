@@ -117,6 +117,8 @@ portal_link = NodePath("../../../../future/hall/bodies/Portal")
 
 [node name="room_1" parent="past" instance=ExtResource( 15 )]
 
+transform/pos = Vector2( 0, 32 )
+
 [node name="room_2" parent="past" instance=ExtResource( 16 )]
 
 transform/pos = Vector2( 0, 32 )
@@ -137,6 +139,8 @@ collision/mask = 2
 
 [node name="tower_3" parent="past" instance=ExtResource( 22 )]
 
+transform/pos = Vector2( 0, 32 )
+
 [node name="tower_4" parent="past" instance=ExtResource( 23 )]
 
 transform/pos = Vector2( 0, 32 )
@@ -153,7 +157,6 @@ transform/pos = Vector2( 0, 32 )
 [editable path="future/bodies/human"]
 [editable path="future/hall"]
 [editable path="future/room_1"]
-[editable path="future/room_1/bodies/transfer_zone"]
 [editable path="future/garden"]
 [editable path="past/bodies/cat"]
 [editable path="past/hall"]

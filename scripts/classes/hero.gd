@@ -52,7 +52,10 @@ func detach_object(body):
   printt("dropped on", current_room.get_node("bodies").get_path(), body.get_pos())
 
 func get_pocket_item():
-  return tmp_object
+  if grabbing:
+    return tmp_object
+  else:
+    return null
 
 func grab(body):
   if !grabbing:
