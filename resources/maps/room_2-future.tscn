@@ -113,7 +113,7 @@ sort/enabled = true
 
 [node name="door_hall" parent="bodies" instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 527.989, 66.8701 )
+transform/pos = Vector2( 528, 64 )
 transform/rot = 90.0
 
 [node name="door_room4" parent="bodies" instance=ExtResource( 2 )]
