@@ -8,7 +8,7 @@
 
 collision/mask = 3
 script/script = ExtResource( 2 )
-direction = 1
+direction = 2
 
 [node name="sprite" parent="."]
 
