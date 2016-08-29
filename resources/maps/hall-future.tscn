@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://resources/objects/types/transfer_zone.tscn" type="PackedScene" id=7]
 [ext_resource path="res://resources/objects/instances/eye-socket.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/imgs/maq_tempo.png" type="Texture" id=9]
+[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,6 +19,11 @@ extents = Vector2( 48, 16 )
 [sub_resource type="GDScript" id=11]
 
 script/source = "\nextends StaticBody2D\n\nvar count\n\nfunc _ready():\n\tcount = 2\n\nfunc _tick():\n\tcount -= 1\n\tif count <= 0:\n\t\tqueue_free()\n\n"
+
+[sub_resource type="RectangleShape2D" id=12]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
 
 [node name="hall" type="TileMap"]
 
@@ -144,6 +151,7 @@ transform/pos = Vector2( -48, -176 )
 
 [node name="eye-socket-r" parent="bodies" instance=ExtResource( 8 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 144, -176 )
 
 [node name="eye-right" type="Node" parent="bodies/eye-socket-r"]
@@ -178,6 +186,28 @@ collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( -393217, 5, -458752, 5, -458751, 5, -458750, 5, -458749, 5, -327681, 6, -393216, 6, -393215, 6, -393214, 6, -393213, 6 )
 
+[node name="time-machine" parent="bodies" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 64, 96 )
+first_message = NodePath("msg")
+
+[node name="Sprite" parent="bodies/time-machine"]
+
+texture = ExtResource( 9 )
+vframes = 1
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" parent="bodies/time-machine"]
+
+shape = SubResource( 12 )
+script/script = ExtResource( 10 )
+
+[node name="msg" type="Node" parent="bodies/time-machine"]
+
+script/script = ExtResource( 4 )
+speech = "Granny: Oh my, that sure is broken."
+
 [node name="roof" type="TileMap" parent="."]
 
 visibility/visible = false
@@ -207,3 +237,4 @@ tile_data = IntArray( -393229, 5, -393228, 5, -393227, 5, -393226, 5, -393225, 5
 [editable path="bodies/Door1"]
 [editable path="bodies/Door2"]
 [editable path="bodies/transfer_zone"]
+[editable path="bodies/time-machine"]
