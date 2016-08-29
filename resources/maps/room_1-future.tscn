@@ -30,7 +30,7 @@ sort/enabled = true
 
 [node name="chest" parent="bodies" instance=ExtResource( 2 )]
 
-transform/pos = Vector2( -128.58, 128.953 )
+transform/pos = Vector2( -128, 144 )
 
 [node name="key" parent="bodies/chest/Storage" instance=ExtResource( 3 )]
 
