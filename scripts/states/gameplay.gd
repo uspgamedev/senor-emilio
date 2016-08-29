@@ -12,6 +12,8 @@ onready var _bgms = [
   get_node("bgm-future"),
   get_node("bgm-past")
 ]
+onready var fadein = get_node("fadein")
+onready var fadeout = get_node("fadeout")
 
 const FUTURE = 0
 const PAST = 1
@@ -59,7 +61,8 @@ func _connect_state():
   get_current_char().connect("just_drop", sfx, "play", ["drop"])
   get_current_char().add_child(_cam)
   get_current_map().show()
-  _bgms[current].set_volume(1)
+  fadein.interpolate_method(_bgms[current], "set_volume", 0, 1, 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
+  fadein.start()  
   #get_current_map().set_collision_layer(1)
 
 func _disconnect_state():
@@ -70,7 +73,8 @@ func _disconnect_state():
   get_current_char().disconnect("just_drop", sfx, "play")
   get_current_char().remove_child(_cam)
   get_current_map().hide()
-  _bgms[current].set_volume(0)
+  fadeout.interpolate_method(_bgms[current], "set_volume", 1, 0, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+  fadeout.start()
   #get_current_map().set_collision_layer(0)
 
 func _start_camera():

@@ -58,4 +58,18 @@ default/reverb_send = 0.0
 default/chorus_send = 0.0
 script/script = ExtResource( 5 )
 
+[node name="fadein" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="fadeout" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 
