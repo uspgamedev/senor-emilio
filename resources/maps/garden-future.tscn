@@ -31,7 +31,6 @@ points = Vector2Array( -24, 32, -48, 32, -48, -64, -24, -64 )
 
 [node name="garden" type="TileMap"]
 
-transform/pos = Vector2( -2, 0 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell/size = Vector2( 32, 32 )
@@ -136,7 +135,7 @@ trigger = false
 
 [node name="bigass_door" type="StaticBody2D" parent="bodies"]
 
-transform/pos = Vector2( 50, 480 )
+transform/pos = Vector2( 48, 480 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
