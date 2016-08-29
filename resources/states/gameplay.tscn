@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://scripts/states/gameplay.gd" type="Script" id=1]
 [ext_resource path="res://resources/maps/stage1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/bgm/reflection.ogg" type="AudioStream" id=3]
-[ext_resource path="res://scripts/utility/sfx.gd" type="Script" id=4]
+[ext_resource path="res://assets/bgm/refraction.ogg" type="AudioStream" id=4]
+[ext_resource path="res://scripts/utility/sfx.gd" type="Script" id=5]
 
 [sub_resource type="SampleLibrary" id=1]
 
@@ -17,12 +18,23 @@ current = 0
 
 [node name="stage" parent="." instance=ExtResource( 2 )]
 
-[node name="bgm" type="StreamPlayer" parent="."]
+[node name="bgm-future" type="StreamPlayer" parent="."]
 
 stream/stream = ExtResource( 3 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="bgm-past" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 4 )
+stream/play = false
+stream/loop = true
+stream/volume_db = -80.0
 stream/autoplay = true
 stream/paused = false
 stream/loop_restart_time = 0.0
@@ -44,6 +56,6 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 
 
