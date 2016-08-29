@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=2]
@@ -7,8 +7,11 @@
 [ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=5]
 [ext_resource path="res://resources/objects/types/transfer_zone.tscn" type="PackedScene" id=6]
 [ext_resource path="res://resources/objects/instances/decorative_candles.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/imgs/maq_tempo.png" type="Texture" id=9]
+[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=10]
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=1]
 
 resource/name = "closed"
 length = 0.1
@@ -22,6 +25,18 @@ tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "updat
 
 [sub_resource type="Animation" id=2]
 
+resource/name = "closed"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
+
+[sub_resource type="Animation" id=3]
+
 resource/name = "closing"
 length = 0.9
 loop = false
@@ -32,7 +47,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 7, 6, 5, 4, 3, 2 ] }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
 length = 0.1
 loop = false
@@ -43,35 +58,24 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 7 ] }
 
-[sub_resource type="Animation" id=4]
-
-length = 0.9
-loop = false
-step = 0.15
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 2, 3, 4, 5, 6, 7 ] }
-
 [sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
-extents = Vector2( 48, 16 )
+extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[sub_resource type="RectangleShape2D" id=7]
-
-custom_solver_bias = 0.0
-extents = Vector2( 16, 16 )
-
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=7]
 
 script/source = "\nextends Area2D\n\nconst Hero = preload(\"res://scripts/classes/hero.gd\")\n\nvar _mask\n\nonready var room = get_parent().get_parent().get_parent()\n\nfunc _stage():\n\tvar parent = get_parent()\n\twhile parent.get_name() != \"past\" and parent.get_name() != \"future\":\n\t\tparent = parent.get_parent()\n\treturn parent\n\nfunc _ready():\n  var parent = _stage()\n  var timezone = parent.get_name()\n  if timezone == \"future\":\n    _mask = 1\n  elif timezone == \"past\":\n    _mask = 2\n  activate_collision()\n\nfunc activate_collision():\n  set_layer_mask(_mask)\n  set_collision_mask(_mask)\n\nfunc deactivate_collision():\n  set_layer_mask(0)\n  set_collision_mask(0)\n\nfunc _enter( body ):\n\tprintt(\"body transfered\?\", body)\n\tif body.get_script() == Hero:\n\t\tprint(\"yes\")\n\t\tbody.current_room = room\n\t\tif room.has_node(\"roof\"):\n\t\t\troom.get_node(\"roof\").hide()\n\t\tfor other in _stage().get_children():\n\t\t\tif other extends TileMap and other != room and other.has_node(\"roof\"):\n\t\t\t\tother.get_node(\"roof\").show()\n"
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=9]
 
@@ -138,7 +142,7 @@ modulate = Color( 0.910156, 0.829273, 0.170654, 1 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/closed = SubResource( 10 )
+anims/closed = SubResource( 1 )
 anims/closing = SubResource( 2 )
 anims/opened = SubResource( 3 )
 anims/opening = SubResource( 4 )
@@ -150,7 +154,6 @@ script/script = null
 
 [node name="CollisionShape2D" parent="bodies/Door1"]
 
-shape = SubResource( 5 )
 trigger = false
 _update_shape_index = 0
 script/script = null
@@ -167,7 +170,7 @@ script/script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="bodies/Door1/StaticBody2D"]
 
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 trigger = false
 _update_shape_index = 0
 script/script = ExtResource( 5 )
@@ -179,7 +182,7 @@ script/script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="bodies/Door1/StaticBody2D1"]
 
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 script/script = ExtResource( 5 )
@@ -188,7 +191,7 @@ script/script = ExtResource( 5 )
 
 transform/pos = Vector2( 0, 32 )
 input/pickable = true
-script/script = SubResource( 8 )
+script/script = SubResource( 7 )
 
 [node name="Door2" parent="bodies" instance=ExtResource( 3 )]
 
@@ -205,7 +208,7 @@ modulate = Color( 1, 0.265625, 0.265625, 1 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/closed = SubResource( 10 )
+anims/closed = SubResource( 1 )
 anims/closing = SubResource( 2 )
 anims/opened = SubResource( 3 )
 anims/opening = SubResource( 4 )
@@ -217,7 +220,6 @@ script/script = null
 
 [node name="CollisionShape2D" parent="bodies/Door2"]
 
-shape = SubResource( 5 )
 trigger = false
 _update_shape_index = 0
 script/script = null
@@ -234,7 +236,7 @@ script/script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="bodies/Door2/StaticBody2D"]
 
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 trigger = false
 _update_shape_index = 0
 script/script = ExtResource( 5 )
@@ -246,7 +248,7 @@ script/script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="bodies/Door2/StaticBody2D1"]
 
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 script/script = ExtResource( 5 )
@@ -255,15 +257,16 @@ script/script = ExtResource( 5 )
 
 transform/pos = Vector2( 0, 32 )
 input/pickable = true
-script/script = SubResource( 8 )
+script/script = SubResource( 7 )
 
 [node name="transfer_zone" parent="bodies" instance=ExtResource( 6 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 48, 32 )
 
 [node name="CollisionShape2D" parent="bodies/transfer_zone"]
 
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="decorative" parent="bodies" instance=ExtResource( 7 )]
 
@@ -280,6 +283,30 @@ transform/pos = Vector2( 128, 176 )
 [node name="decorative3" parent="bodies" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( -32, 176 )
+
+[node name="time-machine" parent="bodies" instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 48, 96 )
+collision/layers = 2
+collision/mask = 2
+first_message = NodePath("message")
+
+[node name="Sprite" parent="bodies/time-machine"]
+
+texture = ExtResource( 9 )
+vframes = 1
+hframes = 2
+frame = 0
+
+[node name="CollisionShape2D" parent="bodies/time-machine"]
+
+shape = SubResource( 9 )
+script/script = ExtResource( 5 )
+
+[node name="message" type="Node" parent="bodies/time-machine"]
+
+script/script = ExtResource( 10 )
+speech = "It is out of juice."
 
 [node name="roof" type="TileMap" parent="."]
 
@@ -306,3 +333,4 @@ tile_data = IntArray( -393229, 5, -393228, 5, -393227, 5, -393226, 5, -393225, 5
 [editable path="bodies/Door1"]
 [editable path="bodies/Door2"]
 [editable path="bodies/transfer_zone"]
+[editable path="bodies/time-machine"]

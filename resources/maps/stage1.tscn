@@ -189,8 +189,6 @@ transform/pos = Vector2( 0, 32 )
 
 [connection signal="activated" from="past/room_2/bodies/gem-socket" to="future/room_2/bodies/mystic-door" method="_open"]
 
-[connection signal="activated" from="past/room_2/bodies/gem-socket" to="past/room_2/bodies/mystic-door" method="_open"]
-
 
 [editable path="future/bodies/human"]
 [editable path="future/hall"]
