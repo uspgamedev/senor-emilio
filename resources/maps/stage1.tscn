@@ -28,10 +28,6 @@
 
 [node name="stage" instance=ExtResource( 1 )]
 
-[node name="future" parent="."]
-
-visibility/visible = false
-
 [node name="bodies" parent="future"]
 
 editor/display_folded = true
@@ -92,10 +88,6 @@ transform/pos = Vector2( 0, 24 )
 
 editor/display_folded = true
 transform/pos = Vector2( 0, 0 )
-
-[node name="past" parent="."]
-
-visibility/visible = true
 
 [node name="bodies" parent="past"]
 
