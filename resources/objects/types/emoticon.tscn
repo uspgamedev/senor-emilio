@@ -1,19 +1,50 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://assets/imgs/emotions.png" type="Texture" id=1]
 [ext_resource path="res://scripts/classes/emoticon.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 
+resource/name = "ellipsis"
 length = 1.0
 loop = true
-step = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.25, 0.5, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -2, -2 ), Vector2( -4, 0 ), Vector2( -2, 2 ) ] }
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "exclamatoin"
+length = 1.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 4, 5, 6, 7, 8, 9, 10 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.25, 0.5, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -2, -2 ), Vector2( -4, 8.34465e-07 ), Vector2( -2, 2 ) ] }
 
 [node name="emoticon" type="Sprite"]
 
+transform/pos = Vector2( -2.87578, -1.12422 )
 texture = ExtResource( 1 )
 offset = Vector2( 8, -24 )
 hframes = 11
+frame = 2
+region_rect = Rect2( 660, 65.2383, 0, 0 )
 script/script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -21,10 +52,11 @@ script/script = ExtResource( 2 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/feel! = SubResource( 1 )
+anims/ellipsis = SubResource( 2 )
+anims/exclamatoin = SubResource( 1 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
-autoplay = "feel!"
+autoplay = ""
 
 
