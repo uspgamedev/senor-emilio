@@ -66,6 +66,8 @@ transform/pos = Vector2( 0, 28 )
 
 [node name="room_3" parent="future" instance=ExtResource( 5 )]
 
+transform/pos = Vector2( -448, -480 )
+
 [node name="room_4" parent="future" instance=ExtResource( 6 )]
 
 [node name="corridor" parent="future" instance=ExtResource( 7 )]
@@ -125,6 +127,9 @@ transform/pos = Vector2( 0, 32 )
 
 [node name="room_3" parent="past" instance=ExtResource( 17 )]
 
+editor/display_folded = true
+z/z = 1
+
 [node name="room_4" parent="past" instance=ExtResource( 18 )]
 
 [node name="corridor" parent="past" instance=ExtResource( 7 )]
@@ -160,3 +165,4 @@ transform/pos = Vector2( 0, 32 )
 [editable path="future/garden"]
 [editable path="past/bodies/cat"]
 [editable path="past/hall"]
+[editable path="past/room_3"]
