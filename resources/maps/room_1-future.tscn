@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/chest.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/classes/speech.gd" type="Script" id=7]
 [ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=8]
+[ext_resource path="res://resources/objects/instances/mystic-door.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -92,6 +93,25 @@ collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( -65544, 5, -65543, 5, -65542, 5, -65541, 5, -65540, 5, -65539, 5, -65538, 5, -65537, 5, -131072, 5, -131071, 5, -131070, 5, -131069, 5, -131068, 5, -131067, 5, -131066, 5, -8, 5, -7, 5, -6, 10, -5, 6, -4, 6, -3, 6, -2, 6, -1, 18, -65536, 18, -65535, 6, -65534, 6, -65533, 6, -65532, 11, -65531, 5, -65530, 5, 65528, 5, 65529, 10, 65530, 17, 65531, 0, 65532, 0, 65533, 0, 65534, 0, 65535, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 16, 5, 11, 6, 5, 131064, 5, 131065, 9, 131066, 0, 131067, 0, 131068, 0, 131069, 0, 131070, 0, 131071, 0, 65536, 0, 65537, 0, 65538, 0, 65539, 0, 65540, 0, 65541, 7, 65542, 5, 196600, 5, 196601, 9, 196602, 0, 196603, 0, 196604, 0, 196605, 0, 196606, 0, 196607, 0, 131072, 0, 131073, 0, 131074, 0, 131075, 0, 131076, 0, 131077, 7, 131078, 5, 262136, 5, 262137, 9, 262138, 0, 262139, 2, 262140, 2, 262141, 0, 262142, 0, 262143, 0, 196608, 0, 196609, 0, 196610, 0, 196611, 0, 196612, 0, 196613, 7, 196614, 5, 327672, 5, 327673, 9, 327674, 0, 327675, 2, 327676, 2, 327677, 0, 327678, 0, 327679, 0, 262144, 0, 262145, 0, 262146, 0, 262147, 0, 262148, 0, 262149, 7, 262150, 5, 393208, 5, 393209, 9, 393210, 0, 393211, 2, 393212, 2, 393213, 0, 393214, 0, 393215, 0, 327680, 0, 327681, 0, 327682, 0, 327683, 0, 327684, 0, 327685, 7, 327686, 5, 458744, 5, 458745, 9, 458746, 0, 458747, 0, 458748, 0, 458749, 0, 458750, 0, 458751, 0, 393216, 0, 393217, 0, 393218, 0, 393219, 0, 393220, 0, 393221, 19, 393222, 5, 524280, 5, 524281, 9, 524282, 0, 524283, 0, 524284, 0, 524285, 0, 524286, 0, 524287, 0, 458752, 0, 458753, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 19, 458758, 5, 589816, 5, 589817, 9, 589818, 0, 589819, 0, 589820, 0, 589821, 0, 589822, 0, 589823, 0, 524288, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 7, 524294, 5, 655352, 5, 655353, 12, 655354, 15, 655355, 0, 655356, 0, 655357, 0, 655358, 0, 655359, 0, 589824, 0, 589825, 0, 589826, 0, 589827, 0, 589828, 14, 589829, 13, 589830, 5, 720888, 5, 720889, 5, 720890, 12, 720891, 8, 720892, 8, 720893, 8, 720894, 8, 720895, 8, 655360, 8, 655361, 8, 655362, 8, 655363, 8, 655364, 13, 655365, 5, 655366, 5, 786424, 5, 786425, 5, 786426, 5, 786427, 5, 786428, 5, 786429, 5, 786430, 5, 786431, 5, 720896, 5, 720897, 5, 720898, 5, 720899, 5, 720900, 5, 720901, 5, 720902, 5 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="details" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 32, 32 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( -4, 34, 524281, 34 )
 
 [node name="bodies" type="YSort" parent="."]
 
@@ -99,6 +119,7 @@ sort/enabled = true
 
 [node name="chest" parent="bodies" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform/pos = Vector2( -128, 144 )
 
 [node name="closed" parent="bodies/chest"]
@@ -164,21 +185,43 @@ speech = "Granny: Oh my, this door is filled with rust. I wouldn\'t be able to o
 
 editor/display_folded = true
 transform/pos = Vector2( 0, -16 )
-start_opened = false
 
 [node name="top" parent="bodies/door_2"]
 
 editor/display_folded = true
 
+[node name="waythrough" parent="bodies/door_2"]
+
+z/z = 0
+z/relative = true
+
 [node name="lock" parent="bodies/door_2"]
 
 editor/display_folded = true
+z/z = 1
 modulate = Color( 0.078125, 1, 0.200562, 1 )
+
+[node name="StaticBody2D" parent="bodies/door_2"]
+
+editor/display_folded = true
+
+[node name="StaticBody2D1" parent="bodies/door_2"]
+
+editor/display_folded = true
 
 [node name="door_1" parent="bodies" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 176, 224 )
 transform/rot = -90.0
+
+[node name="mystic-door" parent="bodies" instance=ExtResource( 9 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, -16 )
+
+[node name="sign" parent="bodies/mystic-door"]
+
+modulate = Color( 0.078125, 1, 0.200562, 1 )
 
 [node name="roof" type="TileMap" parent="."]
 
@@ -204,3 +247,4 @@ tile_data = IntArray( -65544, 5, -65543, 5, -65542, 5, -65541, 5, -65540, 5, -65
 [editable path="bodies/chest"]
 [editable path="bodies/chest/Storage/crystal_green"]
 [editable path="bodies/door_2"]
+[editable path="bodies/mystic-door"]
