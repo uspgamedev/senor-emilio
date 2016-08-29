@@ -59,10 +59,11 @@ portal_link = NodePath("../../../../past/hall/bodies/Portal")
 [node name="room_1" parent="future" instance=ExtResource( 3 )]
 
 editor/display_folded = true
+transform/pos = Vector2( -608, -128 )
 
 [node name="room_2" parent="future" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 0, 28 )
+transform/pos = Vector2( 0, 32 )
 
 [node name="room_3" parent="future" instance=ExtResource( 5 )]
 
@@ -78,9 +79,11 @@ transform/pos = Vector2( -448, -480 )
 
 [node name="tower_3" parent="future" instance=ExtResource( 10 )]
 
+transform/pos = Vector2( 0, 32 )
+
 [node name="tower_4" parent="future" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( 0, 24 )
+transform/pos = Vector2( 0, 32 )
 
 [node name="tower_5" parent="future" instance=ExtResource( 12 )]
 
