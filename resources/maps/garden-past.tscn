@@ -10,7 +10,7 @@ extents = Vector2( 32, 32 )
 
 [sub_resource type="GDScript" id=2]
 
-script/source = "\nextends StaticBody2D\n\nonready var closed = get_node(\"closed\")\n\nfunc _ready():\n\tpass\n\nfunc _open(obj):\n\tif obj.get_name() == \"protection\":\n\t\tclosed.hide()\n\t\tset_layer_mask(0)\n\t\tset_collision_mask(0)\n"
+script/source = "\nextends StaticBody2D\n\nonready var closed = get_node(\"closed\")\n\nsignal gate_opened\n\nfunc _ready():\n\tpass\n\nfunc _open(obj):\n\tif obj.get_name() == \"protection\":\n\t\tclosed.hide()\n\t\tset_layer_mask(0)\n\t\tset_collision_mask(0)\n\t\tobj.queue_free()\n\t\temit_signal(\"gate_opened\")\n"
 
 [sub_resource type="RectangleShape2D" id=3]
 

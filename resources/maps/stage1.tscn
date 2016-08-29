@@ -31,7 +31,6 @@
 [node name="future" parent="."]
 
 editor/display_folded = true
-visibility/visible = false
 
 [node name="bodies" parent="future"]
 
@@ -100,10 +99,6 @@ transform/pos = Vector2( 0, 32 )
 [node name="tower_5" parent="future" instance=ExtResource( 12 )]
 
 [node name="garden" parent="future" instance=ExtResource( 13 )]
-
-[node name="past" parent="."]
-
-visibility/visible = true
 
 [node name="cat" parent="past/bodies"]
 
