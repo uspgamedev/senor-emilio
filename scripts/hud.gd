@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal dialogue_end
+
 var actual_speech = null
 
 onready var reader = get_node("DialogReader")
@@ -27,7 +29,7 @@ func init_dialog(speech):
   reader.show()
   get_tree().set_input_as_handled()
   set_process_unhandled_key_input(true)
-  
+
 
 func update_dialog():
   speech_label.clear()
@@ -43,6 +45,7 @@ func generate_buttons():
 func _on_answer_button_selected( button_idx ):
   if actual_speech.get_answers().size() <= 0:
     set_process_unhandled_key_input(false)
+    emit_signal("dialogue_end")
     reader.hide()
     player.unfreeze()
     return
@@ -53,5 +56,6 @@ func _on_answer_button_selected( button_idx ):
   else:
     answer.run_action(actual_speech.get_actor(), player)
     set_process_unhandled_key_input(false)
+    emit_signal("dialogue_end")
     reader.hide()
     player.unfreeze()
