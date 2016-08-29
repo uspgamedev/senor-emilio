@@ -1,14 +1,13 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/door-sepia.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/classes/prop.gd" type="Script" id=3]
-[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=4]
+[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=4]
 [ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=5]
-[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=7]
+[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=6]
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=10]
 
 resource/name = "closed"
 length = 0.1
@@ -20,7 +19,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=11]
 
 resource/name = "closing"
 length = 0.9
@@ -32,7 +31,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 7, 6, 5, 4, 3, 2 ] }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=12]
 
 length = 0.1
 loop = false
@@ -43,7 +42,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 7 ] }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=13]
 
 length = 0.9
 loop = false
@@ -54,62 +53,59 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 2, 3, 4, 5, 6, 7 ] }
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=14]
 
 custom_solver_bias = 0.0
 extents = Vector2( 48, 16 )
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="Animation" id=2]
 
-custom_solver_bias = 0.0
-extents = Vector2( 16, 16 )
+resource/name = "down_idle"
+length = 1.65
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 1, 2, 3, 0 ] }
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="Animation" id=3]
 
-custom_solver_bias = 0.0
-extents = Vector2( 16, 16 )
-
-[sub_resource type="GDScript" id=25]
-
-script/source = "\nextends Area2D\n\nconst Hero = preload(\"res://scripts/classes/hero.gd\")\n\nvar _mask\nvar room\n\nfunc _stage():\n\tvar parent = get_parent()\n\twhile parent.get_name() != \"past\" and parent.get_name() != \"future\":\n\t\tparent = parent.get_parent()\n\treturn parent\n\nfunc _room():\n\tvar parent = get_parent()\n\twhile not (parent extends TileMap):\n\t\tparent = parent.get_parent()\n\treturn parent\n\nfunc _ready():\n  room = _room()\n  var parent = _stage()\n  var timezone = parent.get_name()\n  if timezone == \"future\":\n    _mask = 1\n  elif timezone == \"past\":\n    _mask = 2\n  activate_collision()\n\nfunc activate_collision():\n  set_layer_mask(_mask)\n  set_collision_mask(_mask)\n\nfunc deactivate_collision():\n  set_layer_mask(0)\n  set_collision_mask(0)\n\nfunc _enter( body ):\n\tprintt(\"body transfered\?\", body)\n\tif body.get_script() == Hero:\n\t\tprint(\"yes\")\n\t\tbody.current_room = room\n\t\tif room.has_node(\"roof\"):\n\t\t\troom.get_node(\"roof\").hide()\n\t\tfor other in _stage().get_children():\n\t\t\tif other extends TileMap and other != room and other.has_node(\"roof\"):\n\t\t\t\tother.get_node(\"roof\").show()\n"
-
-[sub_resource type="Animation" id=26]
-
+resource/name = "down_moving"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=4]
 
+resource/name = "left_idle"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=5]
 
+resource/name = "left_moving"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=6]
 
+resource/name = "right_idle"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=7]
 
+resource/name = "right_moving"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=14]
-
-length = 1.0
-loop = true
-step = 0.1
-
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=8]
 
 length = 0.9
 loop = true
@@ -120,13 +116,13 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.45, 0.6 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 0, 2 ] }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=9]
 
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -165,7 +161,7 @@ collision/bounce = 0.0
 collision/layers = 2
 collision/mask = 2
 occluder/light_mask = 1
-tile_data = IntArray( -327662, 43, -327659, 44, -327654, 43, -131045, -1610612696, 27, -1610612696, 65553, 45 )
+tile_data = IntArray( -327662, 43, -327659, 44, -327654, 43, 65553, 45 )
 
 [node name="bodies" type="YSort" parent="."]
 
@@ -194,10 +190,10 @@ modulate = Color( 1, 0.265625, 0.265625, 1 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/closed = SubResource( 18 )
-anims/closing = SubResource( 19 )
-anims/opened = SubResource( 20 )
-anims/opening = SubResource( 21 )
+anims/closed = SubResource( 10 )
+anims/closing = SubResource( 11 )
+anims/opened = SubResource( 12 )
+anims/opening = SubResource( 13 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -206,7 +202,7 @@ script/script = null
 
 [node name="CollisionShape2D" parent="bodies/door_room4"]
 
-shape = SubResource( 22 )
+shape = SubResource( 14 )
 trigger = false
 _update_shape_index = 0
 script/script = null
@@ -214,39 +210,7 @@ script/script = null
 [node name="spawn" parent="bodies/door_room4"]
 
 transform/pos = Vector2( 0, 16 )
-script/script = null
-
-[node name="StaticBody2D" parent="bodies/door_room4"]
-
-editor/display_folded = true
-transform/pos = Vector2( -48, -32 )
-script/script = ExtResource( 3 )
-
-[node name="CollisionShape2D" parent="bodies/door_room4/StaticBody2D"]
-
-shape = SubResource( 23 )
-trigger = false
-_update_shape_index = 0
-script/script = ExtResource( 4 )
-
-[node name="StaticBody2D1" parent="bodies/door_room4"]
-
-editor/display_folded = true
-transform/pos = Vector2( 48, -32 )
-script/script = ExtResource( 3 )
-
-[node name="CollisionShape2D" parent="bodies/door_room4/StaticBody2D1"]
-
-shape = SubResource( 24 )
-trigger = false
-_update_shape_index = 0
-script/script = ExtResource( 4 )
-
-[node name="transfer_zone" parent="bodies/door_room4"]
-
-transform/pos = Vector2( 0, 32 )
-input/pickable = true
-script/script = SubResource( 25 )
+transform/scale = Vector2( 0.262813, 0.258422 )
 
 [node name="door_hall" parent="bodies" instance=ExtResource( 2 )]
 
@@ -255,155 +219,7 @@ transform/rot = 90.0
 collision/layers = 2
 collision/mask = 2
 
-[node name="key_red" parent="bodies" instance=ExtResource( 5 )]
-
-editor/display_folded = true
-transform/pos = Vector2( 883, -48 )
-collision/layers = 8
-collision/mask = 8
-
-[node name="sprite" parent="bodies/key_red"]
-
-modulate = Color( 0.839844, 0.0918579, 0.0918579, 1 )
-
-[node name="animation" parent="bodies/key_red/sprite"]
-
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/down_idle = SubResource( 26 )
-anims/down_moving = SubResource( 10 )
-anims/left_idle = SubResource( 11 )
-anims/left_moving = SubResource( 12 )
-anims/right_idle = SubResource( 13 )
-anims/right_moving = SubResource( 14 )
-anims/up_idle = SubResource( 15 )
-anims/up_moving = SubResource( 16 )
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = "down_idle"
-script/script = null
-
-[node name="collision" parent="bodies/key_red"]
-
-shape = SubResource( 17 )
-trigger = false
-_update_shape_index = 0
-script/script = ExtResource( 4 )
-
-[node name="key_blue" parent="bodies" instance=ExtResource( 5 )]
-
-editor/display_folded = true
-transform/pos = Vector2( 883.547, -14.8643 )
-collision/layers = 8
-collision/mask = 8
-
-[node name="sprite" parent="bodies/key_blue"]
-
-modulate = Color( 0.447988, 0.418991, 0.949219, 1 )
-
-[node name="animation" parent="bodies/key_blue/sprite"]
-
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/down_idle = SubResource( 26 )
-anims/down_moving = SubResource( 10 )
-anims/left_idle = SubResource( 11 )
-anims/left_moving = SubResource( 12 )
-anims/right_idle = SubResource( 13 )
-anims/right_moving = SubResource( 14 )
-anims/up_idle = SubResource( 15 )
-anims/up_moving = SubResource( 16 )
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = "down_idle"
-script/script = null
-
-[node name="collision" parent="bodies/key_blue"]
-
-shape = SubResource( 17 )
-trigger = false
-_update_shape_index = 0
-script/script = ExtResource( 4 )
-
-[node name="key_green" parent="bodies" instance=ExtResource( 5 )]
-
-editor/display_folded = true
-transform/pos = Vector2( 881.982, 18.2352 )
-collision/layers = 8
-collision/mask = 8
-
-[node name="sprite" parent="bodies/key_green"]
-
-modulate = Color( 0.187944, 0.769531, 0.183365, 1 )
-
-[node name="animation" parent="bodies/key_green/sprite"]
-
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/down_idle = SubResource( 26 )
-anims/down_moving = SubResource( 10 )
-anims/left_idle = SubResource( 11 )
-anims/left_moving = SubResource( 12 )
-anims/right_idle = SubResource( 13 )
-anims/right_moving = SubResource( 14 )
-anims/up_idle = SubResource( 15 )
-anims/up_moving = SubResource( 16 )
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = "down_idle"
-script/script = null
-
-[node name="collision" parent="bodies/key_green"]
-
-shape = SubResource( 17 )
-trigger = false
-_update_shape_index = 0
-script/script = ExtResource( 4 )
-
-[node name="key_yellow" parent="bodies" instance=ExtResource( 5 )]
-
-editor/display_folded = true
-transform/pos = Vector2( 882.503, 50.5743 )
-collision/layers = 8
-collision/mask = 8
-
-[node name="sprite" parent="bodies/key_yellow"]
-
-modulate = Color( 0.778689, 0.800781, 0.0938416, 1 )
-
-[node name="animation" parent="bodies/key_yellow/sprite"]
-
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/down_idle = SubResource( 26 )
-anims/down_moving = SubResource( 10 )
-anims/left_idle = SubResource( 11 )
-anims/left_moving = SubResource( 12 )
-anims/right_idle = SubResource( 13 )
-anims/right_moving = SubResource( 14 )
-anims/up_idle = SubResource( 15 )
-anims/up_moving = SubResource( 16 )
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = "down_idle"
-script/script = null
-
-[node name="collision" parent="bodies/key_yellow"]
-
-shape = SubResource( 17 )
-trigger = false
-_update_shape_index = 0
-script/script = ExtResource( 4 )
-
-[node name="chest" parent="bodies" instance=ExtResource( 6 )]
+[node name="chest" parent="bodies" instance=ExtResource( 3 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 784, 128 )
@@ -418,8 +234,145 @@ modulate = Color( 0.078125, 1, 0.200562, 1 )
 
 [node name="message" type="Node" parent="bodies/chest"]
 
-script/script = ExtResource( 7 )
+script/script = ExtResource( 4 )
 speech = "Sorry, cats can\'t open chests."
+
+[node name="key_red" parent="bodies" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 885.016, -53.6248 )
+
+[node name="sprite" parent="bodies/key_red"]
+
+modulate = Color( 0.886719, 0.346375, 0.346375, 1 )
+
+[node name="animation" parent="bodies/key_red/sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/down_idle = SubResource( 2 )
+anims/down_moving = SubResource( 3 )
+anims/left_idle = SubResource( 4 )
+anims/left_moving = SubResource( 5 )
+anims/right_idle = SubResource( 6 )
+anims/right_moving = SubResource( 7 )
+anims/up_idle = SubResource( 8 )
+anims/up_moving = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "down_idle"
+script/script = null
+
+[node name="collision" parent="bodies/key_red"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 6 )
+
+[node name="key_blue" parent="bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 885.016, -20.6559 )
+
+[node name="sprite" parent="bodies/key_blue"]
+
+modulate = Color( 0.32666, 0.730732, 0.871094, 1 )
+
+[node name="animation" parent="bodies/key_blue/sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/down_idle = SubResource( 2 )
+anims/down_moving = SubResource( 3 )
+anims/left_idle = SubResource( 4 )
+anims/left_moving = SubResource( 5 )
+anims/right_idle = SubResource( 6 )
+anims/right_moving = SubResource( 7 )
+anims/up_idle = SubResource( 8 )
+anims/up_moving = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "down_idle"
+script/script = null
+
+[node name="collision" parent="bodies/key_blue"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 6 )
+
+[node name="key_green" parent="bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 885.016, 16.6824 )
+
+[node name="sprite" parent="bodies/key_green"]
+
+modulate = Color( 0.641617, 0.875, 0.481934, 1 )
+
+[node name="animation" parent="bodies/key_green/sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/down_idle = SubResource( 2 )
+anims/down_moving = SubResource( 3 )
+anims/left_idle = SubResource( 4 )
+anims/left_moving = SubResource( 5 )
+anims/right_idle = SubResource( 6 )
+anims/right_moving = SubResource( 7 )
+anims/up_idle = SubResource( 8 )
+anims/up_moving = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "down_idle"
+script/script = null
+
+[node name="collision" parent="bodies/key_green"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 6 )
+
+[node name="key_yellow" parent="bodies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 884.619, 46.8707 )
+
+[node name="sprite" parent="bodies/key_yellow"]
+
+modulate = Color( 0.820312, 0.66335, 0.291595, 1 )
+
+[node name="animation" parent="bodies/key_yellow/sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/down_idle = SubResource( 2 )
+anims/down_moving = SubResource( 3 )
+anims/left_idle = SubResource( 4 )
+anims/left_moving = SubResource( 5 )
+anims/right_idle = SubResource( 6 )
+anims/right_moving = SubResource( 7 )
+anims/up_idle = SubResource( 8 )
+anims/up_moving = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "down_idle"
+script/script = null
+
+[node name="collision" parent="bodies/key_yellow"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 6 )
 
 [node name="roof" type="TileMap" parent="."]
 
@@ -443,8 +396,8 @@ tile_data = IntArray( -524273, 5, -524272, 5, -524271, 5, -524270, 5, -524269, 5
 
 
 [editable path="bodies/door_room4"]
+[editable path="bodies/chest"]
 [editable path="bodies/key_red"]
 [editable path="bodies/key_blue"]
 [editable path="bodies/key_green"]
 [editable path="bodies/key_yellow"]
-[editable path="bodies/chest"]
