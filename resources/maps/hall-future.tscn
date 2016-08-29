@@ -77,7 +77,7 @@ sort/enabled = true
 
 [node name="Portal" parent="bodies" instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 224, 336 )
+transform/pos = Vector2( 64, -64 )
 collision/layers = 1
 collision/mask = 1
 
