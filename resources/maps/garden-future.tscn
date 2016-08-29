@@ -1,14 +1,21 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/area_event.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/events/events_instances/no_walk.gd" type="Script" id=3]
 [ext_resource path="res://scripts/classes/speech.gd" type="Script" id=4]
+[ext_resource path="res://scripts/classes/prop.gd" type="Script" id=5]
+[ext_resource path="res://assets/imgs/maq_tempo.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 82.2846, 22.9131 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -16, -32, 16, -32, 32, -16, 32, 16, 16, 32, -16, 32, -32, 16, -32, -16, -16, -32 )
 
 [node name="garden" type="TileMap"]
 
@@ -72,6 +79,7 @@ sort/enabled = true
 
 [node name="area_event" parent="bodies" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 44, 957 )
 eventScript = ExtResource( 3 )
 
@@ -85,6 +93,35 @@ shape = SubResource( 1 )
 
 script/script = ExtResource( 4 )
 speech = "Granny: Oh no, I am not leaving here without Senor Emlio!"
+
+[node name="time_gate" type="StaticBody2D" parent="bodies"]
+
+transform/pos = Vector2( 50, 704 )
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script/script = ExtResource( 5 )
+__meta__ = { "_edit_group_":true }
+
+[node name="sprite" type="Sprite" parent="bodies/time_gate"]
+
+texture = ExtResource( 6 )
+hframes = 2
+frame = 1
+
+[node name="hitpolygon" type="CollisionPolygon2D" parent="bodies/time_gate"]
+
+build_mode = 0
+polygon = Vector2Array( -16, -32, -32, -16, -32, 16, -16, 32, 16, 32, 32, 16, 32, -16, 16, -32, -16, -32 )
+shape_range = Vector2( 0, 0 )
+trigger = false
 
 
 [editable path="bodies/area_event"]
