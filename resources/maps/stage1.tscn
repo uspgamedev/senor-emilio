@@ -28,10 +28,6 @@
 
 [node name="stage" instance=ExtResource( 1 )]
 
-[node name="future" parent="."]
-
-editor/display_folded = true
-
 [node name="bodies" parent="future"]
 
 editor/display_folded = true
@@ -192,6 +188,8 @@ transform/pos = Vector2( 0, 32 )
 [connection signal="activated" from="past/room_1/bodies/gem-socket" to="future/room_1/bodies/mystic-door" method="_open"]
 
 [connection signal="activated" from="past/room_2/bodies/gem-socket" to="future/room_2/bodies/mystic-door" method="_open"]
+
+[connection signal="activated" from="past/room_2/bodies/gem-socket" to="past/room_2/bodies/mystic-door" method="_open"]
 
 
 [editable path="future/bodies/human"]
