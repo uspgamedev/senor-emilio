@@ -31,7 +31,6 @@
 [node name="future" parent="."]
 
 editor/display_folded = true
-visibility/visible = false
 
 [node name="bodies" parent="future"]
 
@@ -98,10 +97,6 @@ transform/pos = Vector2( 0, 32 )
 
 editor/display_folded = true
 transform/pos = Vector2( 0, 0 )
-
-[node name="past" parent="."]
-
-visibility/visible = true
 
 [node name="bodies" parent="past"]
 
