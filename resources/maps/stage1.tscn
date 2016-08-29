@@ -96,9 +96,6 @@ transform/pos = Vector2( 0, 32 )
 
 [node name="garden" parent="future" instance=ExtResource( 13 )]
 
-editor/display_folded = true
-transform/pos = Vector2( 0, 0 )
-
 [node name="past" parent="."]
 
 editor/display_folded = true
