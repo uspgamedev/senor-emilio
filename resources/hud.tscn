@@ -102,9 +102,9 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = SubResource( 3 )
 margin/left = 10.0
-margin/top = 545.0
+margin/top = 360.0
 margin/right = 10.0
-margin/bottom = 10.0
+margin/bottom = 4.0
 
 [node name="TextPanel" type="Panel" parent="DialogReader"]
 
@@ -129,7 +129,7 @@ size_flags/vertical = 2
 theme/theme = SubResource( 6 )
 margin/left = 5.0
 margin/top = 8.0
-margin/right = 1223.0
+margin/right = 583.0
 margin/bottom = 83.0
 custom_fonts/normal_font = SubResource( 7 )
 bbcode/enabled = false
