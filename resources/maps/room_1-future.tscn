@@ -1,14 +1,9 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
-[ext_resource path="res://resources/objects/types/transfer_zone.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/objects/types/chest.tscn" type="PackedScene" id=3]
-[ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=5]
-
-[sub_resource type="GDScript" id=1]
-
-script/source = "\nextends Area2D\n\nconst Hero = preload(\"res://scripts/classes/hero.gd\")\n\nonready var room = get_parent().get_parent()\n\nfunc _ready():\n\tpass\n\nfunc _enter( body ):\n\tprintt(\"body transfered\?\", body)\n\tif body.get_script() == Hero:\n\t\tprint(\"yes\")\n\t\tbody.current_room = room\n"
+[ext_resource path="res://resources/objects/types/chest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=4]
 
 [node name="room_1" type="TileMap"]
 
@@ -33,28 +28,23 @@ tile_data = IntArray( -65544, 5, -65543, 5, -65542, 5, -65541, 5, -65540, 5, -65
 
 sort/enabled = true
 
-[node name="transfer_zone" parent="bodies" instance=ExtResource( 2 )]
-
-transform/pos = Vector2( 144, 256 )
-script/script = SubResource( 1 )
-
-[node name="chest" parent="bodies" instance=ExtResource( 3 )]
+[node name="chest" parent="bodies" instance=ExtResource( 2 )]
 
 editor/display_folded = true
 transform/pos = Vector2( -128.58, 128.953 )
 
-[node name="key" parent="bodies/chest/Storage" instance=ExtResource( 4 )]
+[node name="key" parent="bodies/chest/Storage" instance=ExtResource( 3 )]
 
 editor/display_folded = true
 transform/pos = Vector2( -688.862, -18.6647 )
 collision/layers = 1
 collision/mask = 1
 
-[node name="door_2" parent="bodies" instance=ExtResource( 5 )]
+[node name="door_2" parent="bodies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -16 )
 
-[node name="door_1" parent="bodies" instance=ExtResource( 5 )]
+[node name="door_1" parent="bodies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 175.746, 256.283 )
 transform/rot = -90.0
