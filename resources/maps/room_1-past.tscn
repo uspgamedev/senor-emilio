@@ -1,9 +1,76 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/door-sepia.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=4]
+[ext_resource path="res://scripts/classes/prop.gd" type="Script" id=3]
+[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=4]
+[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=6]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "closed"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "closing"
+length = 0.9
+loop = false
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 7, 6, 5, 4, 3, 2 ] }
+
+[sub_resource type="Animation" id=3]
+
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 7 ] }
+
+[sub_resource type="Animation" id=4]
+
+length = 0.9
+loop = false
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 2, 3, 4, 5, 6, 7 ] }
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 48, 16 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[sub_resource type="GDScript" id=8]
+
+script/source = "\nextends Area2D\n\nconst Hero = preload(\"res://scripts/classes/hero.gd\")\n\nvar _mask\nvar room\n\nfunc _stage():\n\tvar parent = get_parent()\n\twhile parent.get_name() != \"past\" and parent.get_name() != \"future\":\n\t\tparent = parent.get_parent()\n\treturn parent\n\nfunc _room():\n\tvar parent = get_parent()\n\twhile not (parent extends TileMap):\n\t\tparent = parent.get_parent()\n\treturn parent\n\nfunc _ready():\n  room = _room()\n  var parent = _stage()\n  var timezone = parent.get_name()\n  if timezone == \"future\":\n    _mask = 1\n  elif timezone == \"past\":\n    _mask = 2\n  activate_collision()\n\nfunc activate_collision():\n  set_layer_mask(_mask)\n  set_collision_mask(_mask)\n\nfunc deactivate_collision():\n  set_layer_mask(0)\n  set_collision_mask(0)\n\nfunc _enter( body ):\n\tprintt(\"body transfered\?\", body)\n\tif body.get_script() == Hero:\n\t\tprint(\"yes\")\n\t\tbody.current_room = room\n\t\tif room.has_node(\"roof\"):\n\t\t\troom.get_node(\"roof\").hide()\n\t\tfor other in _stage().get_children():\n\t\t\tif other extends TileMap and other != room and other.has_node(\"roof\"):\n\t\t\t\tother.get_node(\"roof\").show()\n"
 
 [node name="room_1" type="TileMap"]
 
@@ -34,11 +101,83 @@ transform/pos = Vector2( 64, 432 )
 
 [node name="door_2" parent="bodies" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform/pos = Vector2( -175.84, 607.763 )
 transform/rot = 90.0
+key_required = "crystal_green"
+start_opened = false
 
-[node name="Notes" parent="bodies" instance=ExtResource( 3 )]
+[node name="top" parent="bodies/door_2"]
 
+editor/display_folded = true
+
+[node name="lock" parent="bodies/door_2"]
+
+editor/display_folded = true
+modulate = Color( 0.078125, 1, 0.200562, 1 )
+
+[node name="AnimationPlayer" parent="bodies/door_2/lock"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/closed = SubResource( 1 )
+anims/closing = SubResource( 2 )
+anims/opened = SubResource( 3 )
+anims/opening = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+script/script = null
+
+[node name="CollisionShape2D" parent="bodies/door_2"]
+
+shape = SubResource( 5 )
+trigger = false
+_update_shape_index = 0
+script/script = null
+
+[node name="spawn" parent="bodies/door_2"]
+
+transform/pos = Vector2( 0, 16 )
+script/script = null
+
+[node name="StaticBody2D" parent="bodies/door_2"]
+
+editor/display_folded = true
+transform/pos = Vector2( -48, -32 )
+script/script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="bodies/door_2/StaticBody2D"]
+
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 4 )
+
+[node name="StaticBody2D1" parent="bodies/door_2"]
+
+editor/display_folded = true
+transform/pos = Vector2( 48, -32 )
+script/script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="bodies/door_2/StaticBody2D1"]
+
+shape = SubResource( 7 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 4 )
+
+[node name="transfer_zone" parent="bodies/door_2"]
+
+transform/pos = Vector2( 0, 32 )
+input/pickable = true
+script/script = SubResource( 8 )
+
+[node name="Notes" parent="bodies" instance=ExtResource( 5 )]
+
+editor/display_folded = true
 transform/pos = Vector2( -16, 736 )
 collision/layers = 2
 collision/mask = 2
@@ -48,10 +187,11 @@ first_message = NodePath("Message")
 
 transform/rot = 90.0
 frame = 0
+modulate = Color( 0.339844, 0.350159, 1, 1 )
 
 [node name="Message" type="Node" parent="bodies/Notes"]
 
-script/script = ExtResource( 4 )
+script/script = ExtResource( 6 )
 speech = "Sorry, cats can\'t open chests."
 
 [node name="roof" type="TileMap" parent="."]
@@ -76,4 +216,5 @@ occluder/light_mask = 1
 tile_data = IntArray( 851961, 5, 851962, 5, 851963, 5, 851964, 5, 851965, 5, 851966, 5, 851967, 5, 786432, 5, 786433, 5, 786434, 5, 786435, 5, 786436, 5, 786437, 5, 786438, 5, 917497, 5, 917498, 5, 917499, 5, 917500, 5, 917501, 5, 917502, 5, 917503, 5, 851968, 5, 851969, 5, 851970, 5, 851971, 5, 851972, 5, 851973, 5, 851974, 5, 983033, 5, 983034, 5, 983035, 5, 983036, 5, 983037, 5, 983038, 5, 983039, 5, 917504, 5, 917505, 5, 917506, 5, 917507, 5, 917508, 5, 917509, 5, 917510, 5, 1048569, 5, 1048570, 5, 1048571, 5, 1048572, 5, 1048573, 5, 1048574, 5, 1048575, 5, 983040, 5, 983041, 5, 983042, 5, 983043, 5, 983044, 5, 983045, 5, 983046, 5, 1114105, 5, 1114106, 5, 1114107, 5, 1114108, 5, 1114109, 5, 1114110, 5, 1114111, 5, 1048576, 5, 1048577, 5, 1048578, 5, 1048579, 5, 1048580, 5, 1048581, 5, 1048582, 5, 1179641, 5, 1179642, 5, 1179643, 5, 1179644, 5, 1179645, 5, 1179646, 5, 1179647, 5, 1114112, 5, 1114113, 5, 1114114, 5, 1114115, 5, 1114116, 5, 1114117, 5, 1114118, 5, 1245177, 5, 1245178, 5, 1245179, 5, 1245180, 5, 1245181, 5, 1245182, 5, 1245183, 5, 1179648, 5, 1179649, 5, 1179650, 5, 1179651, 5, 1179652, 5, 1179653, 5, 1179654, 5, 1310713, 5, 1310714, 5, 1310715, 5, 1310716, 5, 1310717, 5, 1310718, 5, 1310719, 5, 1245184, 5, 1245185, 5, 1245186, 5, 1245187, 5, 1245188, 5, 1245189, 5, 1245190, 5, 1376249, 5, 1376250, 5, 1376251, 5, 1376252, 5, 1376253, 5, 1376254, 5, 1376255, 5, 1310720, 5, 1310721, 5, 1310722, 5, 1310723, 5, 1310724, 5, 1310725, 5, 1310726, 5, 1441785, 5, 1441786, 5, 1441787, 5, 1441788, 5, 1441789, 5, 1441790, 5, 1441791, 5, 1376256, 5, 1376257, 5, 1376258, 5, 1376259, 5, 1376260, 5, 1376261, 5, 1376262, 5, 1507321, 5, 1507322, 5, 1507323, 5, 1507324, 5, 1507325, 5, 1507326, 5, 1507327, 5, 1441792, 5, 1441793, 5, 1441794, 5, 1441795, 5, 1441796, 5, 1441797, 5, 1441798, 5, 1572857, 5, 1572858, 5, 1572859, 5, 1572860, 5, 1572861, 5, 1572862, 5, 1572863, 5, 1507328, 5, 1507329, 5, 1507330, 5, 1507331, 5, 1507332, 5, 1507333, 5, 1507334, 5, 1638393, 5, 1638394, 5, 1638395, 5, 1638396, 5, 1638397, 5, 1638398, 5, 1638399, 5, 1572864, 5, 1572865, 5, 1572866, 5, 1572867, 5, 1572868, 5, 1572869, 5, 1572870, 5, 1703929, 5, 1703930, 5, 1703931, 5, 1703932, 5, 1703933, 5, 1703934, 5, 1703935, 5, 1638400, 5, 1638401, 5, 1638402, 5, 1638403, 5, 1638404, 5, 1638405, 5, 1638406, 5, 1769465, 5, 1769466, 5, 1769467, 5, 1769468, 5, 1769469, 5, 1769470, 5, 1769471, 5, 1703936, 5, 1703937, 5, 1703938, 5, 1703939, 5, 1703940, 5, 1703941, 5, 1703942, 5 )
 
 
+[editable path="bodies/door_2"]
 [editable path="bodies/Notes"]
