@@ -2,6 +2,56 @@
 
 [ext_resource path="res://assets/imgs/tileset-demo.png" type="Texture" id=1]
 
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -32, -16, 32, -16, 32, 16, -32, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -12, -12, 12, -12, 12, 12, -12, 12 )
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -12, -12, 20, -12, 20, 20, -12, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -12, -12, 20, -12, 20, 20, -12, 20 )
+
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -18,56 +68,6 @@ custom_solver_bias = 0.0
 points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -32, -16, 32, -16, 32, 16, -32, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=8]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -12, -12, 12, -12, 12, 12, -12, 12 )
-
-[sub_resource type="ConvexPolygonShape2D" id=9]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -12, -12, 20, -12, 20, 20, -12, 20 )
-
-[sub_resource type="ConvexPolygonShape2D" id=10]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -12, -12, 20, -12, 20, 20, -12, 20 )
-
-[sub_resource type="ConvexPolygonShape2D" id=11]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=12]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=13]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=14]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
@@ -129,7 +129,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 6/occluder_offset = Vector2( 16, 16 )
 6/navigation_offset = Vector2( 16, 16 )
 6/shape_offset = Vector2( 16, 16 )
-6/shapes = [ SubResource( 11 ) ]
+6/shapes = [ SubResource( 1 ) ]
 7/name = "wall-right"
 7/texture = ExtResource( 1 )
 7/tex_offset = Vector2( 0, 0 )
@@ -137,7 +137,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 7/occluder_offset = Vector2( 16, 16 )
 7/navigation_offset = Vector2( 16, 16 )
 7/shape_offset = Vector2( 16, 16 )
-7/shapes = [ SubResource( 12 ) ]
+7/shapes = [ SubResource( 2 ) ]
 8/name = "wall-down"
 8/texture = ExtResource( 1 )
 8/tex_offset = Vector2( 0, 0 )
@@ -145,7 +145,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 8/occluder_offset = Vector2( 16, 16 )
 8/navigation_offset = Vector2( 16, 16 )
 8/shape_offset = Vector2( 16, 16 )
-8/shapes = [ SubResource( 13 ) ]
+8/shapes = [ SubResource( 3 ) ]
 9/name = "wall-left"
 9/texture = ExtResource( 1 )
 9/tex_offset = Vector2( 0, 0 )
@@ -153,7 +153,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 9/occluder_offset = Vector2( 16, 16 )
 9/navigation_offset = Vector2( 16, 16 )
 9/shape_offset = Vector2( 16, 16 )
-9/shapes = [ SubResource( 14 ) ]
+9/shapes = [ SubResource( 4 ) ]
 10/name = "wall up-left"
 10/texture = ExtResource( 1 )
 10/tex_offset = Vector2( 0, 0 )
@@ -161,7 +161,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 10/occluder_offset = Vector2( 16, 16 )
 10/navigation_offset = Vector2( 16, 16 )
 10/shape_offset = Vector2( 16, 16 )
-10/shapes = [ SubResource( 1 ) ]
+10/shapes = [ SubResource( 5 ) ]
 11/name = "wall up-right"
 11/texture = ExtResource( 1 )
 11/tex_offset = Vector2( 0, 0 )
@@ -169,7 +169,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 11/occluder_offset = Vector2( 16, 16 )
 11/navigation_offset = Vector2( 16, 16 )
 11/shape_offset = Vector2( 16, 16 )
-11/shapes = [ SubResource( 2 ) ]
+11/shapes = [ SubResource( 6 ) ]
 12/name = "wall down-left"
 12/texture = ExtResource( 1 )
 12/tex_offset = Vector2( 0, 0 )
@@ -177,7 +177,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 12/occluder_offset = Vector2( 16, 16 )
 12/navigation_offset = Vector2( 16, 16 )
 12/shape_offset = Vector2( 16, 16 )
-12/shapes = [ SubResource( 3 ) ]
+12/shapes = [ SubResource( 7 ) ]
 13/name = "wall down-right"
 13/texture = ExtResource( 1 )
 13/tex_offset = Vector2( 0, 0 )
@@ -185,7 +185,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 13/occluder_offset = Vector2( 16, 16 )
 13/navigation_offset = Vector2( 16, 16 )
 13/shape_offset = Vector2( 16, 16 )
-13/shapes = [ SubResource( 4 ) ]
+13/shapes = [ SubResource( 8 ) ]
 14/name = "wall up-left inverted"
 14/texture = ExtResource( 1 )
 14/tex_offset = Vector2( 0, 0 )
@@ -193,7 +193,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 14/occluder_offset = Vector2( 16, 16 )
 14/navigation_offset = Vector2( 16, 16 )
 14/shape_offset = Vector2( 16, 16 )
-14/shapes = [ SubResource( 5 ) ]
+14/shapes = [ SubResource( 9 ) ]
 15/name = "wall up-right inverted"
 15/texture = ExtResource( 1 )
 15/tex_offset = Vector2( 0, 0 )
@@ -201,7 +201,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 15/occluder_offset = Vector2( 16, 16 )
 15/navigation_offset = Vector2( 16, 16 )
 15/shape_offset = Vector2( 16, 16 )
-15/shapes = [ SubResource( 2 ) ]
+15/shapes = [ SubResource( 6 ) ]
 16/name = "wall down-left inverted"
 16/texture = ExtResource( 1 )
 16/tex_offset = Vector2( 0, 0 )
@@ -209,7 +209,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 16/occluder_offset = Vector2( 16, 16 )
 16/navigation_offset = Vector2( 16, 16 )
 16/shape_offset = Vector2( 16, 16 )
-16/shapes = [ SubResource( 6 ) ]
+16/shapes = [ SubResource( 10 ) ]
 17/name = "wall down-right inverted"
 17/texture = ExtResource( 1 )
 17/tex_offset = Vector2( 0, 0 )
@@ -217,7 +217,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 17/occluder_offset = Vector2( 16, 16 )
 17/navigation_offset = Vector2( 16, 16 )
 17/shape_offset = Vector2( 16, 16 )
-17/shapes = [ SubResource( 4 ) ]
+17/shapes = [ SubResource( 8 ) ]
 18/name = "wall-up-no-collision"
 18/texture = ExtResource( 1 )
 18/tex_offset = Vector2( 0, 0 )
@@ -401,7 +401,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 40/occluder_offset = Vector2( 32, 16 )
 40/navigation_offset = Vector2( 32, 16 )
 40/shape_offset = Vector2( 32, 16 )
-40/shapes = [ SubResource( 7 ) ]
+40/shapes = [ SubResource( 11 ) ]
 41/name = "the book is on it"
 41/texture = ExtResource( 1 )
 41/tex_offset = Vector2( 0, 0 )
@@ -409,7 +409,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 41/occluder_offset = Vector2( 16, 16 )
 41/navigation_offset = Vector2( 16, 16 )
 41/shape_offset = Vector2( 16, 16 )
-41/shapes = [ SubResource( 8 ) ]
+41/shapes = [ SubResource( 12 ) ]
 42/name = "plant"
 42/texture = ExtResource( 1 )
 42/tex_offset = Vector2( 0, 0 )
@@ -417,7 +417,7 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 42/occluder_offset = Vector2( 16, 16 )
 42/navigation_offset = Vector2( 16, 16 )
 42/shape_offset = Vector2( 16, 16 )
-42/shapes = [ SubResource( 9 ) ]
+42/shapes = [ SubResource( 13 ) ]
 43/name = "vase"
 43/texture = ExtResource( 1 )
 43/tex_offset = Vector2( 0, 0 )
@@ -425,5 +425,21 @@ points = Vector2Array( -16, -16, 16, -16, 16, 16, -16, 16, -16, -16 )
 43/occluder_offset = Vector2( 16, 16 )
 43/navigation_offset = Vector2( 16, 16 )
 43/shape_offset = Vector2( 16, 16 )
-43/shapes = [ SubResource( 10 ) ]
+43/shapes = [ SubResource( 14 ) ]
+44/name = "grass"
+44/texture = ExtResource( 1 )
+44/tex_offset = Vector2( 0, 0 )
+44/region = Rect2( 32, 192, 32, 32 )
+44/occluder_offset = Vector2( 16, 16 )
+44/navigation_offset = Vector2( 16, 16 )
+44/shape_offset = Vector2( 0, 0 )
+44/shapes = [  ]
+45/name = "grass-deco"
+45/texture = ExtResource( 1 )
+45/tex_offset = Vector2( 0, 0 )
+45/region = Rect2( 64, 192, 32, 32 )
+45/occluder_offset = Vector2( 16, 16 )
+45/navigation_offset = Vector2( 16, 16 )
+45/shape_offset = Vector2( 0, 0 )
+45/shapes = [  ]
 
