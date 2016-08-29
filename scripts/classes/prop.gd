@@ -3,10 +3,15 @@ extends StaticBody2D
 
 var _mask
 
-func _ready():
+
+func _stage():
   var parent = get_parent()
   while parent.get_name() != "past" and parent.get_name() != "future":
     parent = parent.get_parent()
+  return parent
+
+func _ready():
+  var parent = _stage()
   var timezone = parent.get_name()
   if timezone == "future":
     _mask = 1
