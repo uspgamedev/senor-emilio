@@ -67,7 +67,7 @@ transform/pos = Vector2( 0, 32 )
 
 [node name="room_3" parent="future" instance=ExtResource( 5 )]
 
-transform/pos = Vector2( -448, -480 )
+transform/pos = Vector2( -448, -448 )
 
 [node name="room_4" parent="future" instance=ExtResource( 6 )]
 
