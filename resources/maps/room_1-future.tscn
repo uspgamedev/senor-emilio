@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/chest.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=4]
-[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=6]
-[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/imgs/pickable-gem.png" type="Texture" id=4]
+[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=5]
+[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=7]
+[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 
@@ -108,13 +109,8 @@ modulate = Color( 0.339844, 0.350159, 1, 1 )
 
 modulate = Color( 0.339844, 0.350159, 1, 1 )
 
-[node name="Storage" parent="bodies/chest"]
-
-editor/display_folded = true
-
 [node name="crystal_green" parent="bodies/chest/Storage" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 transform/pos = Vector2( -688.862, -18.6647 )
 collision/layers = 1
 collision/mask = 1
@@ -122,7 +118,8 @@ collision/mask = 1
 [node name="sprite" parent="bodies/chest/Storage/crystal_green"]
 
 editor/display_folded = true
-frame = 12
+texture = ExtResource( 4 )
+modulate = Color( 0.078125, 1, 0.200562, 1 )
 
 [node name="animation" parent="bodies/chest/Storage/crystal_green/sprite"]
 
@@ -148,11 +145,11 @@ script/script = null
 shape = SubResource( 9 )
 trigger = false
 _update_shape_index = 0
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 
 [node name="key_blue" type="Node" parent="bodies/chest/Storage"]
 
-[node name="warning" parent="bodies" instance=ExtResource( 5 )]
+[node name="warning" parent="bodies" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 0, -16 )
@@ -160,10 +157,10 @@ first_message = NodePath("message")
 
 [node name="message" type="Node" parent="bodies/warning"]
 
-script/script = ExtResource( 6 )
+script/script = ExtResource( 7 )
 speech = "Granny: Oh my, this door is filled with rust. I wouldn\'t be able to open it, even with the key."
 
-[node name="door_2" parent="bodies" instance=ExtResource( 7 )]
+[node name="door_2" parent="bodies" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 0, -16 )
@@ -178,7 +175,7 @@ editor/display_folded = true
 editor/display_folded = true
 modulate = Color( 0.078125, 1, 0.200562, 1 )
 
-[node name="door_1" parent="bodies" instance=ExtResource( 7 )]
+[node name="door_1" parent="bodies" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 176, 224 )
 transform/rot = -90.0
