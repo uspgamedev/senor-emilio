@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
+[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=2]
 
 [node name="room_4" type="TileMap"]
 
@@ -23,6 +24,11 @@ tile_data = IntArray( -1376256, 5, -1376255, 5, -1376254, 5, -1376253, 5, -13762
 [node name="bodies" type="YSort" parent="."]
 
 sort/enabled = true
+
+[node name="door-room2" parent="bodies" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 544, -240 )
+transform/rot = 180.0
 
 [node name="roof" type="TileMap" parent="."]
 
