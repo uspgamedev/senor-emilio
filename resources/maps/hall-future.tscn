@@ -61,6 +61,7 @@ collision/mask = 1
 
 [node name="Notes" parent="bodies" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 64, 288 )
 first_message = NodePath("Message/P1")
 
@@ -103,9 +104,22 @@ transform/rot = -90.0
 key_required = "key_red"
 start_opened = false
 
+[node name="top" parent="bodies/Door2"]
+
+editor/display_folded = true
+
 [node name="lock" parent="bodies/Door2"]
 
+editor/display_folded = true
 modulate = Color( 1, 0.265625, 0.265625, 1 )
+
+[node name="StaticBody2D" parent="bodies/Door2"]
+
+editor/display_folded = true
+
+[node name="StaticBody2D1" parent="bodies/Door2"]
+
+editor/display_folded = true
 
 [node name="transfer_zone" parent="bodies" instance=ExtResource( 7 )]
 
