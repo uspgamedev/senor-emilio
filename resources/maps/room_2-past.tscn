@@ -1,13 +1,14 @@
-[gd_scene load_steps=21 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/door-sepia.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=4]
-[ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=6]
+[ext_resource path="res://scripts/classes/prop.gd" type="Script" id=3]
+[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=4]
+[ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/classes/speech.gd" type="Script" id=6]
+[ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=1]
 
 resource/name = "closed"
 length = 0.1
@@ -19,7 +20,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=2]
 
 resource/name = "closing"
 length = 0.9
@@ -31,7 +32,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 7, 6, 5, 4, 3, 2 ] }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=3]
 
 length = 0.1
 loop = false
@@ -42,7 +43,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 7 ] }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=4]
 
 length = 0.9
 loop = false
@@ -53,14 +54,27 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 2, 3, 4, 5, 6, 7 ] }
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 48, 16 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="RectangleShape2D" id=6]
 
-resource/name = "down_idle"
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[sub_resource type="GDScript" id=8]
+
+script/source = "\nextends Area2D\n\nconst Hero = preload(\"res://scripts/classes/hero.gd\")\n\nvar _mask\nvar room\n\nfunc _stage():\n\tvar parent = get_parent()\n\twhile parent.get_name() != \"past\" and parent.get_name() != \"future\":\n\t\tparent = parent.get_parent()\n\treturn parent\n\nfunc _room():\n\tvar parent = get_parent()\n\twhile not (parent extends TileMap):\n\t\tparent = parent.get_parent()\n\treturn parent\n\nfunc _ready():\n  room = _room()\n  var parent = _stage()\n  var timezone = parent.get_name()\n  if timezone == \"future\":\n    _mask = 1\n  elif timezone == \"past\":\n    _mask = 2\n  activate_collision()\n\nfunc activate_collision():\n  set_layer_mask(_mask)\n  set_collision_mask(_mask)\n\nfunc deactivate_collision():\n  set_layer_mask(0)\n  set_collision_mask(0)\n\nfunc _enter( body ):\n\tprintt(\"body transfered\?\", body)\n\tif body.get_script() == Hero:\n\t\tprint(\"yes\")\n\t\tbody.current_room = room\n\t\tif room.has_node(\"roof\"):\n\t\t\troom.get_node(\"roof\").hide()\n\t\tfor other in _stage().get_children():\n\t\t\tif other extends TileMap and other != room and other.has_node(\"roof\"):\n\t\t\t\tother.get_node(\"roof\").show()\n"
+
+[sub_resource type="Animation" id=9]
+
 length = 1.65
 loop = true
 step = 0.15
@@ -70,42 +84,37 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 1, 2, 3, 0 ] }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=10]
 
-resource/name = "down_moving"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=11]
 
-resource/name = "left_idle"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=12]
 
-resource/name = "left_moving"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=13]
 
-resource/name = "right_idle"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=14]
 
-resource/name = "right_moving"
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=15]
 
 length = 0.9
 loop = true
@@ -116,13 +125,13 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.45, 0.6 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 0, 2 ] }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=16]
 
 length = 1.0
 loop = true
 step = 0.1
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=17]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -143,7 +152,7 @@ collision/bounce = 0.0
 collision/layers = 2
 collision/mask = 2
 occluder/light_mask = 1
-tile_data = IntArray( -524273, 5, -524272, 5, -524271, 5, -524270, 5, -524269, 5, -524268, 5, -524267, 5, -524266, 5, -524265, 5, -524264, 5, -524263, 5, -524262, 5, -524261, 5, -524260, 5, -524259, 5, -458737, 5, -458736, 5, -458735, 5, -458734, 5, -458733, 5, -458732, 5, -458731, 5, -458730, 5, -458729, 5, -458728, 5, -458727, 5, -458726, 5, -458725, 5, -458724, 5, -458723, 5, -393201, 5, -393200, 5, -393199, 10, -393198, 6, -393197, 6, -393196, 6, -393195, 6, -393193, 6, -393192, 6, -393191, 6, -393190, 6, -393189, 11, -393188, 5, -393187, 5, -327665, 5, -327664, 10, -327663, 17, -327662, 0, -327661, 0, -327660, 0, -327659, 0, -327658, 0, -327657, 0, -327656, 0, -327655, 0, -327654, 0, -327653, 16, -327652, 11, -327651, 5, -262129, 5, -262128, 9, -262127, 0, -262126, 0, -262125, 0, -262124, 0, -262123, 0, -262122, 0, -262121, 0, -262120, 0, -262119, 0, -262118, 0, -262117, 0, -262116, 7, -262115, 5, -196593, 5, -196592, 9, -196591, 0, -196590, 0, -196589, 0, -196588, 0, -196587, 0, -196586, 0, -196585, 0, -196584, 0, -196583, 0, -196582, 0, -196581, 0, -196580, 7, -196579, 5, -131057, 5, -131056, 9, -131055, 0, -131054, 0, -131053, 0, -131052, 0, -131051, 0, -131050, 0, -131049, 0, -131048, 0, -131047, 0, -131046, 0, -131045, 0, -131044, 7, -131043, 5, -65521, 5, -65520, 9, -65519, 0, -65518, 0, -65517, 0, -65516, 0, -65515, 0, -65514, 0, -65513, 0, -65512, 0, -65511, 0, -65510, 0, -65509, 0, -65508, 7, -65507, 5, 15, 5, 16, 9, 17, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 23, 0, 24, 0, 25, 0, 26, 0, 27, 0, 28, 7, 29, 5, 65551, 5, 65552, 21, 65553, 0, 65554, 0, 65555, 0, 65556, 0, 65557, 0, 65558, 0, 65559, 0, 65560, 0, 65561, 0, 65562, 0, 65563, 0, 65564, 7, 65565, 5, 131087, 5, 131088, 21, 131089, 0, 131090, 0, 131091, 0, 131092, 0, 131093, 0, 131094, 0, 131095, 0, 131096, 0, 131097, 0, 131098, 0, 131099, 0, 131100, 7, 131101, 5, 196623, 5, 196624, 9, 196625, 0, 196626, 0, 196627, 0, 196628, 0, 196629, 0, 196630, 0, 196631, 2, 196632, 2, 196633, 2, 196634, 0, 196635, 0, 196636, 7, 196637, 5, 262159, 5, 262160, 12, 262161, 15, 262162, 0, 262163, 0, 262164, 0, 262165, 0, 262166, 0, 262167, 2, 262168, 2, 262169, 2, 262170, 0, 262171, 14, 262172, 13, 262173, 5, 327695, 5, 327696, 5, 327697, 12, 327698, 8, 327699, 8, 327700, 8, 327701, 8, 327702, 8, 327703, 8, 327704, 8, 327705, 8, 327706, 8, 327707, 13, 327708, 5, 327709, 5, 393231, 5, 393232, 5, 393233, 5, 393234, 5, 393235, 5, 393236, 5, 393237, 5, 393238, 5, 393239, 5, 393240, 5, 393241, 5, 393242, 5, 393243, 5, 393244, 5, 393245, 5 )
+tile_data = IntArray( -524273, 5, -524272, 5, -524271, 5, -524270, 5, -524269, 5, -524268, 5, -524267, 5, -524266, 5, -524265, 5, -524264, 5, -524263, 5, -524262, 5, -524261, 5, -524260, 5, -524259, 5, -458737, 5, -458736, 5, -458735, 5, -458734, 5, -458733, 5, -458732, 5, -458731, 5, -458730, 5, -458729, 5, -458728, 5, -458727, 5, -458726, 5, -458725, 5, -458724, 5, -458723, 5, -393201, 5, -393200, 5, -393199, 10, -393198, 6, -393197, 6, -393196, 6, -393193, 6, -393192, 6, -393191, 6, -393190, 6, -393189, 11, -393188, 5, -393187, 5, -327665, 5, -327664, 10, -327663, 17, -327662, 0, -327661, 0, -327660, 0, -327659, 0, -327658, 0, -327657, 0, -327656, 0, -327655, 0, -327654, 0, -327653, 16, -327652, 11, -327651, 5, -262129, 5, -262128, 9, -262127, 0, -262126, 0, -262125, 0, -262124, 0, -262123, 0, -262122, 0, -262121, 0, -262120, 0, -262119, 0, -262118, 0, -262117, 0, -262116, 7, -262115, 5, -196593, 5, -196592, 9, -196591, 0, -196590, 0, -196589, 0, -196588, 0, -196587, 0, -196586, 0, -196585, 0, -196584, 0, -196583, 0, -196582, 0, -196581, 0, -196580, 7, -196579, 5, -131057, 5, -131056, 9, -131055, 0, -131054, 0, -131053, 0, -131052, 0, -131051, 0, -131050, 0, -131049, 0, -131048, 0, -131047, 0, -131046, 0, -131045, 0, -131044, 7, -131043, 5, -65521, 5, -65520, 9, -65519, 0, -65518, 0, -65517, 0, -65516, 0, -65515, 0, -65514, 0, -65513, 0, -65512, 0, -65511, 0, -65510, 0, -65509, 0, -65508, 7, -65507, 5, 15, 5, 16, 9, 17, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 23, 0, 24, 0, 25, 0, 26, 0, 27, 0, 28, 7, 29, 5, 65551, 5, 65552, 21, 65553, 0, 65554, 0, 65555, 0, 65556, 0, 65557, 0, 65558, 0, 65559, 0, 65560, 0, 65561, 0, 65562, 0, 65563, 0, 65564, 7, 65565, 5, 131087, 5, 131088, 21, 131089, 0, 131090, 0, 131091, 0, 131092, 0, 131093, 0, 131094, 0, 131095, 0, 131096, 0, 131097, 0, 131098, 0, 131099, 0, 131100, 7, 131101, 5, 196623, 5, 196624, 9, 196625, 0, 196626, 0, 196627, 0, 196628, 0, 196629, 0, 196630, 0, 196631, 2, 196632, 2, 196633, 2, 196634, 0, 196635, 0, 196636, 7, 196637, 5, 262159, 5, 262160, 12, 262161, 15, 262162, 0, 262163, 0, 262164, 0, 262165, 0, 262166, 0, 262167, 2, 262168, 2, 262169, 2, 262170, 0, 262171, 14, 262172, 13, 262173, 5, 327695, 5, 327696, 5, 327697, 12, 327698, 8, 327699, 8, 327700, 8, 327701, 8, 327702, 8, 327703, 8, 327704, 8, 327705, 8, 327706, 8, 327707, 13, 327708, 5, 327709, 5, 393231, 5, 393232, 5, 393233, 5, 393234, 5, 393235, 5, 393236, 5, 393237, 5, 393238, 5, 393239, 5, 393240, 5, 393241, 5, 393242, 5, 393243, 5, 393244, 5, 393245, 5 )
 
 [node name="detail" type="TileMap" parent="."]
 
@@ -190,10 +199,10 @@ modulate = Color( 1, 0.265625, 0.265625, 1 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/closed = SubResource( 10 )
-anims/closing = SubResource( 11 )
-anims/opened = SubResource( 12 )
-anims/opening = SubResource( 13 )
+anims/closed = SubResource( 1 )
+anims/closing = SubResource( 2 )
+anims/opened = SubResource( 3 )
+anims/opening = SubResource( 4 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -202,7 +211,7 @@ script/script = null
 
 [node name="CollisionShape2D" parent="bodies/door_room4"]
 
-shape = SubResource( 14 )
+shape = SubResource( 5 )
 trigger = false
 _update_shape_index = 0
 script/script = null
@@ -211,6 +220,37 @@ script/script = null
 
 transform/pos = Vector2( 0, 16 )
 transform/scale = Vector2( 0.262813, 0.258422 )
+script/script = null
+
+[node name="StaticBody2D" parent="bodies/door_room4"]
+
+transform/pos = Vector2( -48, -32 )
+script/script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="bodies/door_room4/StaticBody2D"]
+
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 4 )
+
+[node name="StaticBody2D1" parent="bodies/door_room4"]
+
+transform/pos = Vector2( 48, -32 )
+script/script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="bodies/door_room4/StaticBody2D1"]
+
+shape = SubResource( 7 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 4 )
+
+[node name="transfer_zone" parent="bodies/door_room4"]
+
+transform/pos = Vector2( 0, 32 )
+input/pickable = true
+script/script = SubResource( 8 )
 
 [node name="door_hall" parent="bodies" instance=ExtResource( 2 )]
 
@@ -219,7 +259,7 @@ transform/rot = 90.0
 collision/layers = 2
 collision/mask = 2
 
-[node name="chest" parent="bodies" instance=ExtResource( 3 )]
+[node name="chest" parent="bodies" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 784, 128 )
@@ -234,10 +274,10 @@ modulate = Color( 0.078125, 1, 0.200562, 1 )
 
 [node name="message" type="Node" parent="bodies/chest"]
 
-script/script = ExtResource( 4 )
+script/script = ExtResource( 6 )
 speech = "Sorry, cats can\'t open chests."
 
-[node name="key_red" parent="bodies" instance=ExtResource( 5 )]
+[node name="key_red" parent="bodies" instance=ExtResource( 7 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 885.016, -53.6248 )
@@ -251,14 +291,14 @@ modulate = Color( 0.886719, 0.346375, 0.346375, 1 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/down_idle = SubResource( 2 )
-anims/down_moving = SubResource( 3 )
-anims/left_idle = SubResource( 4 )
-anims/left_moving = SubResource( 5 )
-anims/right_idle = SubResource( 6 )
-anims/right_moving = SubResource( 7 )
-anims/up_idle = SubResource( 8 )
-anims/up_moving = SubResource( 9 )
+anims/down_idle = SubResource( 9 )
+anims/down_moving = SubResource( 10 )
+anims/left_idle = SubResource( 11 )
+anims/left_moving = SubResource( 12 )
+anims/right_idle = SubResource( 13 )
+anims/right_moving = SubResource( 14 )
+anims/up_idle = SubResource( 15 )
+anims/up_moving = SubResource( 16 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -267,12 +307,12 @@ script/script = null
 
 [node name="collision" parent="bodies/key_red"]
 
-shape = SubResource( 1 )
+shape = SubResource( 17 )
 trigger = false
 _update_shape_index = 0
-script/script = ExtResource( 6 )
+script/script = ExtResource( 4 )
 
-[node name="key_blue" parent="bodies" instance=ExtResource( 5 )]
+[node name="key_blue" parent="bodies" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 885.016, -20.6559 )
 
@@ -285,14 +325,14 @@ modulate = Color( 0.32666, 0.730732, 0.871094, 1 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/down_idle = SubResource( 2 )
-anims/down_moving = SubResource( 3 )
-anims/left_idle = SubResource( 4 )
-anims/left_moving = SubResource( 5 )
-anims/right_idle = SubResource( 6 )
-anims/right_moving = SubResource( 7 )
-anims/up_idle = SubResource( 8 )
-anims/up_moving = SubResource( 9 )
+anims/down_idle = SubResource( 9 )
+anims/down_moving = SubResource( 10 )
+anims/left_idle = SubResource( 11 )
+anims/left_moving = SubResource( 12 )
+anims/right_idle = SubResource( 13 )
+anims/right_moving = SubResource( 14 )
+anims/up_idle = SubResource( 15 )
+anims/up_moving = SubResource( 16 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -301,12 +341,12 @@ script/script = null
 
 [node name="collision" parent="bodies/key_blue"]
 
-shape = SubResource( 1 )
+shape = SubResource( 17 )
 trigger = false
 _update_shape_index = 0
-script/script = ExtResource( 6 )
+script/script = ExtResource( 4 )
 
-[node name="key_green" parent="bodies" instance=ExtResource( 5 )]
+[node name="key_green" parent="bodies" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 885.016, 16.6824 )
 
@@ -319,14 +359,14 @@ modulate = Color( 0.641617, 0.875, 0.481934, 1 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/down_idle = SubResource( 2 )
-anims/down_moving = SubResource( 3 )
-anims/left_idle = SubResource( 4 )
-anims/left_moving = SubResource( 5 )
-anims/right_idle = SubResource( 6 )
-anims/right_moving = SubResource( 7 )
-anims/up_idle = SubResource( 8 )
-anims/up_moving = SubResource( 9 )
+anims/down_idle = SubResource( 9 )
+anims/down_moving = SubResource( 10 )
+anims/left_idle = SubResource( 11 )
+anims/left_moving = SubResource( 12 )
+anims/right_idle = SubResource( 13 )
+anims/right_moving = SubResource( 14 )
+anims/up_idle = SubResource( 15 )
+anims/up_moving = SubResource( 16 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -335,12 +375,12 @@ script/script = null
 
 [node name="collision" parent="bodies/key_green"]
 
-shape = SubResource( 1 )
+shape = SubResource( 17 )
 trigger = false
 _update_shape_index = 0
-script/script = ExtResource( 6 )
+script/script = ExtResource( 4 )
 
-[node name="key_yellow" parent="bodies" instance=ExtResource( 5 )]
+[node name="key_yellow" parent="bodies" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 884.619, 46.8707 )
 
@@ -353,14 +393,14 @@ modulate = Color( 0.820312, 0.66335, 0.291595, 1 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/down_idle = SubResource( 2 )
-anims/down_moving = SubResource( 3 )
-anims/left_idle = SubResource( 4 )
-anims/left_moving = SubResource( 5 )
-anims/right_idle = SubResource( 6 )
-anims/right_moving = SubResource( 7 )
-anims/up_idle = SubResource( 8 )
-anims/up_moving = SubResource( 9 )
+anims/down_idle = SubResource( 9 )
+anims/down_moving = SubResource( 10 )
+anims/left_idle = SubResource( 11 )
+anims/left_moving = SubResource( 12 )
+anims/right_idle = SubResource( 13 )
+anims/right_moving = SubResource( 14 )
+anims/up_idle = SubResource( 15 )
+anims/up_moving = SubResource( 16 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -369,10 +409,10 @@ script/script = null
 
 [node name="collision" parent="bodies/key_yellow"]
 
-shape = SubResource( 1 )
+shape = SubResource( 17 )
 trigger = false
 _update_shape_index = 0
-script/script = ExtResource( 6 )
+script/script = ExtResource( 4 )
 
 [node name="roof" type="TileMap" parent="."]
 
