@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/objects/types/chest.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/objects/instances/pickable.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=5]
+[ext_resource path="res://assets/imgs/pickable-gem.png" type="Texture" id=5]
+[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=1]
 
@@ -118,7 +119,6 @@ transform/rot = 90.0
 
 [node name="door_room4" parent="bodies" instance=ExtResource( 2 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 702.739, -174.107 )
 start_opened = false
 
@@ -141,7 +141,6 @@ editor/display_folded = true
 
 [node name="chest" parent="bodies" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 784, 128 )
 
 [node name="closed" parent="bodies/chest"]
@@ -154,11 +153,11 @@ modulate = Color( 0.078125, 1, 0.200562, 1 )
 
 [node name="crystal_red" parent="bodies/chest/Storage" instance=ExtResource( 4 )]
 
-editor/display_folded = true
+transform/pos = Vector2( 1280, 16 )
 
 [node name="sprite" parent="bodies/chest/Storage/crystal_red"]
 
-frame = 14
+texture = ExtResource( 5 )
 
 [node name="animation" parent="bodies/chest/Storage/crystal_red/sprite"]
 
@@ -184,7 +183,7 @@ script/script = null
 shape = SubResource( 9 )
 trigger = false
 _update_shape_index = 0
-script/script = ExtResource( 5 )
+script/script = ExtResource( 6 )
 
 [node name="key_green" type="Node" parent="bodies/chest/Storage"]
 
