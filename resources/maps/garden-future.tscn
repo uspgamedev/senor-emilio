@@ -7,7 +7,7 @@
 [ext_resource path="res://scripts/classes/prop.gd" type="Script" id=5]
 [ext_resource path="res://assets/imgs/maq_tempo.png" type="Texture" id=6]
 [ext_resource path="res://assets/imgs/tileset-demo.png" type="Texture" id=7]
-[ext_resource path="res://assets/imgs/bigass-door.png" type="Texture" id=8]
+[ext_resource path="res://assets/imgs/bigass-door-future.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
