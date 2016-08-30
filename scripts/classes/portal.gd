@@ -3,8 +3,6 @@ extends "res://scripts/classes/prop.gd"
 
 export(NodePath) var portal_link = null
 
-onready var preview = get_node("preview")
-
 var stored = null
 
 func get_portal_link():
@@ -18,11 +16,6 @@ func store(item):
     return
   printt(get_name(), "storing item")
   stored = item
-  preview.set_texture(item.get_texture())
-  preview.set_region(true)
-  preview.set_region_rect(Rect2(0, 0, 32, 32))
-  preview.set_pos(preview.get_pos() + Vector2(0, -10))
-  preview.show()
   item.hide()
   get_portal_link().store(item)
 
@@ -32,7 +25,6 @@ func remove():
   printt(get_name(), "removing item")
   stored.show()
   stored = null
-  preview.hide()
   get_portal_link().remove()
 
 func get_item():

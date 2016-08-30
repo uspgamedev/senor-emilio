@@ -60,6 +60,4 @@ autoplay = "idle"
 
 [node name="Storage" type="Node" parent="."]
 
-[node name="preview" type="Sprite" parent="."]
-
 
