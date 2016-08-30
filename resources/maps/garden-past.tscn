@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap-sepia.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/imgs/bigass-door.png" type="Texture" id=2]
+[ext_resource path="res://assets/imgs/maq_tempo.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -16,6 +17,15 @@ script/source = "\nextends StaticBody2D\n\nonready var closed = get_node(\"close
 
 custom_solver_bias = 0.0
 extents = Vector2( 8, 24 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[sub_resource type="GDScript" id=5]
+
+script/source = "\nextends StaticBody2D\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\nfunc interact(body):\n\tprint(\"THE END\")\n\tget_node(\"/root/main\").go_to_scene(\"ending_scene\")\n\n"
 
 [node name="garden" type="TileMap"]
 
@@ -89,6 +99,7 @@ _update_shape_index = 0
 
 [node name="fake" type="StaticBody2D" parent="bodies"]
 
+editor/display_folded = true
 transform/pos = Vector2( 48, 448 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -117,5 +128,31 @@ transform/pos = Vector2( -32, 4 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 1
+
+[node name="time_gate" type="StaticBody2D" parent="bodies"]
+
+transform/pos = Vector2( 48, 672 )
+input/pickable = false
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 2
+collision/mask = 2
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script/script = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="bodies/time_gate"]
+
+texture = ExtResource( 3 )
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bodies/time_gate"]
+
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
 
 
