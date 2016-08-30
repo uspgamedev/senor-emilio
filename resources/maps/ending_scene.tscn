@@ -10,29 +10,28 @@
 [ext_resource path="res://resources/objects/instances/hero.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/imgs/grandma.png" type="Texture" id=9]
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -16, -32, 16, -32, 32, -16, 32, 16, 16, 32, -16, 32, -32, 16, -32, -16, -16, -32 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 24, 32, 24, -64, 48, -64, 48, 32 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -24, 32, -48, 32, -48, -64, -24, -64 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16.3034, 16.1142 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
-resource/name = "closed"
 length = 0.1
 loop = false
 step = 0.1
@@ -42,9 +41,8 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
-resource/name = "closing"
 length = 0.9
 loop = false
 step = 0.15
@@ -54,7 +52,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 7, 6, 5, 4, 3, 2 ] }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 
 length = 0.1
 loop = false
@@ -65,7 +63,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 7 ] }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 
 length = 0.9
 loop = false
@@ -146,7 +144,7 @@ sort/enabled = true
 
 transform/pos = Vector2( 50, 704 )
 input/pickable = false
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -173,10 +171,10 @@ trigger = false
 
 transform/pos = Vector2( 50, 480 )
 input/pickable = false
-shapes/0/shape = SubResource( 9 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 10 )
+shapes/1/shape = SubResource( 3 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
 collision/layers = 1
@@ -289,7 +287,7 @@ sort/enabled = true
 editor/display_folded = true
 transform/pos = Vector2( 64, -64 )
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -301,7 +299,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hall/bodies/Portal"]
 
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
 
@@ -483,10 +481,10 @@ modulate = Color( 1, 0.265625, 0.265625, 1 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/closed = SubResource( 4 )
-anims/closing = SubResource( 5 )
-anims/opened = SubResource( 6 )
-anims/opening = SubResource( 7 )
+anims/closed = SubResource( 5 )
+anims/closing = SubResource( 6 )
+anims/opened = SubResource( 7 )
+anims/opening = SubResource( 8 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
