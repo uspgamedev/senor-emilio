@@ -148,7 +148,6 @@ editor/display_folded = true
 
 [node name="chest" parent="bodies" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 784, 128 )
 
 [node name="closed" parent="bodies/chest"]
@@ -161,7 +160,7 @@ modulate = Color( 0.078125, 1, 0.200562, 1 )
 
 [node name="crystal_red" parent="bodies/chest/Storage" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 1280, 16 )
+transform/pos = Vector2( 926.539, -216.686 )
 
 [node name="sprite" parent="bodies/chest/Storage/crystal_red"]
 
