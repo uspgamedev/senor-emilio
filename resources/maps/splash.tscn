@@ -1,62 +1,58 @@
 [gd_scene load_steps=13 format=1]
 
-[ext_resource path="res://assets/imgs/logo_vertical_negative.png" type="Texture" id=1]
-[ext_resource path="res://assets/imgs/Ludum_Dare_Logo.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/imgs/cat.png" type="Texture" id=4]
+[ext_resource path="res://assets/imgs/splash_ugd.png" type="Texture" id=1]
+[ext_resource path="res://assets/imgs/splash_ludumdare.png" type="Texture" id=2]
+[ext_resource path="res://assets/imgs/cat.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "onready var initial = get_node(\"initial\")\nonready var tween = get_node(\"Tween\")\nonready var title = get_node(\"title\")\nonready var credit = get_node(\"credit\")\n\nconst main_scene = preload(\"res://main.tscn\")\n\nfunc _ready():\n\ttitle.hide()\n\tinitial.show()\n\tcredit.hide()\n\tinitial.set_opacity(0)\n\ttween.interpolate_method(initial, \"set_opacity\", 0, 1, 3.0, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1)\n\ttween.connect(\"tween_complete\", self, \"show_complete\")\n\ttween.start()\n\nfunc show_complete(obj, key):\n\ttween.interpolate_method(initial, \"set_opacity\", 1, 0, 3.0, Tween.TRANS_LINEAR, Tween.EASE_OUT, 4)\n\ttween.disconnect(\"tween_complete\", self, \"show_complete\")\n\ttween.connect(\"tween_complete\", self, \"splash_finish\")\n\ttween.start()\n\nfunc splash_finish(obj, key):\n\tprint(\"splash_finish\")\n\tinitial.hide()\n\ttitle.show()\n\tcredit.hide()\n\ttitle.set_opacity(0)\n\ttween.interpolate_method(title, \"set_opacity\", 0, 1, 3.0, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1)\n\tif tween.is_connected(\"tween_complete\", self, \"splash_finish\"):\n\t\ttween.disconnect(\"tween_complete\", self, \"splash_finish\")\n\ttween.start()\n\t\n\nfunc show_credits():\n\ttitle.hide()\n\tinitial.hide()\n\tcredit.show()\n\tcredit.set_opacity(0)\n\ttween.interpolate_method(credit, \"set_opacity\", 0, 1, 2.0, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.5)\n\n\nfunc back_from_credits():\n\tsplash_finish(null, null)\n\nfunc start_game():\n\tself.queue_free()\n\tget_tree().change_scene_to(main_scene)"
+script/source = "onready var initial = get_node(\"initial\")\nonready var initial1 = get_node(\"initial1\")\nonready var tween = get_node(\"Tween\")\nonready var title = get_node(\"title\")\nonready var credit = get_node(\"credit\")\n\nconst main_scene = preload(\"res://main.tscn\")\n\nfunc _ready():\n\ttitle.hide()\n\tinitial.show()\n\tcredit.hide()\n\tinitial.set_opacity(0)\n\tinitial1.set_opacity(0)\n\tset_process_input(true)\n\ttween.interpolate_method(initial, \"set_opacity\", 0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)\n\ttween.start()\n\tyield(tween, \"tween_complete\")\n\ttween.interpolate_method(initial, \"set_opacity\", 1, 0, 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)\n\ttween.start()\n\tyield(tween, \"tween_complete\")\n\ttween.interpolate_method(initial1, \"set_opacity\", 0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)\n\ttween.start()\n\tyield(tween, \"tween_complete\")\n\ttween.interpolate_method(initial1, \"set_opacity\", 1, 0, 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)\n\ttween.start()\n\tyield(tween, \"tween_complete\")\n\tget_tree().change_scene_to(main_scene)\n\nfunc _input(ev):\n\tif ev.is_action_pressed(\"ui_accept\"):\n\t\ttween.stop_all()\n\t\tget_tree().change_scene_to(main_scene)\n"
+
+[sub_resource type="CanvasItemShaderGraph" id=7]
+
+_code = { "fragment":"vec3 nd1sl0=vec3(0,0,0);\nfloat nd1sl1=1;\nCOLOR.rgb=nd1sl0;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+_data = { "shaders":[ [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [ 0, 1, 0 ], 1, 3, Vector2( 54, 86 ), Color( 0, 0, 0, 1 ), null, [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ] ] }
+
+[sub_resource type="CanvasItemMaterial" id=8]
+
+shader/shader = SubResource( 7 )
+shader/shading_mode = 0
 
 [sub_resource type="DynamicFont" id=2]
 
-font/size = 52
+font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 3 )
+font/font = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 
-font/size = 16
+font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 3 )
+font/font = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
 
 font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 3 )
+font/font = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
 
-font/size = 32
+font/size = 18
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 3 )
+font/font = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=6]
 
 font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=7]
-
-font/size = 18
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=8]
-
-font/size = 32
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 3 )
+font/font = ExtResource( 4 )
 
 [node name="Splash" type="CanvasLayer"]
 
@@ -68,6 +64,7 @@ script/script = SubResource( 1 )
 
 [node name="bg" type="Panel" parent="."]
 
+material/material = SubResource( 8 )
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -101,48 +98,48 @@ margin/bottom = 0.0
 
 [node name="TextureFrame" type="TextureFrame" parent="initial"]
 
+anchor/right = 1
+anchor/bottom = 1
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 390.0
-margin/top = 60.0
-margin/right = 600.0
-margin/bottom = 300.0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 0
 
-[node name="TextureFrame 2" type="TextureFrame" parent="initial"]
+[node name="initial1" type="Panel" parent="."]
 
-anchor/left = 3
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 310.0
-margin/top = 100.0
-margin/right = 390.0
-margin/bottom = 242.0
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="initial"]
-
+anchor/right = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 370.0
-margin/right = 640.0
-margin/bottom = 473.0
-custom_fonts/bold_font = SubResource( 2 )
-custom_fonts/normal_font = SubResource( 3 )
-bbcode/enabled = true
-bbcode/bbcode = "[center][b]USPGameDev[/b]\n[color=lime]contato@uspgamedev.org[/color]\n© 2016 USPGameDev. All Rights Reserved.[/center]"
-visible_characters = -1
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="TextureFrame" type="TextureFrame" parent="initial1"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 0
 
 [node name="title" type="Panel" parent="."]
 
@@ -170,7 +167,7 @@ margin/left = 0.0
 margin/top = 60.0
 margin/right = 0.0
 margin/bottom = 240.0
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 expand = true
 stretch_mode = 2
 
@@ -186,7 +183,7 @@ margin/left = 50.0
 margin/top = 270.0
 margin/right = 50.0
 margin/bottom = 120.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -205,7 +202,7 @@ margin/left = 50.0
 margin/top = 376.0
 margin/right = 50.0
 margin/bottom = 14.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -238,8 +235,8 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 120.0
-custom_fonts/bold_font = SubResource( 6 )
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/bold_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 bbcode/enabled = true
 bbcode/bbcode = "[b]\n  USPGameDev Team[/b]\n\n\n   Eduardo Silva Araújo\n\n   John Michael Lima da Silva\n\n   Luciana Paschoal Divino\n\n   Rafael José Peres Correia\n\n   Ricardo Lira da Fonseca\n\n   Wilson Kazuo Mizutani\n\n   Willian Akira Mizutani\n"
 visible_characters = -1
@@ -256,7 +253,7 @@ margin/left = 270.0
 margin/top = 373.0
 margin/right = -230.0
 margin/bottom = 463.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
