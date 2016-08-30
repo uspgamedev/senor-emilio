@@ -9,29 +9,15 @@
 
 script/source = "onready var initial = get_node(\"initial\")\nonready var initial1 = get_node(\"initial1\")\nonready var tween = get_node(\"Tween\")\nonready var title = get_node(\"title\")\nonready var credit = get_node(\"credit\")\n\nconst main_scene = preload(\"res://main.tscn\")\n\nfunc _ready():\n\ttitle.hide()\n\tinitial.show()\n\tcredit.hide()\n\tinitial.set_opacity(0)\n\tinitial1.set_opacity(0)\n\tset_process_input(true)\n\ttween.interpolate_method(initial, \"set_opacity\", 0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)\n\ttween.start()\n\tyield(tween, \"tween_complete\")\n\ttween.interpolate_method(initial, \"set_opacity\", 1, 0, 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)\n\ttween.start()\n\tyield(tween, \"tween_complete\")\n\ttween.interpolate_method(initial1, \"set_opacity\", 0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)\n\ttween.start()\n\tyield(tween, \"tween_complete\")\n\ttween.interpolate_method(initial1, \"set_opacity\", 1, 0, 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)\n\ttween.start()\n\tyield(tween, \"tween_complete\")\n\tget_tree().change_scene_to(main_scene)\n\nfunc _input(ev):\n\tif ev.is_action_pressed(\"ui_accept\"):\n\t\ttween.stop_all()\n\t\tget_tree().change_scene_to(main_scene)\n"
 
-[sub_resource type="CanvasItemShaderGraph" id=7]
+[sub_resource type="CanvasItemShaderGraph" id=2]
 
 _code = { "fragment":"vec3 nd1sl0=vec3(0,0,0);\nfloat nd1sl1=1;\nCOLOR.rgb=nd1sl0;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
 _data = { "shaders":[ [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [ 0, 1, 0 ], 1, 3, Vector2( 54, 86 ), Color( 0, 0, 0, 1 ), null, [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ] ] }
 
-[sub_resource type="CanvasItemMaterial" id=8]
+[sub_resource type="CanvasItemMaterial" id=3]
 
-shader/shader = SubResource( 7 )
+shader/shader = SubResource( 2 )
 shader/shading_mode = 0
-
-[sub_resource type="DynamicFont" id=2]
-
-font/size = 32
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=3]
-
-font/size = 32
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
 
@@ -42,12 +28,26 @@ font/font = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
 
-font/size = 18
+font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=6]
+
+font/size = 32
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+
+font/size = 18
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=8]
 
 font/size = 32
 font/use_mipmaps = false
@@ -64,7 +64,7 @@ script/script = SubResource( 1 )
 
 [node name="bg" type="Panel" parent="."]
 
-material/material = SubResource( 8 )
+material/material = SubResource( 3 )
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -183,7 +183,7 @@ margin/left = 50.0
 margin/top = 270.0
 margin/right = 50.0
 margin/bottom = 120.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -202,7 +202,7 @@ margin/left = 50.0
 margin/top = 376.0
 margin/right = 50.0
 margin/bottom = 14.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -235,8 +235,8 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 120.0
-custom_fonts/bold_font = SubResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 7 )
 bbcode/enabled = true
 bbcode/bbcode = "[b]\n  USPGameDev Team[/b]\n\n\n   Eduardo Silva Araújo\n\n   John Michael Lima da Silva\n\n   Luciana Paschoal Divino\n\n   Rafael José Peres Correia\n\n   Ricardo Lira da Fonseca\n\n   Wilson Kazuo Mizutani\n\n   Willian Akira Mizutani\n"
 visible_characters = -1
@@ -253,7 +253,7 @@ margin/left = 270.0
 margin/top = 373.0
 margin/right = -230.0
 margin/bottom = 463.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
