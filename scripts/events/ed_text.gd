@@ -29,12 +29,13 @@ func _ready():
 
 func call_dialogue(number):
     reader.connect("dialogue_end", self, "_on_dialog_end")
-    reader.init_dialog(get_node("dialogue/" + number))
+    reader.init_dialog(get_node("dialogues/" + number + "/sp0"))
 
 func fade_to_black():
-    tween.interpolate_method( blackscreen, "set_color", blackscreen.get_color(), Color(0, 0, 0, 0), 3.0, tween.TRANSLINEAR, tween.EASE_OUT, 0)
+    tween.interpolate_method( blackscreen, "set_color", blackscreen.get_color(), Color(0, 0, 0, 0), 3.0, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
     tween.start()
     yield(tween, "tween_complete")
+    get_tree().change_scene_to(load("res://resources/states/credits.tscn").instance())
 
 
 func _on_timer_timeout():
@@ -47,7 +48,7 @@ func _on_dialog_end():
     reader.disconnect("dialogue_end", self, "_on_dialog_end")
     if progress == 0:
         # move granny down, face her left
-        tween.interpolate_method( granny, "move_to", granny.get_pos(), granny.get_pos() + Vector2(0,8*16), 1.5, tween.TRANSLINEAR, tween.EASE_OUT, 0)
+        tween.interpolate_method( granny, "move_to", granny.get_pos(), granny.get_pos() + Vector2(0,8*16), 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
         tween.start()
         yield(tween, "tween_complete")
         granny.face(DIR.LEFT)

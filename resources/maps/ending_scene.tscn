@@ -518,7 +518,7 @@ texture = ExtResource( 10 )
 [node name="camera" type="KinematicBody2D" parent="hall/bodies"]
 
 editor/display_folded = true
-transform/pos = Vector2( 64, 224 )
+transform/pos = Vector2( 80, 320 )
 input/pickable = false
 collision/layers = 1
 collision/mask = 1
@@ -567,42 +567,63 @@ tile_data = IntArray( -393229, 5, -393228, 5, -393227, 5, -393226, 5, -393225, 5
 
 [node name="dialogues" type="Node" parent="."]
 
+editor/display_folded = true
+
 [node name="one" type="Node" parent="dialogues"]
+
+[node name="sp0" type="Node" parent="dialogues/one"]
 
 script/script = ExtResource( 11 )
 speech = "Oh, Señor Emilio!"
 
-[node name="next" type="Node" parent="dialogues/one"]
+[node name="Node" type="Node" parent="dialogues/one/sp0"]
 
 script/script = ExtResource( 12 )
-text = "I\'ve been looking everywhere for you, mister!"
-next_speech = null
+text = ""
+next_speech = NodePath("../../sp1")
 action = "printt(\"hi\")"
 
+[node name="sp1" type="Node" parent="dialogues/one"]
+
+script/script = ExtResource( 11 )
+speech = "I\'ve been looking everywhere for you, mister!"
+
 [node name="two" type="Node" parent="dialogues"]
+
+[node name="sp0" type="Node" parent="dialogues/two"]
 
 script/script = ExtResource( 11 )
 speech = "Meow."
 
-[node name="next" type="Node" parent="dialogues/two"]
+[node name="Node" type="Node" parent="dialogues/two/sp0"]
 
 script/script = ExtResource( 12 )
-text = "Come now, let\'s go home..."
-next_speech = null
+text = ""
+next_speech = NodePath("../../next")
+action = "printt(\"hi\")"
+
+[node name="next" type="Node" parent="dialogues/two"]
+
+script/script = ExtResource( 11 )
+speech = "Come now, let\'s go home..."
+
+[node name="Node" type="Node" parent="dialogues/two/next"]
+
+script/script = ExtResource( 12 )
+text = ""
+next_speech = NodePath("../../end")
 action = "printt(\"hi\")"
 
 [node name="end" type="Node" parent="dialogues/two"]
 
-script/script = ExtResource( 12 )
-text = "You\'re in big trouble, you know."
-next_speech = null
-action = "printt(\"hi\")"
+script/script = ExtResource( 11 )
+speech = "You\'re in big trouble, you know."
 
 [node name="timer" type="Timer" parent="."]
 
 process_mode = 1
 wait_time = 1.0
-one_shot = false
+one_shot = true
 autostart = false
 
 [node name="tween" type="Tween" parent="."]
