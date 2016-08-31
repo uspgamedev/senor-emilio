@@ -1,15 +1,14 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/objects/types/notes.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/classes/speech.gd" type="Script" id=4]
-[ext_resource path="res://scripts/classes/answer.gd" type="Script" id=5]
-[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=6]
-[ext_resource path="res://resources/objects/types/transfer_zone.tscn" type="PackedScene" id=7]
-[ext_resource path="res://resources/objects/instances/eye-socket.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/imgs/maq_tempo.png" type="Texture" id=9]
-[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=10]
+[ext_resource path="res://resources/objects/types/door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resources/objects/types/transfer_zone.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/objects/instances/eye-socket.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/imgs/maq_tempo.png" type="Texture" id=8]
+[ext_resource path="res://scripts/utility/collisionfix.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -93,19 +92,7 @@ first_message = NodePath("Message/P1")
 script/script = ExtResource( 4 )
 speech = "WARNING: Time-space hazard zone"
 
-[node name="Answer" type="Node" parent="bodies/Notes/Message/P1"]
-
-script/script = ExtResource( 5 )
-text = ""
-next_speech = NodePath("../../P2")
-action = "printt(\"hi\")"
-
-[node name="P2" type="Node" parent="bodies/Notes/Message"]
-
-script/script = ExtResource( 4 )
-speech = "Granny: Where in heavens did Señor Emilio snuck his longfaced muzzle\?"
-
-[node name="Door1" parent="bodies" instance=ExtResource( 6 )]
+[node name="Door1" parent="bodies" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( -368, 96 )
@@ -117,7 +104,7 @@ start_opened = false
 
 modulate = Color( 0.910156, 0.829273, 0.170654, 1 )
 
-[node name="Door2" parent="bodies" instance=ExtResource( 6 )]
+[node name="Door2" parent="bodies" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 464, 96 )
@@ -142,7 +129,7 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="transfer_zone" parent="bodies" instance=ExtResource( 7 )]
+[node name="transfer_zone" parent="bodies" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 48, 384 )
@@ -151,14 +138,14 @@ transform/pos = Vector2( 48, 384 )
 
 shape = SubResource( 1 )
 
-[node name="eye-socket-l" parent="bodies" instance=ExtResource( 8 )]
+[node name="eye-socket-l" parent="bodies" instance=ExtResource( 7 )]
 
 editor/display_folded = true
 transform/pos = Vector2( -48, -176 )
 
 [node name="eye-left" type="Node" parent="bodies/eye-socket-l"]
 
-[node name="eye-socket-r" parent="bodies" instance=ExtResource( 8 )]
+[node name="eye-socket-r" parent="bodies" instance=ExtResource( 7 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 144, -176 )
@@ -197,13 +184,12 @@ tile_data = IntArray( -393217, 5, -458752, 5, -458751, 5, -458750, 5, -458749, 5
 
 [node name="time-machine" parent="bodies" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 64, 96 )
 first_message = NodePath("msg")
 
 [node name="Sprite" parent="bodies/time-machine"]
 
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 vframes = 1
 hframes = 2
 frame = 1
@@ -211,14 +197,14 @@ frame = 1
 [node name="CollisionShape2D" parent="bodies/time-machine"]
 
 shape = SubResource( 3 )
-script/script = ExtResource( 10 )
+script/script = ExtResource( 9 )
 
 [node name="msg" type="Node" parent="bodies/time-machine"]
 
 script/script = ExtResource( 4 )
-speech = "Granny: Oh my, that sure is broken."
+speech = "Granny: Oh my, that sure is broken. There\'s something written here, how vandalous. It says \"press TAB\"."
 
-[node name="Door" parent="bodies" instance=ExtResource( 6 )]
+[node name="Door" parent="bodies" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 48, 400 )
 transform/rot = 180.0

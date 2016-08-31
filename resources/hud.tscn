@@ -66,6 +66,7 @@ RichTextLabel/styles/focus = null
 [sub_resource type="DynamicFont" id=7]
 
 font/size = 14
+extra_spacing/bottom = 4
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 2 )
