@@ -16,21 +16,21 @@
 custom_solver_bias = 0.0
 extents = Vector2( 48, 16 )
 
-[sub_resource type="GDScript" id=11]
+[sub_resource type="GDScript" id=2]
 
 script/source = "\nextends StaticBody2D\n\nvar count\n\nfunc _ready():\n\tcount = 2\n\nfunc _tick():\n\tcount -= 1\n\tif count <= 0:\n\t\tqueue_free()\n\n"
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 24, 48 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 24, 48 )
@@ -83,7 +83,6 @@ collision/mask = 1
 
 [node name="Notes" parent="bodies" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 64, 288 )
 first_message = NodePath("Message/P1")
 
@@ -176,7 +175,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-script/script = SubResource( 11 )
+script/script = SubResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="bodies/fake-wall"]
 
@@ -211,7 +210,7 @@ frame = 1
 
 [node name="CollisionShape2D" parent="bodies/time-machine"]
 
-shape = SubResource( 12 )
+shape = SubResource( 3 )
 script/script = ExtResource( 10 )
 
 [node name="msg" type="Node" parent="bodies/time-machine"]
@@ -235,12 +234,12 @@ editor/display_folded = true
 [node name="CollisionShape2D" parent="bodies/Door/StaticBody2D"]
 
 transform/pos = Vector2( 0, 16 )
-shape = SubResource( 15 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D" parent="bodies/Door/StaticBody2D1"]
 
 transform/pos = Vector2( 0, 16 )
-shape = SubResource( 14 )
+shape = SubResource( 5 )
 
 [node name="roof" type="TileMap" parent="."]
 

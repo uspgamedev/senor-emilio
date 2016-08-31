@@ -14,6 +14,7 @@ onready var _bgms = [
 ]
 onready var fadein = get_node("fadein")
 onready var fadeout = get_node("fadeout")
+onready var hud = get_node("/root/main/HUD")
 
 const FUTURE = 0
 const PAST = 1
@@ -31,6 +32,9 @@ func _ready():
     _start_camera()
     _connect_state()
     input.connect("press_quit", self, "_quit")
+
+func _hello():
+  hud.init_dialog(get_node("hello"))
 
 func _setup():
   _maps = [
@@ -62,7 +66,7 @@ func _connect_state():
   get_current_char().add_child(_cam)
   get_current_map().show()
   fadein.interpolate_method(_bgms[current], "set_volume", 0, 1, 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
-  fadein.start()  
+  fadein.start()
   #get_current_map().set_collision_layer(1)
 
 func _disconnect_state():
