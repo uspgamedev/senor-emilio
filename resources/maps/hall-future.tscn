@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://resources/tilesets/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/objects/types/portal.tscn" type="PackedScene" id=2]
@@ -33,6 +33,15 @@ extents = Vector2( 24, 48 )
 
 custom_solver_bias = 0.0
 extents = Vector2( 24, 48 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 48, 48 )
+
+[sub_resource type="GDScript" id=7]
+
+script/source = "\nextends Area2D\n\nconst Hero = preload(\"res://scripts/classes/hero.gd\")\n\nonready var hud = get_node(\"/root/main/HUD\")\nonready var msg = get_node(\"msg\")\n\nfunc _enter(body):\n\tif body.get_script() == Hero:\n\t\thud.init_dialog(msg)\n\t\tyield(hud, \"dialogue_end\")\n\t\tqueue_free()\n\n\n"
 
 [node name="hall" type="TileMap"]
 
@@ -82,6 +91,7 @@ collision/mask = 1
 
 [node name="Notes" parent="bodies" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 64, 288 )
 first_message = NodePath("Message/P1")
 
@@ -184,6 +194,7 @@ tile_data = IntArray( -393217, 5, -458752, 5, -458751, 5, -458750, 5, -458749, 5
 
 [node name="time-machine" parent="bodies" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 64, 96 )
 first_message = NodePath("msg")
 
@@ -206,6 +217,7 @@ speech = "Granny: Oh my, that sure is broken. There\'s something written here, h
 
 [node name="Door" parent="bodies" instance=ExtResource( 5 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 48, 400 )
 transform/rot = 180.0
 
@@ -226,6 +238,40 @@ shape = SubResource( 4 )
 
 transform/pos = Vector2( 0, 16 )
 shape = SubResource( 5 )
+
+[node name="door-hint" type="Area2D" parent="bodies"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -301, 99 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 6 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 403, 99 )
+shapes/1/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = SubResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bodies/door-hint"]
+
+transform/pos = Vector2( -301, 99 )
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="bodies/door-hint"]
+
+transform/pos = Vector2( 403, 99 )
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 1
+
+[node name="msg" type="Node" parent="bodies/door-hint"]
+
+script/script = ExtResource( 4 )
+speech = "Granny: I bet Señor Emilio could walk right through these bars!"
 
 [node name="roof" type="TileMap" parent="."]
 
@@ -251,6 +297,8 @@ tile_data = IntArray( -393229, 5, -393228, 5, -393227, 5, -393226, 5, -393225, 5
 [connection signal="activated" from="bodies/eye-socket-l" to="bodies/fake-wall" method="_tick"]
 
 [connection signal="activated" from="bodies/eye-socket-r" to="bodies/fake-wall" method="_tick"]
+
+[connection signal="body_enter" from="bodies/door-hint" to="bodies/door-hint" method="_enter"]
 
 
 [editable path="bodies/Door1"]

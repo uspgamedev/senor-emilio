@@ -12,6 +12,7 @@ export(String) var key_required = null
 export(bool) var start_opened = true
 
 signal change_stage(which, door)
+signal opened
 
 func _ready():
   if start_opened or _open:
@@ -27,6 +28,7 @@ func open():
   anim.queue("opened")
   deactivate_collision()
   _open = true
+  emit_signal("opened")
 
 func close():
   print("door closed")
