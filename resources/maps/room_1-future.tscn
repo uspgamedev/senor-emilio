@@ -179,7 +179,7 @@ first_message = NodePath("message")
 [node name="message" type="Node" parent="bodies/warning"]
 
 script/script = ExtResource( 7 )
-speech = "Granny: Oh my, this door is filled with rust. I wouldn\'t be able to open it, even with the key."
+speech = "Granny: Oh my, I don\'t think I can open this in this state."
 
 [node name="door_2" parent="bodies" instance=ExtResource( 8 )]
 
