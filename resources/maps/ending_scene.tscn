@@ -507,7 +507,6 @@ transform/pos = Vector2( 64, 368 )
 
 [node name="granny" parent="hall/bodies" instance=ExtResource( 9 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 112, 240 )
 direction = 2
 
@@ -567,14 +566,12 @@ tile_data = IntArray( -393229, 5, -393228, 5, -393227, 5, -393226, 5, -393225, 5
 
 [node name="dialogues" type="Node" parent="."]
 
-editor/display_folded = true
-
 [node name="one" type="Node" parent="dialogues"]
 
 [node name="sp0" type="Node" parent="dialogues/one"]
 
 script/script = ExtResource( 11 )
-speech = "Oh, Señor Emilio!"
+speech = "Granny: Oh, Señor Emilio!"
 
 [node name="Node" type="Node" parent="dialogues/one/sp0"]
 
@@ -586,14 +583,14 @@ action = "printt(\"hi\")"
 [node name="sp1" type="Node" parent="dialogues/one"]
 
 script/script = ExtResource( 11 )
-speech = "I\'ve been looking everywhere for you, mister!"
+speech = "Granny: I\'ve been looking everywhere for you, mister!"
 
 [node name="two" type="Node" parent="dialogues"]
 
 [node name="sp0" type="Node" parent="dialogues/two"]
 
 script/script = ExtResource( 11 )
-speech = "Meow."
+speech = "Señor Emilio: Meow."
 
 [node name="Node" type="Node" parent="dialogues/two/sp0"]
 
@@ -605,7 +602,7 @@ action = "printt(\"hi\")"
 [node name="next" type="Node" parent="dialogues/two"]
 
 script/script = ExtResource( 11 )
-speech = "Come now, let\'s go home..."
+speech = "Granny: Come now, let\'s go home..."
 
 [node name="Node" type="Node" parent="dialogues/two/next"]
 
@@ -617,7 +614,7 @@ action = "printt(\"hi\")"
 [node name="end" type="Node" parent="dialogues/two"]
 
 script/script = ExtResource( 11 )
-speech = "You\'re in big trouble, you know."
+speech = "Granny: You\'re in big trouble, you know."
 
 [node name="timer" type="Timer" parent="."]
 

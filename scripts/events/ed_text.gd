@@ -50,8 +50,8 @@ func _on_dialog_end():
     reader.disconnect("dialogue_end", self, "_on_dialog_end")
     if progress == 0:
         # move granny down, face her left
-        granny.animation.play("down_moving")
-        tween.interpolate_method( granny, "move_to", granny.get_global_pos(), granny.get_global_pos() + Vector2(0,8*32), 1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
+        #granny.animation.play("down_moving")
+        tween.interpolate_method( granny, "_move_to", DIR.DOWN, DIR.DOWN, 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
         tween.start()
         yield(tween, "tween_complete")
         granny.face(DIR.LEFT)
