@@ -31,12 +31,12 @@ func get_item():
   return stored
 
 func interact(body):
-  if body.grabbing:
+  if body.grabbing and !is_full():
     var drop = body.get_pocket_item()
     body.connect("drop", self, "store", [], CONNECT_ONESHOT)
     body.drop()
     printt(get_name(), "requesting drop")
-  elif is_full():
+  elif !body.grabbing and is_full():
     var item = get_item()
     item.set_layer_mask(body.get_layer_mask())
     body.grab(item)
